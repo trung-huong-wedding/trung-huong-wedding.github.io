@@ -5,7 +5,7 @@
 //  - Văn bản là chữ thường (không HTML). Xuống dòng bằng \n.
 // ============================================================================
 export const CONFIG = {
-  title: "Thiệp cưới Quang Minh & Thu Hà",
+  title: "Thiệp cưới Thành Trung & Thu Hương",
 
   // ---- BẢNG MÀU: đổi tone chủ đạo ở đây, toàn trang đổi theo (không hard-code ở CSS/JS) ----
   theme: {
@@ -26,8 +26,8 @@ export const CONFIG = {
 
   // ---- Cô dâu & chú rể ----
   couple: {
-    groom: { name: "Quang Minh", fullName: "Nguyễn Quang Minh", role: "Chú rể", parents: ["Ông Nguyễn Văn A", "Bà Trần Thị B"], address: "Hà Nội", photo: "assets/images/couple-1.jpg", bio: "Chàng trai hiền lành, thích đi biển và nấu ăn." },
-    bride: { name: "Thu Hà", fullName: "Phạm Thu Hà", role: "Cô dâu", parents: ["Ông Phạm Văn C", "Bà Lê Thị D"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
+    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Ông Nguyễn Văn A", "Bà Trần Thị B"], address: "Hà Nội", photo: "assets/images/couple-1.jpg", bio: "Chàng trai hiền lành, thích đi biển và nấu ăn." },
+    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Ông Phạm Văn C", "Bà Lê Thị D"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
   },
 
   // ---- Màn bìa ----
@@ -118,12 +118,12 @@ export const CONFIG = {
     heading: "Hộp Quà Mừng",
     hint: "Nhấn để mở",
     people: [
-      { role: "Chú Rể", name: "NGUYEN QUANG MINH", bank: "Vietcombank", account: "0000000000", qr: "assets/qr/groom.svg" },
-      { role: "Cô Dâu", name: "PHAM THU HA", bank: "BIDV", account: "1111111111", qr: "assets/qr/bride.svg" },
+      { role: "Chú Rể", name: "NGUYEN THANH TRUNG", bank: "Vietcombank", account: "0000000000", qr: "assets/qr/groom.svg" },
+      { role: "Cô Dâu", name: "NGUYEN THU HUONG", bank: "BIDV", account: "1111111111", qr: "assets/qr/bride.svg" },
     ],
   },
 
-  thanks: { text: "Cảm ơn bạn đã dành tình cảm cho chúng mình", sign: "Quang Minh & Thu Hà" },
+  thanks: { text: "Cảm ơn bạn đã dành tình cảm cho chúng mình", sign: "Thành Trung & Thu Hương" },
 
   // ---- Menu (thứ tự và tên mục; id khớp id section trong index.html) ----
   menu: [

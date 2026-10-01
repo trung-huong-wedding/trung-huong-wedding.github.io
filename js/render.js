@@ -113,13 +113,13 @@ renderers.push((C) => {
     const slides = photos.slice(0, A.sliderCount ?? 10);
     albumEl.replaceChildren(
       ...sectionHead(A.heading),
-      h("div", { class: "slider reveal", id: "slider", "aria-roledescription": "carousel", "aria-label": A.heading },
-        h("div", { class: "slider__stage" },
-          h("div", { class: "slider__track", id: "sliderTrack" }, slides.map((p, i) =>
-            h("button", { class: "slide", type: "button", dataset: { index: i, src: p.src }, "aria-label": `Phóng to ảnh ${i + 1}: ${p.alt || ""}` },
-              h("img", { alt: p.alt || "", decoding: "async", ...(i === 0 ? { src: p.src } : {}) })))),
-          slides.length > 1 ? [h("button", { class: "slider__nav slider__nav--prev", type: "button", "aria-label": "Ảnh trước" }, "‹"), h("button", { class: "slider__nav slider__nav--next", type: "button", "aria-label": "Ảnh sau" }, "›")] : null),
-        slides.length > 1 ? h("div", { class: "slider__dots", id: "sliderDots" }, slides.map((_, i) => h("button", { type: "button", "aria-label": `Tới ảnh ${i + 1}`, dataset: { to: i } }))) : null),
+      h("div", { class: "ring reveal", id: "slider", "aria-roledescription": "carousel", "aria-label": A.heading },
+        h("div", { class: "ring__stage" },
+          slides.length > 1 ? [h("button", { class: "ring__nav ring__nav--prev", type: "button", "aria-label": "Ảnh trước" }, "‹"), h("button", { class: "ring__nav ring__nav--next", type: "button", "aria-label": "Ảnh sau" }, "›")] : null,
+          h("div", { class: "ring__scene", id: "ringScene" }, slides.map((p, i) =>
+            h("button", { class: "ring__item", type: "button", dataset: { index: i, src: p.src }, "aria-label": `Ảnh ${i + 1}: ${p.alt || ""}` },
+              h("img", { alt: p.alt || "", decoding: "async", draggable: "false" }))))),
+        slides.length > 1 ? h("div", { class: "ring__dots", id: "sliderDots" }, slides.map((_, i) => h("button", { type: "button", "aria-label": `Tới ảnh ${i + 1}`, dataset: { to: i } }))) : null),
       h("button", { class: "btn-soft reveal", id: "viewAll", type: "button", style: "--d:.2s" }, A.viewAllLabel ?? "Xem tất cả"),
     );
     mountOverlay(h("div", { class: "gallery", id: "gallery", role: "dialog", "aria-modal": "true", "aria-label": A.heading },

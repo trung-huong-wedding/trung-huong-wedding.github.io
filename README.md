@@ -21,7 +21,7 @@ Chạy test logic: `npm test` (cần Node 20+).
 | Lời mời | `invitation` |
 | Giờ lễ, lịch, file thêm-vào-lịch | `ceremony` |
 | **Câu chuyện tình yêu** | `story.chapters` — mỗi mốc `{ date, title, text, photo, photoAlt }` |
-| **Album ảnh** | `album.photos` (slide chạy `album.sliderCount` ảnh đầu, nút "Xem tất cả" hiện hết) |
+| **Album ảnh** | `album.photos` (vòng ảnh 3D chạy `album.sliderCount` ảnh đầu, nút "Xem tất cả" hiện hết; `album.intervalMs` là thời gian tự quay) |
 | Tiệc cưới, Zalo, dress code | `banquet` |
 | **2 địa chỉ + bản đồ** | `venues.items` |
 | Hộp quà, STK, QR | `gift.people` + ảnh QR trong `assets/qr/` |

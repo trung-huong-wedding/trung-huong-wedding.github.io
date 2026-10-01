@@ -13,7 +13,7 @@ Web thiệp cưới cá nhân gửi link cho khách mời. Web tĩnh (HTML/CSS/J
 - **Ảnh giữ nguyên kích thước và độ phân giải gốc**: không resize, không nén lại, không cắt, không đổi định dạng; xem mục "Quy tắc về ảnh".
 
 ## Phong cách
-Lãng mạn, hoa hồng/hoa đào, tông chủ đạo đỏ hồng. Màu (đặt thành biến CSS để dễ chỉnh): nền kem hồng `#FFF6F5`, hồng phấn `#F7C6CE`, hồng đậm `#E0607E`, đỏ hồng chủ đạo `#C8304F`, đỏ rượu (chữ tiêu đề, nút) `#8E1F3A`, vàng ánh kim nhấn `#C9A25B`. Trái tim rơi và hộp quà dùng gam hồng–đỏ. Font: Cormorant Garamond/Playfair Display (tiêu đề), Great Vibes (chữ viết tay), Be Vietnam Pro (nội dung). Họa tiết hoa SVG vẽ bằng code, ký hiệu ❦ phân cách. Mobile-first (ưu tiên màn dọc), một cột; khung nội dung chính rộng tối đa 900px, căn giữa màn hình (trên màn nhỏ hơn thì full-width), hai bên là họa tiết line-art mờ.
+Lãng mạn, hoa hồng/hoa đào, tông chủ đạo đỏ hồng. Màu (đặt thành biến CSS để dễ chỉnh): nền kem hồng `#FFF6F5`, hồng phấn `#F7C6CE`, hồng đậm `#E0607E`, đỏ hồng chủ đạo `#C8304F`, đỏ rượu (chữ tiêu đề, nút) `#8E1F3A`, vàng ánh kim nhấn `#C9A25B`. Trái tim rơi và hộp quà dùng gam hồng–đỏ. Font: Cormorant Garamond/Playfair Display (tiêu đề), Great Vibes (chữ viết tay), Be Vietnam Pro (nội dung). Họa tiết hoa SVG vẽ bằng code, ký hiệu ❦ phân cách. Mobile-first (ưu tiên màn dọc), một cột; toàn bộ trang (kể cả màn bìa) nằm trong một khung rộng tối đa **1000px**, căn giữa màn hình (trên màn nhỏ hơn thì full-width); phần hai bên khung là nền hồng nhạt có đổ bóng nhẹ để người xem tập trung vào giữa. Ở màn 1024–1459px khung dời sang phải sidebar để không bị đè.
 
 ## Ngôn ngữ thiết kế (nguyên tắc thống nhất cho toàn trang)
 Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao cấp, không phải website. Mọi section đều theo các quy tắc dưới đây.
@@ -28,7 +28,7 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 
 **Hero (màn mở đầu, cũng là màn bìa)**
 - Ảnh cưới phủ kín toàn màn hình (`100svh`), phủ một lớp gradient đỏ rượu/hồng rất nhẹ ở trên và dưới để chữ đọc rõ, giữ ảnh vẫn là trung tâm.
-- Chữ xếp dọc căn giữa: "Trân trọng kính mời" (nhỏ, giãn chữ) → tên lớn → ngày cưới (số lớn, serif) → lời mời/tên khách → nút "Mở thiệp".
+- Toàn bộ chữ nằm trong **một thẻ thiệp** ở giữa màn bìa (nền kem mờ, bo góc, viền vàng mảnh hai lớp, đổ bóng) để khách tập trung vào đó, ảnh cưới nhìn thấy xung quanh thẻ. Trong thẻ xếp dọc căn giữa: "Trân trọng kính mời" (nhỏ, giãn chữ) → tên lớn → ngày cưới (số lớn, serif) → lời mời/tên khách → nút "Mở thiệp". Chữ co theo cả chiều cao màn hình để thẻ luôn vừa trong màn (kể cả điện thoại xoay ngang).
 - Hai bên (desktop) và hai góc (mobile): chi tiết trang trí tối giản, line-art nhánh hoa/hoa hồng mảnh màu vàng ánh kim, mờ, không chiếm diện tích ảnh.
 - Parallax rất nhẹ: ảnh nền dịch chậm hơn nội dung (hệ số ~0.15–0.25, tối đa vài chục px), chữ trôi lên nhẹ. Tắt khi giảm chuyển động.
 - Trái tim rơi: ít (khoảng 12–18 cái mobile), nhỏ, mờ, xoay rất chậm, rơi trong 10–18 giây mỗi lần, gam hồng phấn–đỏ hồng.
@@ -64,8 +64,9 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
    - Mỗi mốc hiện dần chậm khi cuộn tới. Mốc có thể không có ảnh (chỉ chữ) hoặc không có chữ (chỉ ảnh).
    - Nếu `story.chapters` rỗng thì ẩn cả section và mục menu tương ứng. Ban đầu có 4 mốc dùng ảnh giữ chỗ.
 7. **Album ảnh — slide tự động trượt + nút "Xem tất cả"**:
-   - Slide hiển thị khoảng 10 ảnh đầu (`album.sliderCount`, mặc định 10), tự trượt sang ảnh kế tiếp mỗi ~4.5s với chuyển động trượt/mờ chậm; vòng lặp liên tục. Có chấm chỉ vị trí, mũi tên trái/phải, vuốt trên điện thoại; rê chuột hoặc chạm vào slide thì tạm dừng, thả ra thì chạy tiếp; tạm dừng khi tab bị ẩn hoặc khi cửa sổ xem ảnh đang mở. Tôn trọng `prefers-reduced-motion` (không tự trượt, chỉ chuyển khi người dùng bấm).
-   - Mỗi ảnh hiển thị trọn vẹn theo tỉ lệ gốc (`object-fit: contain`) trong khung sân khấu có chiều cao theo khung nhìn (ví dụ `min(70svh, 640px)`), nền kem hồng để ảnh dọc/ngang đều không bị cắt hay méo.
+   - Slide là **vòng ảnh 3D** (coverflow): ảnh chính ở giữa, các ảnh khác xếp hai bên như một vòng quay — ảnh kế bên nghiêng 45° (lùi 150px, thu 0.85, mờ 0.75), tiếp theo 90°/135° (lùi sâu hơn, thu 0.7, mờ 0.5/0.3), xa hơn 3 bước thì ẩn; chuyển động 1.1s ease-in-out, `perspective: 1000px`. Độ dịch ngang của ảnh bên cạnh tính theo bề rộng của ảnh đang ở giữa nên ảnh khác tỉ lệ vẫn xếp đúng vòng. Khoảng 10 ảnh đầu (`album.sliderCount`), tự quay mỗi ~4.5s theo vòng; chiều cao khung 340px (mobile) / 520px (≥768px). Có nút trái/phải (chỉ ≥768px), chấm chỉ vị trí (chấm hiện tại dài hơn), vuốt ngang trên điện thoại (bỏ qua vuốt chéo); bấm ảnh bên cạnh thì quay tới ảnh đó, bấm ảnh chính thì mở lightbox. Rê chuột (chỉ chuột) hoặc chạm thì tạm dừng; cũng dừng khi tab ẩn, khi có popup mở hoặc khi slide ra khỏi màn hình. `prefers-reduced-motion`: không tự quay.
+   - Mỗi ảnh hiển thị trọn vẹn theo tỉ lệ gốc (`object-fit: contain`, khung theo `aspect-ratio` thật của ảnh), không bị cắt hay méo.
+   - Lightbox có số thứ tự "1 / N", mũi tên, vuốt, Esc và **dải ảnh thu nhỏ** bên dưới (ảnh hiện tại có viền); thumbnail là ô vuông nhỏ nên được cắt giữa ảnh, ảnh lớn thì không.
    - Bấm vào ảnh trên slide: mở lightbox xem ảnh lớn (←/→, vuốt, Esc, ✕).
    - Nút **"Xem tất cả"** dưới slide: mở cửa sổ toàn màn hình hiện toàn bộ ảnh trong `album.photos` (không giới hạn 10) dạng lưới masonry giữ tỉ lệ gốc, cuộn được; bấm một ảnh thì mở lightbox ở ảnh đó; đóng bằng ✕/Esc. Khi cửa sổ này mở thì tự cuộn trang tạm dừng.
    - Nếu `album.photos` rỗng thì ẩn cả section và mục menu; nếu ít hơn 2 ảnh thì không hiện mũi tên/chấm và không tự trượt.
