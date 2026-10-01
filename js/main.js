@@ -46,3 +46,6 @@ document.addEventListener("invitation:open", () => setTimeout(() => auto.start()
 
 import { initGift } from "./gift.js";
 initGift();
+
+import { initGuestbook } from "./guestbook.js";
+initGuestbook(CONFIG);

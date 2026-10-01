@@ -211,3 +211,19 @@ renderers.push((C) => {
         h("p", { class: "script gift-modal__title" }, "Hộp quà yêu thương"),
         h("div", { class: "gift-modal__grid" }, people.map(card)))));
 });
+
+// ---- Sổ lưu bút ----
+renderers.push((C) => {
+  const g = C.guestbook;
+  document.getElementById("so-luu-but").replaceChildren(
+    ...sectionHead(g.heading),
+    h("form", { class: "gb-form reveal", id: "gbForm", novalidate: true },
+      h("label", { class: "field" }, h("span", {}, "Tên của bạn"), h("input", { name: "name", maxlength: String(g.maxName), autocomplete: "name" })),
+      h("label", { class: "field" }, h("span", {}, "Lời chúc"), h("textarea", { name: "message", rows: "4", maxlength: String(g.maxMessage) })),
+      h("p", { class: "gb-count", id: "gbCount" }, `0/${g.maxMessage}`),
+      h("p", { class: "gb-msg", id: "gbMsg", role: "status" }),
+      h("button", { class: "btn-soft", type: "submit", id: "gbSubmit" }, "Gửi lời chúc")),
+    h("ul", { class: "gb-list", id: "gbList" }),
+    h("button", { class: "btn-soft", type: "button", id: "gbMore", hidden: true }, "Xem thêm"),
+  );
+});
