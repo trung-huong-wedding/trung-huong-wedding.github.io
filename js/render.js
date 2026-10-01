@@ -1,3 +1,5 @@
+import { sanitizeGuestName } from "./lib/text.js";
+
 export function setText(el, text) { if (el) el.textContent = text ?? ""; }
 
 // Tạo phần tử DOM an toàn: chuỗi luôn đi qua text node (không bao giờ là HTML).
@@ -27,3 +29,19 @@ export function sectionHead(heading) {
 
 export const renderers = []; // mỗi tính năng đăng ký: renderers.push((CONFIG) => {...})
 export function renderAll(CONFIG) { renderers.forEach((fn) => fn(CONFIG)); }
+
+// ---- Hero ----
+renderers.push((C) => {
+  document.getElementById("heroBg").style.backgroundImage = `url("${C.hero.photo}")`;
+  setText(document.getElementById("heroLead"), C.hero.lead);
+  setText(document.getElementById("heroGroom"), C.couple.groom.name);
+  setText(document.getElementById("heroBride"), C.couple.bride.name);
+  const d = C.dateLabel;
+  document.getElementById("heroDate").replaceChildren(
+    h("span", { class: "eyebrow" }, d.weekday),
+    h("span", { class: "hero__num" }, d.day, h("i", {}, "·"), d.month, h("i", {}, "·"), d.year),
+  );
+  const guest = sanitizeGuestName(new URLSearchParams(location.search).get(C.guestParam));
+  const g = document.getElementById("heroGuest");
+  if (guest) { g.hidden = false; g.replaceChildren(document.createTextNode("Thân mời "), h("strong", {}, guest)); }
+});
