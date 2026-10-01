@@ -27,3 +27,6 @@ const lightbox = createLightbox({
 initSlider({ lightbox, config: CONFIG });
 initGallery({ lightbox, config: CONFIG });
 initTimeline();
+
+import { initRsvp } from "./rsvp.js";
+initRsvp();

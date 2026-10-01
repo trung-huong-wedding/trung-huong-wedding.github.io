@@ -121,3 +121,48 @@ renderers.push((C) => {
     );
   }
 });
+
+// ---- Tiệc cưới + RSVP, Địa chỉ (nhiều địa điểm, mỗi nơi một bản đồ), Cảm ơn ----
+renderers.push((C) => {
+  const b = C.banquet;
+  const field = (label, control) => h("label", { class: "field" }, h("span", {}, label), control);
+  document.getElementById("tiec-cuoi").replaceChildren(
+    ...sectionHead(b.heading),
+    h("p", { class: "banquet__venue reveal" }, b.venueName),
+    h("p", { class: "eyebrow reveal" }, b.time),
+    h("p", { class: "lead reveal" }, b.note),
+    b.dressCode ? h("p", { class: "banquet__dress reveal" }, "Trang phục: ", h("b", {}, b.dressCode)) : null,
+    h("form", { class: "rsvp reveal", id: "rsvpForm", novalidate: true },
+      h("h3", { class: "script" }, b.rsvp.heading),
+      field("Họ và tên", h("input", { name: "name", type: "text", maxlength: "60", autocomplete: "name", required: true })),
+      field("Số người đi cùng", h("input", { name: "count", type: "number", min: "1", max: "10", value: "1" })),
+      h("div", { class: "rsvp__choice", role: "radiogroup", "aria-label": "Tham dự" },
+        h("label", {}, h("input", { type: "radio", name: "att", value: "yes", checked: true }), h("span", {}, "Sẽ tham dự")),
+        h("label", {}, h("input", { type: "radio", name: "att", value: "no" }), h("span", {}, "Rất tiếc không đến được"))),
+      field("Lời nhắn", h("textarea", { name: "note", rows: "3", maxlength: "200" })),
+      h("button", { class: "btn-soft", type: "submit" }, "Gửi xác nhận"),
+      h("p", { class: "rsvp__thanks", id: "rsvpThanks", hidden: true, role: "status" }, b.rsvp.thanks),
+    ),
+    b.zalo ? h("a", { class: "btn-soft reveal", href: b.zalo, target: "_blank", rel: "noopener" }, "Nhắn Zalo xác nhận") : null,
+  );
+
+  const venues = C.venues.items ?? [], vEl = document.getElementById("dia-chi");
+  vEl.hidden = venues.length === 0;
+  if (venues.length) vEl.replaceChildren(
+    ...sectionHead(C.venues.heading),
+    h("div", { class: "venues" }, venues.map((v, i) =>
+      h("article", { class: "venue reveal", style: `--d:${i * .2}s` },
+        v.side ? h("p", { class: "eyebrow" }, v.side) : null,
+        h("h3", { class: "script venue__name" }, v.name),
+        h("p", { class: "venue__addr" }, v.address),
+        v.time ? h("p", { class: "venue__time" }, v.time) : null,
+        v.mapEmbed ? h("div", { class: "venue__map" }, h("iframe", { src: v.mapEmbed, loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", title: `Bản đồ ${v.side || v.name}`, allowfullscreen: true })) : null,
+        v.mapLink ? h("a", { class: "btn-soft", href: v.mapLink, target: "_blank", rel: "noopener" }, "Chỉ đường") : null))),
+  );
+
+  document.getElementById("thanks").replaceChildren(
+    h("p", { class: "orn reveal" }, "❦"),
+    h("p", { class: "quote reveal", style: "--d:.2s" }, C.thanks.text),
+    h("p", { class: "script thanks__sign reveal", style: "--d:.4s" }, C.thanks.sign),
+  );
+});
