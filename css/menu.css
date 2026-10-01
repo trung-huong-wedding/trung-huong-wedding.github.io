@@ -35,3 +35,7 @@ body.menu-open { overflow: hidden; }
 
 /* màn 1024–1359px: cột 900px căn giữa sẽ chạm sidebar 230px, nên chừa chỗ bên trái cho nội dung */
 @media (min-width: 1024px) and (max-width: 1359px) { #main { padding-left: 230px; } }
+
+/* chỉ báo ⏸ / ▶ khi bấm tạm dừng hoặc chạy tiếp tự cuộn */
+.as-indicator { position: fixed; left: 50%; top: 50%; z-index: 80; width: 72px; height: 72px; margin: -36px 0 0 -36px; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--wine) 55%, transparent); color: var(--bg); font-size: 1.6rem; opacity: 0; transform: scale(.85); pointer-events: none; transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.as-indicator.is-on { opacity: 1; transform: none; }
