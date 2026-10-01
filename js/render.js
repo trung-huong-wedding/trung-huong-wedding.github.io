@@ -82,3 +82,42 @@ renderers.push((C) => {
     h("button", { class: "btn-soft reveal", id: "icsBtn", type: "button", style: "--d:.4s" }, "Thêm vào lịch"),
   );
 });
+
+// ---- Câu chuyện tình yêu (cây thời gian) + Album (slide + xem tất cả) ----
+renderers.push((C) => {
+  const storyEl = document.getElementById("tinh-yeu"), chapters = C.story.chapters ?? [];
+  storyEl.hidden = chapters.length === 0;
+  if (chapters.length) storyEl.replaceChildren(
+    ...sectionHead(C.story.heading),
+    h("ol", { class: "tl", id: "tl" },
+      h("span", { class: "tl__line", "aria-hidden": "true" }, h("span", { class: "tl__fill" })),
+      ...chapters.map((c, i) => h("li", { class: `tl__item reveal${i % 2 ? " tl__item--alt" : ""}` },
+        h("span", { class: "tl__dot", "aria-hidden": "true" }, "♥"),
+        h("div", { class: "tl__card" },
+          c.date ? h("p", { class: "script tl__date" }, c.date) : null,
+          c.photo ? h("figure", { class: "tl__photo" }, h("img", { src: c.photo, alt: c.photoAlt || c.title || "", loading: "lazy", decoding: "async" })) : null,
+          c.title ? h("h3", { class: "tl__title" }, c.title) : null,
+          c.text ? h("p", { class: "tl__text" }, c.text) : null)))),
+  );
+
+  const A = C.album, photos = A.photos ?? [], albumEl = document.getElementById("album");
+  albumEl.hidden = photos.length === 0;
+  if (photos.length) {
+    const slides = photos.slice(0, A.sliderCount ?? 10);
+    albumEl.replaceChildren(
+      ...sectionHead(A.heading),
+      h("div", { class: "slider reveal", id: "slider", "aria-roledescription": "carousel", "aria-label": A.heading },
+        h("div", { class: "slider__stage" },
+          h("div", { class: "slider__track", id: "sliderTrack" }, slides.map((p, i) =>
+            h("button", { class: "slide", type: "button", dataset: { index: i, src: p.src }, "aria-label": `Phóng to ảnh ${i + 1}: ${p.alt || ""}` },
+              h("img", { alt: p.alt || "", decoding: "async", ...(i === 0 ? { src: p.src } : {}) })))),
+          slides.length > 1 ? [h("button", { class: "slider__nav slider__nav--prev", type: "button", "aria-label": "Ảnh trước" }, "‹"), h("button", { class: "slider__nav slider__nav--next", type: "button", "aria-label": "Ảnh sau" }, "›")] : null),
+        slides.length > 1 ? h("div", { class: "slider__dots", id: "sliderDots" }, slides.map((_, i) => h("button", { type: "button", "aria-label": `Tới ảnh ${i + 1}`, dataset: { to: i } }))) : null),
+      h("button", { class: "btn-soft reveal", id: "viewAll", type: "button", style: "--d:.2s" }, A.viewAllLabel ?? "Xem tất cả"),
+      h("div", { class: "gallery", id: "gallery", role: "dialog", "aria-modal": "true", "aria-label": A.heading },
+        h("button", { class: "gallery__x", type: "button", "aria-label": "Đóng" }, "✕"),
+        h("div", { class: "gallery__grid" }, photos.map((p, i) =>
+          h("button", { class: "gallery__item", type: "button", dataset: { index: i }, "aria-label": `Xem ảnh ${i + 1}` }, h("img", { src: p.src, alt: p.alt || "", loading: "lazy", decoding: "async" }))))),
+    );
+  }
+});
