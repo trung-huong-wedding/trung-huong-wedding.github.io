@@ -30,3 +30,12 @@ initTimeline();
 
 import { initRsvp } from "./rsvp.js";
 initRsvp();
+
+import { initMenu } from "./menu.js";
+import { initMusic } from "./music.js";
+const menu = initMenu(CONFIG, {
+  onNavStart: () => document.dispatchEvent(new CustomEvent("nav:start")),
+  onNavEnd: () => document.dispatchEvent(new CustomEvent("nav:end")),
+});
+const music = initMusic(CONFIG);
+document.addEventListener("invitation:open", () => { menu.show(); music.show?.(); music.play(); });
