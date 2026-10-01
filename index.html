@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Thiệp cưới</title>
+  <meta name="theme-color" content="#FFF6F5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/timeline.css">
+  <link rel="stylesheet" href="css/album.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/gift.css">
+</head>
+<body class="is-locked">
+  <div class="page" id="page">
+    <header class="hero" id="thiep-cuoi" data-section>
+      <div class="hero__bg" id="heroBg"></div>
+      <div class="hero__shade"></div>
+      <div class="hero__hearts" id="hearts" aria-hidden="true"></div>
+      <svg class="hero__orn hero__orn--l" viewBox="0 0 120 400" aria-hidden="true"><use href="#branch"/></svg>
+      <svg class="hero__orn hero__orn--r" viewBox="0 0 120 400" aria-hidden="true"><use href="#branch"/></svg>
+      <div class="hero__content" id="heroContent">
+        <p class="hero__lead eyebrow" id="heroLead"></p>
+        <h1 class="hero__names"><span class="script" id="heroGroom"></span><span class="hero__amp">&amp;</span><span class="script" id="heroBride"></span></h1>
+        <div class="hero__date" id="heroDate"></div>
+        <p class="hero__guest" id="heroGuest" hidden></p>
+        <button class="hero__open" id="openBtn" type="button">Mở thiệp</button>
+      </div>
+      <div class="hero__veil" id="veil" aria-hidden="true"></div>
+    </header>
+
+    <main id="main">
+      <section class="sec sec--invite col" id="invitation"></section>
+      <section class="sec sec--couple col" id="couple"></section>
+      <section class="sec sec--count col" id="countdown"></section>
+      <section class="sec col" id="le-cuoi" data-section></section>
+      <section class="sec col" id="tinh-yeu" data-section></section>
+      <section class="sec col" id="album" data-section></section>
+      <section class="sec col" id="tiec-cuoi" data-section></section>
+      <section class="sec col" id="dia-chi" data-section></section>
+      <section class="sec col" id="so-luu-but" data-section></section>
+      <section class="sec sec--gift col" id="qua-mung" data-section></section>
+      <footer class="sec sec--thanks col" id="thanks"></footer>
+    </main>
+  </div>
+
+  <nav class="menu" id="menu" aria-label="Điều hướng" hidden></nav>
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Mở menu" aria-expanded="false" hidden><span></span><span></span></button>
+  <button class="music" id="musicBtn" type="button" aria-label="Bật/tắt nhạc" hidden>♪</button>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="branch" viewBox="0 0 120 400">
+        <g fill="none" style="stroke:var(--gold)" stroke-width="1.2" stroke-linecap="round" opacity=".9">
+          <path d="M60 0 C 50 90, 75 160, 58 260 S 62 360, 60 400"/>
+          <path d="M58 70 C 30 60, 18 80, 24 100 C 44 98, 54 86, 58 70 Z"/>
+          <path d="M62 140 C 90 128, 104 148, 96 168 C 76 166, 64 156, 62 140 Z"/>
+          <path d="M58 220 C 30 212, 16 232, 24 250 C 44 248, 56 238, 58 220 Z"/>
+          <path d="M62 300 C 90 290, 102 308, 96 326 C 76 324, 66 316, 62 300 Z"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
