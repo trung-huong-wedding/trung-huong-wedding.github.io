@@ -1,0 +1,38 @@
+.sec { position: relative; z-index: 1; padding-block: clamp(72px, 14vh, 140px); text-align: center; min-height: 70svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+.sec__title { font-size: clamp(2.4rem, 9vw, 3.8rem); line-height: 1.1; }
+.rule { display: block; width: 90px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.quote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.25rem, 4.6vw, 1.7rem); color: var(--wine); line-height: 1.6; }
+.lead { max-width: 34em; color: var(--ink-soft); white-space: pre-line; }
+.btn-soft { display: inline-block; padding: .8em 2em; border-radius: 999px; background: transparent; border: 1px solid var(--pink); color: var(--wine); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; text-decoration: none; transition: background .8s var(--ease), color .8s var(--ease); }
+.btn-soft:hover, .btn-soft:focus-visible { background: var(--pink); color: var(--bg); outline: none; }
+.sec::before { content: ""; position: absolute; inset: 0 -100vw; z-index: -1; background: var(--_bg, transparent); }
+#le-cuoi, #album, #dia-chi, #qua-mung { --_bg: linear-gradient(180deg, transparent, color-mix(in srgb, var(--pink-soft) 35%, transparent) 18%, color-mix(in srgb, var(--pink-soft) 35%, transparent) 82%, transparent); }
+
+/* cô dâu chú rể: khung vòm co theo tỉ lệ thật của ảnh, không cắt ảnh */
+.couple-grid { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; width: 100%; }
+.couple-heart { display: none; }
+.person { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.arch { width: min(70%, 280px); border-radius: 999px 999px 18px 18px; overflow: hidden; box-shadow: 0 18px 50px -18px color-mix(in srgb, var(--wine) 45%, transparent); margin-bottom: 14px; }
+.arch img { width: 100%; height: auto; }
+.person__name { font-size: 2.3rem; line-height: 1.1; } .person__parents { font-size: .9rem; color: var(--ink-soft); } .person__bio { font-size: .92rem; font-style: italic; max-width: 22em; color: var(--ink-soft); }
+@media (min-width: 720px) { .couple-grid { grid-template-columns: 1fr auto 1fr; } .couple-heart { display: block; align-self: center; color: var(--red); font-size: 1.6rem; } }
+
+/* đếm ngược */
+.cd { display: flex; gap: clamp(10px, 3vw, 26px); justify-content: center; }
+.cd__cell { display: flex; flex-direction: column; align-items: center; min-width: 64px; padding: 14px 6px; border-radius: 40px 40px 14px 14px; background: color-mix(in srgb, var(--bg) 70%, #fff); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); }
+.cd__cell b { font-family: var(--font-serif); font-size: clamp(1.8rem, 8vw, 2.8rem); font-weight: 500; color: var(--red); line-height: 1.1; }
+.cd__cell span { font-size: .7rem; text-transform: uppercase; letter-spacing: .2em; color: var(--ink-soft); }
+.cd__done { font-family: var(--font-serif); font-size: 1.5rem; color: var(--wine); }
+
+/* lịch + timeline lễ */
+.cal { width: min(100%, 340px); }
+.cal__head { font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: .2em; text-transform: uppercase; color: var(--wine); margin-bottom: 10px; }
+.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 6px; }
+.cal__w { font-size: .7rem; color: var(--ink-soft); letter-spacing: .1em; } .cal__d { position: relative; height: 38px; display: grid; place-items: center; font-family: var(--font-serif); font-size: 1.05rem; }
+.cal__d.is-day { color: var(--bg); z-index: 0; font-weight: 600; }
+.cal__d.is-day::before { content: "♥"; position: absolute; left: 50%; top: 50%; width: 3rem; height: 3rem; margin: -1.5rem 0 0 -1.5rem; z-index: -1; display: flex; align-items: center; justify-content: center; line-height: 1; font-size: 2.8rem; color: var(--red); animation: pulse 3.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.timeline { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.timeline li { display: flex; gap: 18px; justify-content: center; align-items: baseline; font-family: var(--font-serif); font-size: 1.15rem; }
+.timeline b { color: var(--red); font-weight: 600; letter-spacing: .08em; min-width: 3.4em; text-align: right; }
+.timeline span { min-width: 9em; text-align: left; }
