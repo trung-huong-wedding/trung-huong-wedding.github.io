@@ -27,6 +27,9 @@ export function sectionHead(heading) {
   ];
 }
 
+// Popup/overlay phải nằm trực tiếp trong <body>, nếu không sẽ bị kẹt dưới các section phía sau (stacking context).
+export function mountOverlay(el) { document.getElementById(el.id)?.remove(); document.body.append(el); return el; }
+
 export const renderers = []; // mỗi tính năng đăng ký: renderers.push((CONFIG) => {...})
 export function renderAll(CONFIG) { renderers.forEach((fn) => fn(CONFIG)); }
 
@@ -114,11 +117,11 @@ renderers.push((C) => {
           slides.length > 1 ? [h("button", { class: "slider__nav slider__nav--prev", type: "button", "aria-label": "Ảnh trước" }, "‹"), h("button", { class: "slider__nav slider__nav--next", type: "button", "aria-label": "Ảnh sau" }, "›")] : null),
         slides.length > 1 ? h("div", { class: "slider__dots", id: "sliderDots" }, slides.map((_, i) => h("button", { type: "button", "aria-label": `Tới ảnh ${i + 1}`, dataset: { to: i } }))) : null),
       h("button", { class: "btn-soft reveal", id: "viewAll", type: "button", style: "--d:.2s" }, A.viewAllLabel ?? "Xem tất cả"),
-      h("div", { class: "gallery", id: "gallery", role: "dialog", "aria-modal": "true", "aria-label": A.heading },
+    );
+    mountOverlay(h("div", { class: "gallery", id: "gallery", role: "dialog", "aria-modal": "true", "aria-label": A.heading },
         h("button", { class: "gallery__x", type: "button", "aria-label": "Đóng" }, "✕"),
         h("div", { class: "gallery__grid" }, photos.map((p, i) =>
-          h("button", { class: "gallery__item", type: "button", dataset: { index: i }, "aria-label": `Xem ảnh ${i + 1}` }, h("img", { src: p.src, alt: p.alt || "", loading: "lazy", decoding: "async" }))))),
-    );
+          h("button", { class: "gallery__item", type: "button", dataset: { index: i }, "aria-label": `Xem ảnh ${i + 1}` }, h("img", { src: p.src, alt: p.alt || "", loading: "lazy", decoding: "async" }))))));
   }
 });
 
@@ -165,4 +168,46 @@ renderers.push((C) => {
     h("p", { class: "quote reveal", style: "--d:.2s" }, C.thanks.text),
     h("p", { class: "script thanks__sign reveal", style: "--d:.4s" }, C.thanks.sign),
   );
+});
+
+// ---- Quà mừng: hộp quà vẽ bằng SVG (màu lấy từ biến theme) + popup QR ----
+const GIFT_SVG = (w) => `<svg viewBox="0 0 120 120" width="${w}" aria-hidden="true">
+  <rect x="14" y="52" width="92" height="60" rx="6" style="fill:var(--red)"/><rect x="54" y="52" width="12" height="60" style="fill:var(--gold)"/>
+  <rect x="8" y="38" width="104" height="22" rx="6" style="fill:var(--pink)"/><rect x="54" y="38" width="12" height="22" style="fill:var(--gold)"/>
+  <path d="M60 38 C 40 10, 14 22, 34 38 Z" style="fill:var(--pink-soft);stroke:var(--gold)" stroke-width="2"/><path d="M60 38 C 80 10, 106 22, 86 38 Z" style="fill:var(--pink-soft);stroke:var(--gold)" stroke-width="2"/>
+  <circle cx="60" cy="38" r="6" style="fill:var(--gold)"/></svg>`;
+
+renderers.push((C) => {
+  const g = C.gift, people = g.people ?? [], el = document.getElementById("qua-mung");
+  el.hidden = people.length === 0;
+  if (!people.length) return;
+  const mini = [{ l: "4%", t: "34%", r: "-22deg", w: 34 }, { l: "78%", t: "26%", r: "20deg", w: 38 }, { l: "8%", t: "62%", r: "-16deg", w: 26 }, { l: "82%", t: "60%", r: "14deg", w: 30 }];
+  const confetti = ["--pink", "--gold", "--pink-soft", "--red", "--bg", "--wine"]; // màu theo theme
+  const svgSpan = (cls, svg, extra = {}) => { const s = h("span", { class: cls, "aria-hidden": "true", ...extra }); s.innerHTML = svg; return s; };
+  const box = h("button", { class: "gift", id: "giftBtn", type: "button", "aria-label": "Mở hộp quà mừng" },
+    h("span", { class: "gift__star s1", "aria-hidden": "true" }, "✦"), h("span", { class: "gift__star s2", "aria-hidden": "true" }, "✦"), h("span", { class: "gift__star s3", "aria-hidden": "true" }, "✦"),
+    h("span", { class: "gift__confetti", "aria-hidden": "true" }, confetti.map((c, i) => h("i", { style: `--c:var(${c});--a:${i * 60 - 150}deg;--dx:${(i - 2.5) * 26}px;--dl:${i * .05}s` }))),
+    h("span", { class: "gift__bob" },
+      ...mini.map((m, i) => svgSpan(`gift__mini m${i + 1}`, GIFT_SVG(m.w), { style: `left:${m.l};top:${m.t};--r:${m.r}` })),
+      svgSpan("gift__main", GIFT_SVG(170)),
+      h("span", { class: "gift__shadow", "aria-hidden": "true" })),
+    h("span", { class: "gift__hint" }, g.hint));
+
+  const card = (p) => h("div", { class: "qr" },
+    h("h3", { class: "qr__role" }, p.role),
+    h("div", { class: "qr__img" }, h("img", { src: p.qr, alt: `QR ${p.role}` })),
+    h("p", { class: "qr__bank" }, p.bank), h("p", { class: "qr__acc" }, p.account), h("p", { class: "qr__name" }, p.name),
+    h("div", { class: "qr__btns" },
+      h("button", { class: "btn-soft", type: "button", dataset: { copy: p.account } }, "Sao chép STK"),
+      h("a", { class: "btn-soft", href: p.qr, download: `qr-${p.role.toLowerCase().replace(/\s+/g, "-")}` }, "Lưu QR")));
+
+  el.replaceChildren(
+    ...sectionHead(g.heading),
+    h("div", { class: "reveal", style: "--d:.2s" }, box),
+  );
+  mountOverlay(h("div", { class: "gift-modal", id: "giftModal", role: "dialog", "aria-modal": "true", "aria-label": g.heading },
+      h("div", { class: "gift-modal__card" },
+        h("button", { class: "gift-modal__x", type: "button", "aria-label": "Đóng" }, "✕"),
+        h("p", { class: "script gift-modal__title" }, "Hộp quà yêu thương"),
+        h("div", { class: "gift-modal__grid" }, people.map(card)))));
 });

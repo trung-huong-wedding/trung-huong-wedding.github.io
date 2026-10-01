@@ -43,3 +43,6 @@ document.addEventListener("invitation:open", () => { menu.show(); music.show?.()
 import { initAutoScroll } from "./autoscroll.js";
 const auto = initAutoScroll(CONFIG);
 document.addEventListener("invitation:open", () => setTimeout(() => auto.start(), 1200)); // chờ hero "thở" xong rồi mới cuộn
+
+import { initGift } from "./gift.js";
+initGift();
