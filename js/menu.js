@@ -14,7 +14,11 @@ export function initMenu(C, { onNavStart, onNavEnd } = {}) {
   nav.replaceChildren(mono, list);
 
   const isDesktop = () => matchMedia("(min-width: 1024px)").matches;
+  let held = false; // overlay mobile đang giữ tự cuộn (modal:open/close cân bằng)
+  const emit = (name) => document.dispatchEvent(new CustomEvent(name));
   const setOpen = (v) => {
+    if (v && !held && !isDesktop()) { held = true; emit("modal:open"); }
+    if (!v && held) { held = false; emit("modal:close"); }
     nav.classList.toggle("is-open", v); toggle.setAttribute("aria-expanded", String(v)); toggle.classList.toggle("is-x", v);
     document.body.classList.toggle("menu-open", v && !isDesktop());
   };

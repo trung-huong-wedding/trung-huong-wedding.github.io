@@ -17,30 +17,37 @@ import { initMusic } from "./music.js";
 import { initAutoScroll } from "./autoscroll.js";
 
 const emit = (name) => document.dispatchEvent(new CustomEvent(name));
+// Mỗi tính năng khởi tạo độc lập: một khối lỗi (ví dụ config sai) không làm hỏng các khối khác, kể cả nút "Mở thiệp".
+const guard = (name, fn, fallback) => { try { return fn(); } catch (e) { console.error(`[${name}] lỗi khởi tạo — kiểm tra js/config.js:`, e); return fallback; } };
+
+// 0. Luôn bắt đầu từ màn bìa (tải lại giữa trang không được kẹt ở giữa khi cuộn đang bị khoá)
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+scrollTo(0, 0);
 
 // 1. Màu + nội dung từ config
-applyTheme(CONFIG.theme);
-document.title = CONFIG.title;
+guard("theme", () => applyTheme(CONFIG.theme));
+document.title = CONFIG.title ?? document.title;
 renderAll(CONFIG);
 
 // 2. Các tính năng (phải chạy sau renderAll vì cần DOM đã dựng)
-initCountdown(CONFIG.weddingDate);
-initCalendar(CONFIG);
-const lightbox = createLightbox({ onOpen: () => emit("modal:open"), onClose: () => emit("modal:close") });
-initSlider({ lightbox, config: CONFIG });
-initGallery({ lightbox, config: CONFIG });
-initTimeline();
-initRsvp();
-initGift();
-initGuestbook(CONFIG);
-initReveal();
+const noopLightbox = { open() {}, isOpen: () => false };
+guard("countdown", () => initCountdown(CONFIG.weddingDate));
+guard("calendar", () => initCalendar(CONFIG));
+const lightbox = guard("lightbox", () => createLightbox({ onOpen: () => emit("modal:open"), onClose: () => emit("modal:close") }), noopLightbox);
+guard("slider", () => initSlider({ lightbox, config: CONFIG }));
+guard("gallery", () => initGallery({ lightbox, config: CONFIG }));
+guard("timeline", () => initTimeline());
+guard("rsvp", () => initRsvp());
+guard("gift", () => initGift());
+guard("guestbook", () => initGuestbook(CONFIG));
+guard("reveal", () => initReveal());
 
-const menu = initMenu(CONFIG, { onNavStart: () => emit("nav:start"), onNavEnd: () => emit("nav:end") });
-const music = initMusic(CONFIG);
-const auto = initAutoScroll(CONFIG);
+const menu = guard("menu", () => initMenu(CONFIG, { onNavStart: () => emit("nav:start"), onNavEnd: () => emit("nav:end") }), { show() {} });
+const music = guard("music", () => initMusic(CONFIG), { play() {}, show() {} });
+const auto = guard("autoscroll", () => initAutoScroll(CONFIG), { start() {} });
 
 // 3. Mở thiệp: hiện menu, bật nhạc, rồi tự cuộn sau khi hero "thở" xong
-initHero({ onOpen: () => emit("invitation:open") });
+guard("hero", () => initHero({ onOpen: () => emit("invitation:open") }));
 document.addEventListener("invitation:open", () => {
   menu.show(); music.show?.(); music.play();
   setTimeout(() => auto.start(), 1200);

@@ -1,4 +1,5 @@
 import { validateEntry, cooldownRemaining, isFirebaseConfigured } from "./lib/text.js";
+import { withTimeout, TimeoutError } from "./lib/async.js";
 
 const SDK = "https://www.gstatic.com/firebasejs/10.12.2";
 const LS_KEY = "gb:lastPost";
@@ -28,8 +29,8 @@ export async function initGuestbook(C) {
   draw(g.samples); // hiện ngay lời chúc mẫu trong lúc chờ Firebase
   if (online) {
     try {
-      const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 8000)); // mạng chặn/chậm: bỏ cuộc sau 8s
-      const [{ initializeApp }, fs] = await Promise.race([Promise.all([import(`${SDK}/firebase-app.js`), import(`${SDK}/firebase-firestore.js`)]), timeout]);
+      // mạng chặn/chậm: bỏ cuộc sau 8s
+      const [{ initializeApp }, fs] = await withTimeout(Promise.all([import(`${SDK}/firebase-app.js`), import(`${SDK}/firebase-firestore.js`)]), 8000);
       db = fs.getFirestore(initializeApp(C.firebase)); api = fs;
     } catch { online = false; }
   }
@@ -59,9 +60,16 @@ export async function initGuestbook(C) {
     if (!online || !api) return say("Sổ lưu bút chưa sẵn sàng, bạn thử lại sau nhé.", true);
     sending = true; submit.disabled = true; say("Đang gửi…");
     try {
-      await api.addDoc(api.collection(db, "guestbook"), { name: v.value.name, message: v.value.message, createdAt: api.serverTimestamp() });
+      let pending = false;
+      try {
+        await withTimeout(api.addDoc(api.collection(db, "guestbook"), { name: v.value.name, message: v.value.message, createdAt: api.serverTimestamp() }), 10000);
+      } catch (err) {
+        if (!(err instanceof TimeoutError)) throw err;
+        pending = true; // mạng chập chờn: Firestore giữ lệnh ghi và gửi khi có mạng
+      }
       try { localStorage.setItem(LS_KEY, String(Date.now())); } catch {}
-      form.reset(); count.textContent = `0/${g.maxMessage}`; say("Cảm ơn lời chúc của bạn ♥");
+      form.reset(); count.textContent = `0/${g.maxMessage}`;
+      say(pending ? "Lời chúc đang được gửi; nếu chưa thấy hiện, bạn kiểm tra mạng và thử lại sau nhé." : "Cảm ơn lời chúc của bạn ♥");
     } catch { say("Gửi chưa được, bạn thử lại sau nhé.", true); }
     finally { sending = false; submit.disabled = false; }
   });

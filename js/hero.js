@@ -32,6 +32,10 @@ export function initHero({ onOpen }) {
   initParallax();
   const btn = document.getElementById("openBtn");
   let opened = false;
+  // Lưới an toàn: nếu nội dung bìa vẫn cao hơn màn hình (màn rất thấp) thì không khoá cuộn, để khách luôn chạm được nút.
+  const content = document.getElementById("heroContent");
+  const fit = () => { if (!opened) document.body.classList.toggle("is-locked", content.getBoundingClientRect().height <= innerHeight + 2); };
+  fit(); addEventListener("resize", fit); addEventListener("orientationchange", fit);
   btn.addEventListener("click", () => {
     if (opened) return; opened = true;
     const b = document.body;

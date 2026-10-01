@@ -1,4 +1,5 @@
 import { sanitizeGuestName } from "./lib/text.js";
+import { runSafely } from "./lib/safe.js";
 
 export function setText(el, text) { if (el) el.textContent = text ?? ""; }
 
@@ -31,7 +32,10 @@ export function sectionHead(heading) {
 export function mountOverlay(el) { document.getElementById(el.id)?.remove(); document.body.append(el); return el; }
 
 export const renderers = []; // mỗi tính năng đăng ký: renderers.push((CONFIG) => {...})
-export function renderAll(CONFIG) { renderers.forEach((fn) => fn(CONFIG)); }
+// Mỗi khối render độc lập: config sai ở một khối chỉ làm khối đó trống, không làm hỏng cả trang (kể cả nút "Mở thiệp").
+export function renderAll(CONFIG) {
+  runSafely(renderers.map((fn) => () => fn(CONFIG)), (e, i) => console.error(`[render] khối #${i} lỗi — kiểm tra js/config.js:`, e));
+}
 
 // ---- Hero ----
 renderers.push((C) => {
@@ -54,7 +58,7 @@ renderers.push((C) => {
   document.getElementById("invitation").replaceChildren(
     h("p", { class: "orn reveal" }, "❦"),
     h("h2", { class: "sec__title script reveal", style: "--d:.15s" }, C.invitation.heading),
-    h("p", { class: "quote reveal", style: "--d:.3s" }, C.invitation.lines.map((l, i) => [i ? h("br") : null, l])),
+    h("p", { class: "quote reveal", style: "--d:.3s" }, (C.invitation.lines ?? []).map((l, i) => [i ? h("br") : null, l])),
     h("p", { class: "lead reveal", style: "--d:.45s" }, C.invitation.body),
   );
 
@@ -62,7 +66,7 @@ renderers.push((C) => {
     h("div", { class: "arch" }, h("img", { src: p.photo, alt: p.fullName, loading: "lazy", decoding: "async" })),
     h("p", { class: "eyebrow" }, p.role),
     h("h3", { class: "script person__name" }, p.fullName),
-    h("p", { class: "person__parents" }, p.parents.map((x, i) => [i ? h("br") : null, x])),
+    h("p", { class: "person__parents" }, (p.parents ?? []).map((x, i) => [i ? h("br") : null, x])),
     h("p", { class: "person__bio" }, p.bio),
   );
   document.getElementById("couple").replaceChildren(
@@ -81,7 +85,7 @@ renderers.push((C) => {
     ...sectionHead(cer.heading),
     h("p", { class: "eyebrow reveal" }, cer.title),
     h("div", { class: "cal reveal", id: "cal", style: "--d:.2s" }),
-    h("ol", { class: "timeline reveal", style: "--d:.3s" }, cer.timeline.map((t) => h("li", {}, h("b", {}, t.time), h("span", {}, t.title)))),
+    h("ol", { class: "timeline reveal", style: "--d:.3s" }, (cer.timeline ?? []).map((t) => h("li", {}, h("b", {}, t.time), h("span", {}, t.title)))),
     h("button", { class: "btn-soft reveal", id: "icsBtn", type: "button", style: "--d:.4s" }, "Thêm vào lịch"),
   );
 });
@@ -136,7 +140,7 @@ renderers.push((C) => {
     h("p", { class: "lead reveal" }, b.note),
     b.dressCode ? h("p", { class: "banquet__dress reveal" }, "Trang phục: ", h("b", {}, b.dressCode)) : null,
     h("form", { class: "rsvp reveal", id: "rsvpForm", novalidate: true },
-      h("h3", { class: "script" }, b.rsvp.heading),
+      h("h3", { class: "script" }, b.rsvp?.heading ?? "Xác Nhận Tham Dự"),
       field("Họ và tên", h("input", { name: "name", type: "text", maxlength: "60", autocomplete: "name", required: true })),
       field("Số người đi cùng", h("input", { name: "count", type: "number", min: "1", max: "10", value: "1" })),
       h("div", { class: "rsvp__choice", role: "radiogroup", "aria-label": "Tham dự" },
@@ -144,7 +148,7 @@ renderers.push((C) => {
         h("label", {}, h("input", { type: "radio", name: "att", value: "no" }), h("span", {}, "Rất tiếc không đến được"))),
       field("Lời nhắn", h("textarea", { name: "note", rows: "3", maxlength: "200" })),
       h("button", { class: "btn-soft", type: "submit" }, "Gửi xác nhận"),
-      h("p", { class: "rsvp__thanks", id: "rsvpThanks", hidden: true, role: "status" }, b.rsvp.thanks),
+      h("p", { class: "rsvp__thanks", id: "rsvpThanks", hidden: true, role: "status" }, b.rsvp?.thanks ?? "Cảm ơn bạn!"),
     ),
     b.zalo ? h("a", { class: "btn-soft reveal", href: b.zalo, target: "_blank", rel: "noopener" }, "Nhắn Zalo xác nhận") : null,
   );

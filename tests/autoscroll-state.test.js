@@ -30,3 +30,12 @@ test("nhiều hold độc lập", () => {
   s.release("b"); assert.equal(s.isRunning(), true);
   s.release("khong-ton-tai"); assert.equal(s.isRunning(), true);
 });
+
+test("hai popup chồng nhau cùng lý do 'modal': đóng popup trên cùng vẫn giữ tự cuộn dừng", () => {
+  const s = createAutoScrollState(); s.setEnabled(true);
+  s.hold("modal"); s.hold("modal"); // thư viện ảnh rồi lightbox
+  s.release("modal");               // đóng lightbox
+  assert.equal(s.isRunning(), false);
+  s.release("modal");               // đóng thư viện ảnh
+  assert.equal(s.isRunning(), true);
+});
