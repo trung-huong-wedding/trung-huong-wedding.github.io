@@ -3,7 +3,7 @@
 .rule { display: block; width: 90px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 .quote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.25rem, 4.6vw, 1.7rem); color: var(--wine); line-height: 1.6; }
 .lead { max-width: 34em; color: var(--ink-soft); white-space: pre-line; }
-.btn-soft { display: inline-block; padding: .8em 2em; border-radius: 999px; background: transparent; border: 1px solid var(--pink); color: var(--wine); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; text-decoration: none; transition: background .8s var(--ease), color .8s var(--ease); }
+.btn-soft { display: inline-block; padding: .8em 2em; border-radius: 999px; background: color-mix(in srgb, #fff 85%, var(--bg)); border: 1px solid var(--pink); color: var(--wine); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; text-decoration: none; transition: background .8s var(--ease), color .8s var(--ease); }
 .btn-soft:hover, .btn-soft:focus-visible { background: var(--pink); color: var(--bg); outline: none; }
 .sec::before { content: ""; position: absolute; inset: 0 -100vw; z-index: -1; background: var(--_bg, transparent); }
 
