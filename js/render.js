@@ -111,7 +111,6 @@ renderers.push((C) => {
       h("p", { class: "cd__done", id: "cdDone", hidden: true }, "Hôm nay là ngày vui của chúng mình ♥")),
     h("div", { class: "cal reveal", id: "cal", style: "--d:.2s" }),
     h("ol", { class: "timeline reveal", style: "--d:.3s" }, (cer.timeline ?? []).map((t) => h("li", {}, h("b", {}, t.time), h("span", {}, t.title)))),
-    h("button", { class: "btn-soft reveal", id: "icsBtn", type: "button", style: "--d:.4s" }, "Thêm vào lịch"),
   );
 });
 
@@ -184,7 +183,6 @@ renderers.push((C) => {
       h("button", { class: "btn-soft", type: "submit" }, "Gửi xác nhận"),
       h("p", { class: "rsvp__thanks", id: "rsvpThanks", hidden: true, role: "status" }, b.rsvp?.thanks ?? "Cảm ơn bạn!"),
     ),
-    b.zalo ? h("a", { class: "btn-soft reveal", href: b.zalo, target: "_blank", rel: "noopener" }, "Nhắn Zalo xác nhận") : null,
   );
 
   document.getElementById("thanks").replaceChildren(

@@ -1,4 +1,4 @@
-import { monthGrid, buildIcs } from "./lib/date.js";
+import { monthGrid } from "./lib/date.js";
 
 export function initCalendar(C) {
   const el = document.getElementById("cal"); if (!el) return;
@@ -14,9 +14,4 @@ export function initCalendar(C) {
     s.textContent = n ?? ""; grid.append(s);
   });
   el.replaceChildren(head, grid);
-  document.getElementById("icsBtn").addEventListener("click", () => {
-    const ics = buildIcs({ title: C.title, startIso: C.ceremony.startIso, durationMin: C.ceremony.durationMin, location: C.ceremony.locationForCalendar, description: C.ceremony.title });
-    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" })), download: "thiep-cuoi.ics" });
-    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  });
 }

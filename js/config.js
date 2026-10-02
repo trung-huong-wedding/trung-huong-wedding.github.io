@@ -112,7 +112,6 @@ export const CONFIG = {
     venueName: "Nhà hàng Hoa Hồng",
     note: "Sự hiện diện của bạn là niềm vui lớn của gia đình chúng mình.",
     dressCode: "Gam màu hồng, đỏ, kem",
-    zalo: "https://zalo.me/0900000000",
     rsvp: { heading: "Xác Nhận Tham Dự", thanks: "Cảm ơn bạn! Chúng mình rất mong được gặp bạn." },
   },
 

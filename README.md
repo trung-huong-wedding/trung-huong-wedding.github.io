@@ -24,7 +24,7 @@ Chạy test logic: `npm test` (cần Node 20+).
 | **Thông tin lễ cưới** | `ceremony`: `parentsLabel`, `announce` (lời báo tin), `venue` (nơi làm lễ), `startIso` (giờ), `timeline`; tên bố mẹ lấy từ `couple.groom/bride.parents` (tự bỏ "Ông"/"Bà"), địa chỉ từ `couple.*.address`, ngày từ `dateLabel`, dòng nhỏ dưới tên từ `couple.*.title` (không điền thì dùng `role`, ví dụ `"trưởng nam"`, `"con gái út"`) |
 | **Câu chuyện tình yêu** | `story.chapters` — mỗi mốc `{ date, title, text, photo, photoAlt }` |
 | **Album ảnh** | `album.photos` (vòng ảnh 3D chạy `album.sliderCount` ảnh đầu, nút "Xem tất cả" hiện hết; `album.intervalMs` là thời gian tự quay) |
-| Tiệc cưới (= địa chỉ + bản đồ, rồi xác nhận tham dự ngay dưới bản đồ), Zalo | `banquet` (`heading`, `note`, `zalo`, `rsvp`) |
+| Tiệc cưới (= địa chỉ + bản đồ, rồi xác nhận tham dự ngay dưới bản đồ) | `banquet` (`heading`, `note`, `rsvp`) |
 | **2 địa chỉ + bản đồ** | `venues.items`: `mapLink` (link chia sẻ Google Maps, dùng cho nút "Chỉ đường"), `mapQuery` (toạ độ `"lat,lng"` hoặc tên địa điểm để ghim bản đồ), hoặc `mapEmbed` (link nhúng từ Chia sẻ → Nhúng bản đồ). Google không cho nhúng link chia sẻ `maps.app.goo.gl` |
 | Hộp quà, STK, QR | `gift.people` + ảnh QR trong `assets/qr/` |
 | Menu | `menu` |
