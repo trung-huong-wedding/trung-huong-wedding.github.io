@@ -91,11 +91,6 @@ export const CONFIG = {
     intervalMs: 4500,           // thời gian giữa hai lần tự trượt
     viewAllLabel: "Xem tất cả", // nút mở toàn bộ ảnh
     photos: [
-      { src: "assets/images/hero.jpg", alt: "Khoảnh khắc hoàng hôn" },
-      { src: "assets/images/couple-1.jpg", alt: "Nắm tay bên biển" },
-      { src: "assets/images/couple-2.jpg", alt: "Vũ điệu hoàng hôn" },
-      { src: "assets/images/couple-3.jpg", alt: "Nụ hôn bên biển" },
-      { src: "assets/images/couple-4.jpg", alt: "Ôm nhau lúc hoàng hôn" },
       { src: "assets/images/couple-5.jpg", alt: "Ôm nhau lúc hoàng hôn" },
       { src: "assets/images/couple-6.jpg", alt: "Ôm nhau lúc hoàng hôn" },
       { src: "assets/images/couple-7.jpg", alt: "Ôm nhau lúc hoàng hôn" },
@@ -103,6 +98,11 @@ export const CONFIG = {
       { src: "assets/images/couple-9.jpg", alt: "Ôm nhau lúc hoàng hôn" },
       { src: "assets/images/couple-10.jpg", alt: "Ôm nhau lúc hoàng hôn" },
       { src: "assets/images/couple-11.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/hero.jpg", alt: "Khoảnh khắc hoàng hôn" },
+      { src: "assets/images/couple-1.jpg", alt: "Nắm tay bên biển" },
+      { src: "assets/images/couple-2.jpg", alt: "Vũ điệu hoàng hôn" },
+      { src: "assets/images/couple-3.jpg", alt: "Nụ hôn bên biển" },
+      { src: "assets/images/couple-4.jpg", alt: "Ôm nhau lúc hoàng hôn" },
     ],
   },
 
