@@ -28,8 +28,8 @@ export const CONFIG = {
 
   // ---- Cô dâu & chú rể ----
   couple: {
-    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Ông Nguyễn Văn A", "Bà Trần Thị B"], address: "Hà Nội", photo: "assets/images/couple-1.jpg", bio: "Chàng trai hiền lành, thích đi biển và nấu ăn." },
-    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Ông Phạm Văn C", "Bà Lê Thị D"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
+    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Ông Nguyễn Duy Thịnh", "Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/couple-1.jpg", bio: "Chàng trai hiền lành, thích thể thao và nấu ăn." },
+    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Ông Bố", "Bà Thỏ Trắng"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
   },
 
   // ---- Màn bìa ----
@@ -76,10 +76,11 @@ export const CONFIG = {
   story: {
     heading: "Câu Chuyện Tình Yêu",
     chapters: [
-      { date: "Tháng 6, 2021", title: "Lần đầu gặp gỡ", photo: "assets/images/couple-1.jpg", photoAlt: "Nắm tay bên biển", text: "Một buổi chiều bình thường, chúng mình gặp nhau và câu chuyện bắt đầu từ một cái nhìn rất khẽ." },
-      { date: "Tháng 12, 2021", title: "Những ngày đầu hẹn hò", photo: "assets/images/couple-2.jpg", photoAlt: "Vũ điệu hoàng hôn", text: "Những chuyến đi dài, những cuộc trò chuyện không đoạn kết và nụ cười ngày một gần hơn." },
-      { date: "Năm 2023", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-3.jpg", photoAlt: "Nụ hôn bên biển", text: "Có những ngày khó khăn, nhưng bàn tay vẫn nắm chặt và chúng mình hiểu nhau hơn." },
-      { date: "Năm 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Bên bờ biển lúc hoàng hôn, một lời hỏi nhỏ và một câu trả lời 'Đồng ý' ngập tràn hạnh phúc." },
+      { date: "22 Tháng 8, 2023", title: "Ngày đầu làm quen", photo: "assets/images/couple-1.jpg", photoAlt: "Nắm tay bên biển", text: "Một buổi sáng bình thường, chúng mình bắt đầu làm quen qua những dòng tin nhắn. Một cuộc trò chuyện tưởng chừng bình thường, nhưng lại mở đầu cho một câu chuyện thật đặc biệt." },
+      { date: "9 Tháng 12, 2023", title: "Những ngày đầu hẹn hò", photo: "assets/images/couple-2.jpg", photoAlt: "Vũ điệu hoàng hôn", text: "Sau những ngày trò chuyện, cuối cùng chúng mình cũng gặp nhau lần đầu. Từ những dòng tin nhắn, giờ đây là một người thật đang ở ngay trước mắt, và câu chuyện của chúng mình bắt đầu bước sang một chương mới." },
+      { date: "1 Tháng 5, 2024", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-3.jpg", photoAlt: "Nụ hôn bên biển", text: "Ngày 1 tháng 5, một lời tỏ tình đã đưa hai trái tim đến gần nhau hơn. Từ khoảnh khắc ấy, chúng mình chính thức trở thành một phần trong cuộc sống của nhau." },
+      { date: "Năm 2025", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-4.jpg", photoAlt: "Nụ hôn bên biển", text: "Có những ngày khó khăn, nhưng bàn tay vẫn nắm chặt và chúng mình hiểu nhau hơn." },
+      // { date: "10 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày cùng nhau yêu thương và trưởng thành, anh trao em lời cầu hôn. Một lời hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
     ],
   },
 
