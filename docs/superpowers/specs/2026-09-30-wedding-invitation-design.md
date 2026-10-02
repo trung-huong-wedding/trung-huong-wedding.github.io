@@ -60,7 +60,7 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 1. Màn bìa toàn màn hình: tên cô dâu & chú rể, ngày cưới, dòng "Trân trọng kính mời / Thân mời" (kèm tên khách nếu có `?to=`) và nút "Mở thiệp". Các trái tim nhỏ (kích thước, tốc độ, độ trong suốt ngẫu nhiên) rơi liên tục từ đỉnh xuống đáy màn hình. Bấm "Mở thiệp": hiệu ứng mở (bìa tách/trượt ra), bật nhạc, hiện trang chính và bắt đầu tự cuộn.
    Mục menu **Thiệp cưới** bắt đầu từ khối đầu trang nội dung (mục 3 bên dưới).
 2. Lời mời (+ tên khách từ `?to=`)
-3. **Khối đầu trang nội dung — cô dâu chú rể** (theo code mẫu của người dùng): vùng cao tối thiểu 840px (≥768px: 900px, padding-top 210px / 330px); hai cụm hoa trang trí lớn (SVG vẽ theo màu theme, vị trí và góc xoay như mẫu, trôi nhẹ theo cuộn — parallax) ở phía sau; một dải trang trí ngang (rộng bằng khung 1000px, không rộng bằng màn hình) ở top 170px / 280px; hai ảnh polaroid nghiêng trong khung viền vàng 5px, tỉ lệ 2:3 — ảnh chú rể xoay −17° ở trên-trái, kèm vai trò (`role`) và tên (`name`, font viết tay hiện tại) bên phải; ảnh cô dâu xoay 13° ở dưới-phải, chữ bên trái, căn phải. Kích thước ảnh 155px (≥768px: 235px). Vùng bố cục 320×440px (≥768px: 500×640px). Bố mẹ và giới thiệu (`parents`, `bio`) hiển thị ở khối chữ ngay bên dưới.
+3. **Khối đầu trang nội dung — cô dâu chú rể** (theo code mẫu của người dùng): chiếm đúng một màn hình (`min-height: 100svh`), cụm hai ảnh **căn giữa cả chiều ngang lẫn chiều dọc**. Hai ảnh polaroid nghiêng trong khung viền vàng 5px, tỉ lệ 2:3 — ảnh chú rể xoay −17° ở trên-trái, kèm vai trò (`role`) và tên (`name`, font viết tay hiện tại) bên phải; ảnh cô dâu xoay 13° ở dưới-phải, chữ bên trái, căn phải (bố cục đối xứng qua tâm). Ảnh 155px (≥768px: 235px); vùng bố cục 320×450px (≥768px: 500×690px). Trang trí **chỉ bằng ảnh** (không vẽ SVG): `decor.leaf` hai góc đối diện phía sau (một cái xoay 180°), `decor.corner` đè lên góc trên-trái và dưới-phải. Bố mẹ và giới thiệu (`parents`, `bio`) hiển thị ở khối chữ ngay bên dưới.
 4. Đếm ngược đến ngày cưới
 5. **Thông tin lễ cưới**: ngày giờ lễ (số lớn kiểu thiệp), lịch tháng với ngày cưới khoanh trái tim, các mốc (đón khách, lễ thành hôn…), nút "Thêm vào lịch" (.ics).
 6. **Câu chuyện tình yêu — cây thời gian (timeline)**: một "thân cây" là đường dọc mảnh màu vàng ánh kim chạy từ đầu đến cuối section; mỗi **mốc** là một nút tròn nhỏ (hoặc trái tim nhỏ) nằm trên đường, kèm nhãn thời gian viết tay (ví dụ "Tháng 6, 2021"), một **ảnh** và một **đoạn mô tả** của giai đoạn đó. Mỗi mốc là một khối độc lập.
@@ -118,6 +118,12 @@ Mục tiêu: người dùng chỉ sửa `js/config.js` (text, đường dẫn �
 - Văn bản dài: `overflow-wrap: anywhere`, dòng tự xuống; ảnh luôn `max-width: 100%`, `height: auto`.
 - Các khối xếp theo luồng dọc; thêm nội dung chỉ làm trang dài ra. Menu, scrollspy, tự cuộn và hiệu ứng hiện dần phải hoạt động với bất kỳ số khối nào (tính toán từ DOM đã render, không hard-code vị trí/chiều cao).
 - Kiểm thử bằng bộ dữ liệu cực trị: 1 mốc, 12 mốc, đoạn chữ 1 dòng và 500 chữ, ảnh dọc/ngang/vuông, không ảnh, mảng rỗng.
+
+## Nền chung và hoa lá trang trí (trang nội dung)
+- Nền chung của trang nội dung (theo mẫu người dùng): `background-color: #fff; background-image: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url(decor.background); background-repeat: repeat; background-size: 180% auto; background-position: left top; color: heroInk`. Không dùng hình vẽ SVG ở bất kỳ đâu trong trang.
+- **Hoa lá rải hai bên** (`js/decor.js`): ảnh `decor.flower` và `decor.leaf` xen kẽ phải/trái dọc theo trang, rộng 280px (≥768px: 520px), xoay −25°, một số cái lật dọc/ngang, đặt sau nội dung (`z-index: 0`) và bị cắt ở mép khung 1000px; khoảng cách 760px (≥768px: 980px) bắt đầu từ dưới khối đầu trang tới gần cuối trang. Số lượng và vị trí tính theo chiều dài trang thật, tính lại khi đổi kích thước.
+- **Hoa ở góc thẻ** (`decor.corner`) nhô ra phía trên-trái thẻ xác nhận tham dự. **Dải hoa lá cuối trang** (`decor.bottom`) nằm sát đáy, phía sau lời cảm ơn.
+- Ảnh nào để trống hoặc không tải được thì tự bỏ qua, không làm vỡ trang.
 
 ## Quy tắc về ảnh
 - **Không xử lý file ảnh**: giữ nguyên kích thước (px), độ phân giải, định dạng và chất lượng gốc; không resize, không nén lại, không crop, không đổi sang WebP, không tạo bản nhỏ. Người dùng tự đặt ảnh gốc vào `assets/images/` và khai báo trong config.

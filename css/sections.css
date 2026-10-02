@@ -6,7 +6,6 @@
 .btn-soft { display: inline-block; padding: .8em 2em; border-radius: 999px; background: transparent; border: 1px solid var(--pink); color: var(--wine); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; text-decoration: none; transition: background .8s var(--ease), color .8s var(--ease); }
 .btn-soft:hover, .btn-soft:focus-visible { background: var(--pink); color: var(--bg); outline: none; }
 .sec::before { content: ""; position: absolute; inset: 0 -100vw; z-index: -1; background: var(--_bg, transparent); }
-#le-cuoi, #album, #dia-chi, #qua-mung { --_bg: linear-gradient(180deg, transparent, color-mix(in srgb, var(--pink-soft) 35%, transparent) 18%, color-mix(in srgb, var(--pink-soft) 35%, transparent) 82%, transparent); }
 
 /* cô dâu chú rể: khung vòm co theo tỉ lệ thật của ảnh, không cắt ảnh */
 .couple-grid { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; width: 100%; }

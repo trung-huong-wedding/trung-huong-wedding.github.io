@@ -1,36 +1,22 @@
-/* ===== TRANG 2 — NỘI DUNG: nền ảnh mờ nằm gọn trong khung 1000px (đứng yên theo màn hình khi cuộn) ===== */
-.page-bg { position: sticky; top: 0; z-index: -1; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; overflow: hidden; pointer-events: none; }
-.page-bg__img { position: absolute; inset: -10%; background-size: cover; background-position: center 35%; filter: blur(22px) saturate(1.1); }
-.page-bg::after { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 62%, transparent); }
+/* ===== Khối đầu trang nội dung: hai ảnh nghiêng + tên, nằm giữa màn hình (cả ngang lẫn dọc) ===== */
+.cpl { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; text-align: center; overflow: visible;
+  min-height: 100vh; min-height: 100svh; padding: 56px 16px; color: var(--hero-ink); }
+.cpl__stage { position: relative; z-index: 10; flex: none; width: 320px; height: 450px; }
+@media (min-width: 768px) { .cpl__stage { width: 500px; height: 690px; } }
 
-/* ===== Khối đầu trang nội dung: hai ảnh nghiêng + tên (theo mẫu), hoa trang trí trôi nhẹ khi cuộn ===== */
-.cpl { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; overflow: visible;
-  padding: 210px 24px 16px; min-height: 840px; color: var(--wine); }
-@media (min-width: 768px) { .cpl { padding: 330px 32px 32px; min-height: 900px; } }
-
-.cpl__flower { position: absolute; z-index: -10; pointer-events: none; will-change: transform; }
-.cpl__flower svg { display: block; width: 100%; height: auto; }
-.cpl__flower--a { top: -327px; left: 111.5px; width: 622.77px; transform: translateY(calc(var(--py, 0) * .1px)) rotate(-0.76deg); }
-.cpl__flower--b { top: 5px; left: -83px; width: 450px; opacity: .2; scale: -1 1; transform: translateY(calc(var(--py, 0) * .12px)) rotate(142deg); }
-@media (min-width: 768px) {
-  .cpl__flower--a { top: -390px; left: 130px; width: 760px; }
-  .cpl__flower--b { top: 18px; left: -66px; width: 507px; }
-}
-@media (min-width: 1024px) {
-  .cpl__flower--a { top: -470px; left: 170px; width: 900px; }
-  .cpl__flower--b { top: 24px; left: -44px; width: 608px; }
-}
-
-.cpl__stage { position: relative; z-index: 10; margin-inline: auto; width: 320px; height: 440px; }
-@media (min-width: 768px) { .cpl__stage { width: 500px; height: 640px; } }
-.cpl__bar { position: absolute; left: 50%; top: 170px; translate: -50% -50%; width: min(100vw, var(--col)); z-index: -10; pointer-events: none; }
-.cpl__bar svg { display: block; width: 100%; height: auto; }
-@media (min-width: 768px) { .cpl__bar { top: 280px; } .cpl__bar svg { height: 150px; } }
+/* hoa lá ghép từ ảnh (theo mẫu): lá phía sau ở hai góc đối diện, hoa nhỏ đè lên góc ảnh */
+.cpl__deco { position: absolute; max-width: none; height: auto; pointer-events: none; user-select: none; }
+.cpl__leaf { z-index: -1; width: 86%; opacity: .9; }
+.cpl__leaf--a { left: -42%; top: -26%; rotate: 180deg; }
+.cpl__leaf--b { right: -42%; bottom: -26%; }
+.cpl__corner { z-index: 40; width: 46%; opacity: .95; }
+.cpl__corner--tl { left: -16%; top: -9%; rotate: 2deg; }
+.cpl__corner--br { right: -16%; bottom: -9%; rotate: 85deg; scale: -1 1; }
 
 .cp { position: absolute; display: flex; align-items: center; gap: .75rem; }
-.cp--groom { left: 20px; top: -40px; z-index: 20; }
-.cp--bride { left: 55px; top: 165px; z-index: 30; flex-direction: row-reverse; }
-@media (min-width: 768px) { .cp { gap: 1rem; } .cp--groom { left: 25px; top: -60px; } .cp--bride { left: 115px; top: 260px; } }
+.cp--groom { left: 10px; top: 0; z-index: 20; }
+.cp--bride { right: 10px; top: 205px; z-index: 30; flex-direction: row-reverse; }
+@media (min-width: 768px) { .cp { gap: 1rem; } .cp--groom { left: 25px; } .cp--bride { right: 25px; top: 320px; } }
 .cp__photo { flex: none; width: 155px; }
 .cp--groom .cp__photo { rotate: -17deg; } .cp--bride .cp__photo { rotate: 13deg; }
 @media (min-width: 768px) { .cp__photo { width: 235px; } }

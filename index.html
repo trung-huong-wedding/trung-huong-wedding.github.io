@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/couple.css">
+  <link rel="stylesheet" href="css/decor.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/timeline.css">
   <link rel="stylesheet" href="css/album.css">
@@ -43,7 +44,6 @@
 
   <!-- TRANG 2 — NỘI DUNG: nằm gọn trong khung 1000px, nền ảnh mờ chỉ nằm trong khung -->
   <div class="page" id="page">
-    <div class="page-bg" aria-hidden="true"><div class="page-bg__img" id="pageBgImg"></div></div>
     <header class="cpl" id="thiep-cuoi" data-section></header>
 
     <main id="main">
@@ -64,78 +64,6 @@
   <nav class="menu" id="menu" aria-label="Điều hướng" hidden></nav>
   <button class="menu-toggle" id="menuToggle" type="button" aria-label="Mở menu" aria-expanded="false" hidden><span></span><span></span></button>
   <button class="music" id="musicBtn" type="button" aria-label="Bật/tắt nhạc" hidden>♪</button>
-
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="flower" viewBox="0 0 200 160">
-        <g style="stroke:var(--red)" stroke-opacity=".35" stroke-width=".8" stroke-linejoin="round">
-          <path d="M18 78 C 60 70, 96 96, 128 138 C 84 140, 40 120, 18 78 Z" style="fill:var(--pink-soft)" fill-opacity=".75"/>
-          <path d="M70 70 C 104 40, 150 38, 190 62 C 160 92, 108 96, 70 70 Z" style="fill:var(--pink-soft)" fill-opacity=".6"/>
-          <g transform="translate(66 70)">
-            <g style="fill:var(--pink)" fill-opacity=".8"><ellipse cy="-30" rx="17" ry="32"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(60)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(120)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(180)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(240)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(300)"/></g>
-            <g style="fill:var(--pink-soft)" fill-opacity=".9"><ellipse cy="-20" rx="10" ry="21" transform="rotate(30)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(90)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(150)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(210)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(270)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(330)"/></g>
-            <circle r="7" style="fill:var(--gold)" stroke="none"/>
-          </g>
-          <g transform="translate(146 60)">
-            <g style="fill:var(--red)" fill-opacity=".55"><ellipse cy="-15" rx="9" ry="17"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(72)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(144)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(216)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(288)"/></g>
-            <circle r="4" style="fill:var(--gold)" stroke="none"/>
-          </g>
-          <g transform="translate(118 118)">
-            <g style="fill:var(--pink)" fill-opacity=".65"><ellipse cy="-9" rx="5" ry="10"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(90)"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(180)"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(270)"/></g>
-            <circle r="2.5" style="fill:var(--gold)" stroke="none"/>
-          </g>
-        </g>
-      </symbol>
-      <symbol id="leaf" viewBox="0 0 40 100">
-        <path d="M20 98 C 2 70, 2 30, 20 2 C 38 30, 38 70, 20 98 Z" style="fill:var(--pink-soft);stroke:var(--red)" fill-opacity=".8" stroke-opacity=".3" stroke-width=".8"/>
-        <path d="M20 96 L20 10" style="stroke:var(--red)" stroke-opacity=".25" stroke-width=".8" fill="none"/>
-      </symbol>
-      <symbol id="spray" viewBox="0 0 600 600">
-        <g fill="none" style="stroke:var(--gold)" stroke-linecap="round" opacity=".85">
-          <path d="M590 20 C 470 110, 350 210, 230 370 S 100 560, 40 595" stroke-width="3"/>
-          <path d="M430 140 C 390 240, 310 300, 250 340" stroke-width="2.4"/>
-          <path d="M300 250 C 250 300, 160 330, 110 400" stroke-width="2"/>
-        </g>
-        <use href="#leaf" width="40" height="100" transform="translate(520 50) rotate(115)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(470 120) rotate(60)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(400 170) rotate(130)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(350 240) rotate(40)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(290 300) rotate(120)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(240 370) rotate(35)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(190 420) rotate(110)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(140 480) rotate(30)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(95 540) rotate(105)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(330 330) rotate(160)"/>
-        <use href="#leaf" width="40" height="100" transform="translate(160 330) rotate(200)"/>
-        <use href="#flower" x="300" y="150" width="220" height="176"/>
-        <use href="#flower" x="80" y="300" width="200" height="160"/>
-        <use href="#flower" x="400" y="20" width="150" height="120"/>
-        <use href="#flower" x="190" y="440" width="150" height="120"/>
-        <use href="#flower" x="20" y="470" width="110" height="88"/>
-      </symbol>
-      <symbol id="bar" viewBox="0 0 1000 150">
-        <rect width="1000" height="150" style="fill:var(--pink-soft)" fill-opacity=".5"/>
-        <path d="M0 75 C 80 30, 160 120, 250 75 S 420 30, 500 75 S 670 120, 750 75 S 920 30, 1000 75" fill="none" style="stroke:var(--gold)" stroke-width="2.4" opacity=".85"/>
-        <g opacity=".95">
-          <use href="#leaf" width="22" height="55" transform="translate(120 70) rotate(40)"/><use href="#leaf" width="22" height="55" transform="translate(300 90) rotate(-30)"/>
-          <use href="#leaf" width="22" height="55" transform="translate(470 60) rotate(50)"/><use href="#leaf" width="22" height="55" transform="translate(640 95) rotate(-40)"/>
-          <use href="#leaf" width="22" height="55" transform="translate(820 60) rotate(35)"/>
-          <use href="#flower" x="30" y="40" width="90" height="72"/><use href="#flower" x="200" y="55" width="80" height="64"/>
-          <use href="#flower" x="380" y="30" width="95" height="76"/><use href="#flower" x="560" y="55" width="80" height="64"/>
-          <use href="#flower" x="730" y="30" width="95" height="76"/><use href="#flower" x="900" y="48" width="80" height="64"/>
-        </g>
-      </symbol>
-      <symbol id="branch" viewBox="0 0 120 400">
-        <g fill="none" style="stroke:var(--gold)" stroke-width="1.2" stroke-linecap="round" opacity=".9">
-          <path d="M60 0 C 50 90, 75 160, 58 260 S 62 360, 60 400"/>
-          <path d="M58 70 C 30 60, 18 80, 24 100 C 44 98, 54 86, 58 70 Z"/>
-          <path d="M62 140 C 90 128, 104 148, 96 168 C 76 166, 64 156, 62 140 Z"/>
-          <path d="M58 220 C 30 212, 16 232, 24 250 C 44 248, 56 238, 58 220 Z"/>
-          <path d="M62 300 C 90 290, 102 308, 96 326 C 76 324, 66 316, 62 300 Z"/>
-        </g>
-      </symbol>
-    </defs>
-  </svg>
 
   <script type="module" src="js/main.js"></script>
 </body>

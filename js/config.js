@@ -39,6 +39,15 @@ export const CONFIG = {
     flower: "assets/images/flower-decoration.webp",                      // ảnh hoa trang trí hai góc thẻ, ví dụ "assets/images/flower-decoration.webp"; để trống = dùng hoa vẽ sẵn
   },
 
+  // ---- Hoa lá trang trí và nền trang nội dung (ảnh đặt trong assets/images/). Để trống một mục thì bỏ phần đó. ----
+  decor: {
+    background: "assets/images/floral-background.webp", // nền chung của trang nội dung (lặp lại, phủ trắng 60%)
+    flower: "assets/images/flower2-decoration.webp",    // cành lá, rải xen kẽ hai bên khi cuộn
+    leaf: "assets/images/leaf1-bloom.webp",             // cụm lá hoa, rải xen kẽ hai bên + trang trí khối cô dâu chú rể
+    corner: "assets/images/flower-decoration.webp",     // hoa ở góc khối cô dâu chú rể và góc thẻ xác nhận tham dự
+    bottom: "assets/images/flower5-bottom.webp",        // dải hoa lá ở cuối trang
+  },
+
   // ---- Lời mời ----
   invitation: {
     heading: "Thiệp Mời",

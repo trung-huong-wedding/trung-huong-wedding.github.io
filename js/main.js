@@ -2,7 +2,7 @@ import { CONFIG } from "./config.js";
 import { applyTheme } from "./theme.js";
 import { renderAll } from "./render.js";
 import { initHero } from "./hero.js";
-import { initCouple } from "./couple.js";
+import { initDecor } from "./decor.js";
 import { initReveal } from "./reveal.js";
 import { initCountdown } from "./countdown.js";
 import { initCalendar } from "./calendar.js";
@@ -38,7 +38,7 @@ const lightbox = guard("lightbox", () => createLightbox({ onOpen: () => emit("mo
 guard("slider", () => initSlider({ lightbox, config: CONFIG }));
 guard("gallery", () => initGallery({ lightbox, config: CONFIG }));
 guard("timeline", () => initTimeline());
-guard("couple", () => initCouple());
+guard("decor", () => initDecor(CONFIG));
 guard("rsvp", () => initRsvp());
 guard("gift", () => initGift());
 guard("guestbook", () => initGuestbook(CONFIG));

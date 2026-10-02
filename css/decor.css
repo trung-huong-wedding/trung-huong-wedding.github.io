@@ -1,0 +1,14 @@
+/* ===== Hoa lá trang trí rải hai bên trang nội dung (js/decor.js tính vị trí theo chiều dài trang) ===== */
+.decor { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.decor img { position: absolute; width: 280px; max-width: none; height: auto; object-fit: contain; rotate: -25deg; user-select: none; }
+@media (min-width: 768px) { .decor img { width: 520px; } }
+
+/* hoa ở góc thẻ (như mẫu: nhô ra phía trên-trái) */
+.rsvp { position: relative; }
+.card-flower { position: absolute; z-index: 20; top: -30px; left: -32px; width: 44%; max-width: 210px; height: auto; object-fit: contain; pointer-events: none; }
+@media (min-width: 768px) { .card-flower { top: -58px; left: -49px; max-width: 244px; } }
+
+/* dải hoa lá ở cuối trang */
+.sec--thanks { position: relative; padding-bottom: clamp(250px, 44vw, 380px); }
+.thanks__bottom { position: absolute; left: 50%; bottom: 0; translate: -50% 0; z-index: 0; width: min(100%, 900px); height: auto; pointer-events: none; }
+.sec--thanks > :not(.thanks__bottom) { position: relative; z-index: 1; }

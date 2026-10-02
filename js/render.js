@@ -39,18 +39,14 @@ export function renderAll(CONFIG) {
 
 // ---- Hero ----
 renderers.push((C) => {
-  const photo = `url("${C.hero.photo}")`;
-  document.getElementById("heroBg").style.backgroundImage = photo;
-  const pb = document.getElementById("pageBgImg"); if (pb) pb.style.backgroundImage = photo;
+  document.getElementById("heroBg").style.backgroundImage = `url("${C.hero.photo}")`;
+  // nền chung của trang nội dung (ảnh lặp lại, phủ trắng 60% — xem css/tokens.css)
+  const bg = C.decor?.background;
+  document.getElementById("page")?.style.setProperty("--page-bg-image", bg ? `url("${bg}")` : "none");
   setText(document.getElementById("heroLead"), C.hero.lead);
-  // Hoa hai góc thẻ: nếu config.hero.flower có đường dẫn ảnh thì dùng <img> đó, không thì dùng hoa SVG vẽ sẵn (theo màu theme)
-  const flowerEl = (cls) => {
-    if (C.hero.flower) return h("img", { class: `hero__flower ${cls}`, src: C.hero.flower, alt: "", "aria-hidden": "true", decoding: "async" });
-    const t = document.createElement("template");
-    t.innerHTML = `<svg class="hero__flower ${cls}" viewBox="0 0 200 160" aria-hidden="true"><use href="#flower"/></svg>`;
-    return t.content.firstElementChild;
-  };
-  document.getElementById("heroGlass")?.replaceChildren(flowerEl("hero__flower--tl"), flowerEl("hero__flower--br"));
+  // Hoa hai góc thẻ bìa: ảnh config.hero.flower (để trống thì không có hoa)
+  const flowerEl = (cls) => h("img", { class: `hero__flower ${cls}`, src: C.hero.flower, alt: "", "aria-hidden": "true", decoding: "async", onerror: (e) => e.target.remove() });
+  document.getElementById("heroGlass")?.replaceChildren(...(C.hero.flower ? [flowerEl("hero__flower--tl"), flowerEl("hero__flower--br")] : []));
   setText(document.getElementById("heroGroom"), C.couple.groom.name);
   setText(document.getElementById("heroBride"), C.couple.bride.name);
   const d = C.dateLabel;
@@ -84,11 +80,13 @@ renderers.push((C) => {
   const cp = (p, cls) => h("div", { class: `cp ${cls}` },
     h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: p.photo, alt: p.fullName, decoding: "async" }))),
     h("div", { class: "cp__text" }, h("div", { class: "cp__role" }, p.role), h("div", { class: "cp__name script" }, p.name)));
-  const flower = (cls) => { const d = h("div", { class: `cpl__flower ${cls}`, "aria-hidden": "true" }); d.innerHTML = '<svg viewBox="0 0 600 600"><use href="#spray"/></svg>'; return d; };
-  const bar = h("div", { class: "cpl__bar", "aria-hidden": "true" }); bar.innerHTML = '<svg viewBox="0 0 1000 150" preserveAspectRatio="xMidYMid slice"><use href="#bar"/></svg>';
+  const D = C.decor ?? {};
+  const deco = (cls, src) => src ? h("img", { class: `cpl__deco ${cls}`, src, alt: "", "aria-hidden": "true", decoding: "async", onerror: (e) => e.target.remove() }) : null;
   document.getElementById("thiep-cuoi").replaceChildren(
-    flower("cpl__flower--a"), flower("cpl__flower--b"),
-    h("div", { class: "cpl__stage" }, bar, cp(C.couple.groom, "cp--groom"), cp(C.couple.bride, "cp--bride")),
+    h("div", { class: "cpl__stage" },
+      deco("cpl__leaf cpl__leaf--a", D.leaf), deco("cpl__leaf cpl__leaf--b", D.leaf),
+      cp(C.couple.groom, "cp--groom"), cp(C.couple.bride, "cp--bride"),
+      deco("cpl__corner cpl__corner--tl", D.corner), deco("cpl__corner cpl__corner--br", D.corner)),
   );
 
   document.getElementById("countdown").replaceChildren(
@@ -158,6 +156,7 @@ renderers.push((C) => {
     h("p", { class: "lead reveal" }, b.note),
     b.dressCode ? h("p", { class: "banquet__dress reveal" }, "Trang phục: ", h("b", {}, b.dressCode)) : null,
     h("form", { class: "rsvp reveal", id: "rsvpForm", novalidate: true },
+      C.decor?.corner ? h("img", { class: "card-flower", src: C.decor.corner, alt: "", "aria-hidden": "true", loading: "lazy", decoding: "async", onerror: (e) => e.target.remove() }) : null,
       h("h3", { class: "script" }, b.rsvp?.heading ?? "Xác Nhận Tham Dự"),
       field("Họ và tên", h("input", { name: "name", type: "text", maxlength: "60", autocomplete: "name", required: true })),
       field("Số người đi cùng", h("input", { name: "count", type: "number", min: "1", max: "10", value: "1" })),
@@ -186,6 +185,7 @@ renderers.push((C) => {
   );
 
   document.getElementById("thanks").replaceChildren(
+    C.decor?.bottom ? h("img", { class: "thanks__bottom", src: C.decor.bottom, alt: "", "aria-hidden": "true", loading: "lazy", decoding: "async", onerror: (e) => e.target.remove() }) : null,
     h("p", { class: "orn reveal" }, "❦"),
     h("p", { class: "quote reveal", style: "--d:.2s" }, C.thanks.text),
     h("p", { class: "script thanks__sign reveal", style: "--d:.4s" }, C.thanks.sign),
