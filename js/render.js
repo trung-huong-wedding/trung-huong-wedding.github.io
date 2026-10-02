@@ -1,4 +1,4 @@
-import { sanitizeGuestName } from "./lib/text.js";
+import { sanitizeGuestName, stripHonorific, formatClock } from "./lib/text.js";
 import { runSafely } from "./lib/safe.js";
 import { resolveMap } from "./lib/maps.js";
 
@@ -67,17 +67,6 @@ renderers.push((C) => {
     h("p", { class: "lead reveal", style: "--d:.45s" }, C.invitation.body),
   );
 
-  // Thông tin chi tiết (bố mẹ, giới thiệu) — chỉ chữ; ảnh nằm ở khối đầu trang
-  const person = (p, d) => h("article", { class: "person reveal", style: `--d:${d}s` },
-    h("p", { class: "eyebrow" }, p.role),
-    h("h3", { class: "script person__name" }, p.fullName),
-    h("p", { class: "person__parents" }, (p.parents ?? []).map((x, i) => [i ? h("br") : null, x])),
-    h("p", { class: "person__bio" }, p.bio),
-  );
-  document.getElementById("couple").replaceChildren(
-    h("div", { class: "couple-grid" }, person(C.couple.groom, 0), h("span", { class: "couple-heart reveal", "aria-hidden": "true" }, "♥"), person(C.couple.bride, .25)),
-  );
-
   // Khối đầu trang nội dung: hai ảnh nghiêng + tên (không lặp lại thẻ thiệp ở màn mở đầu)
   const cp = (p, cls) => h("div", { class: `cp ${cls}` },
     h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: p.photo, alt: p.fullName, decoding: "async" }))),
@@ -91,17 +80,35 @@ renderers.push((C) => {
       deco("cpl__corner cpl__corner--tl", D.corner), deco("cpl__corner cpl__corner--br", D.corner)),
   );
 
-  document.getElementById("countdown").replaceChildren(
-    h("p", { class: "eyebrow reveal" }, "Đếm ngược đến ngày cưới"),
-    h("div", { class: "cd reveal", id: "cd", style: "--d:.2s" },
-      ...["Ngày", "Giờ", "Phút", "Giây"].map((l, i) => h("div", { class: "cd__cell" }, h("b", { id: `cd${i}` }, "--"), h("span", {}, l)))),
-    h("p", { class: "cd__done", id: "cdDone", hidden: true }, "Hôm nay là ngày vui của chúng mình ♥"),
-  );
-
-  const cer = C.ceremony;
+  // ---- Thông tin lễ cưới (theo mẫu): bố mẹ hai bên, lời báo tin, tên cô dâu chú rể, giờ và ngày; sau đó đếm ngược + lịch ----
+  const cer = C.ceremony, g = C.couple.groom, br = C.couple.bride, dl = C.dateLabel ?? {};
+  const parentsCol = (p) => h("div", { class: "par" },
+    h("span", { class: "par__label" }, cer.parentsLabel ?? "Ông Bà"),
+    ...(p.parents ?? []).map((x) => h("span", { class: "par__name" }, stripHonorific(x))),
+    p.address ? h("div", { class: "par__addr" }, p.address) : null);
+  const duo = (p) => [h("h3", { class: "duo__name script" }, p.fullName || p.name), h("div", { class: "duo__title" }, p.title ?? p.role)];
+  const venueText = cer.venue ?? cer.locationForCalendar ?? "";
+  const pad2 = (v) => String(v ?? "").padStart(2, "0");
   document.getElementById("le-cuoi").replaceChildren(
-    ...sectionHead(cer.heading),
-    h("p", { class: "eyebrow reveal" }, cer.title),
+    h("h2", { class: "le__title reveal" }, cer.heading),
+    h("div", { class: "par-grid reveal", style: "--d:.1s" }, parentsCol(g), h("div", { class: "par-sep", "aria-hidden": "true" }), parentsCol(br)),
+    h("div", { class: "announce reveal", style: "--d:.15s" }, cer.announce ?? "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI"),
+    h("div", { class: "duo reveal", style: "--d:.2s" }, ...duo(g), h("div", { class: "duo__amp script", "aria-hidden": "true" }, "&"), ...duo(br)),
+    h("div", { class: "evt reveal", style: "--d:.25s" },
+      h("div", { class: "evt__where" }, h("span", { class: "evt__lbl" }, "LỄ THÀNH HÔN TẠI"), venueText ? h("span", { class: "evt__venue" }, venueText) : null, h("span", { class: "evt__lbl evt__lbl--at" }, "VÀO LÚC")),
+      h("div", { class: "evt__time" }, formatClock(cer.startIso)),
+      h("div", { class: "evt__date" },
+        h("span", { class: "evt__wd" }, String(dl.weekday ?? "").toUpperCase()), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"),
+        h("span", { class: "evt__day" }, pad2(dl.day)), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"),
+        h("span", { class: "evt__mo" }, `THÁNG ${Number(dl.month) || dl.month}`)),
+      h("div", { class: "evt__year" }, dl.year),
+      dl.lunar ? h("div", { class: "evt__lunar" }, dl.lunar) : null),
+
+    h("div", { class: "cdbox" },
+      h("p", { class: "eyebrow reveal" }, "Đếm ngược đến ngày cưới"),
+      h("div", { class: "cd reveal", id: "cd", style: "--d:.2s" },
+        ...["Ngày", "Giờ", "Phút", "Giây"].map((l, i) => h("div", { class: "cd__cell" }, h("b", { id: `cd${i}` }, "--"), h("span", {}, l)))),
+      h("p", { class: "cd__done", id: "cdDone", hidden: true }, "Hôm nay là ngày vui của chúng mình ♥")),
     h("div", { class: "cal reveal", id: "cal", style: "--d:.2s" }),
     h("ol", { class: "timeline reveal", style: "--d:.3s" }, (cer.timeline ?? []).map((t) => h("li", {}, h("b", {}, t.time), h("span", {}, t.title)))),
     h("button", { class: "btn-soft reveal", id: "icsBtn", type: "button", style: "--d:.4s" }, "Thêm vào lịch"),
@@ -147,16 +154,24 @@ renderers.push((C) => {
   }
 });
 
-// ---- Tiệc cưới + RSVP, Địa chỉ (nhiều địa điểm, mỗi nơi một bản đồ), Cảm ơn ----
+// ---- Thông tin tiệc cưới = địa chỉ các nơi tổ chức (bản đồ + nút chỉ đường), rồi đến xác nhận tham dự ngay dưới bản đồ; chân trang cảm ơn ----
 renderers.push((C) => {
-  const b = C.banquet;
+  const b = C.banquet, venues = C.venues?.items ?? [];
   const field = (label, control) => h("label", { class: "field" }, h("span", {}, label), control);
+  const venueCard = (v, i) => {
+    const m = resolveMap(v); // bản đồ nhúng + nút "Chỉ đường" (tự dựng từ địa chỉ nếu config thiếu hoặc dán nhầm link)
+    return h("article", { class: "venue reveal", style: `--d:${i * .2}s` },
+      v.side ? h("p", { class: "eyebrow" }, v.side) : null,
+      h("h3", { class: "script venue__name" }, v.name),
+      h("p", { class: "venue__addr" }, v.address),
+      v.time ? h("p", { class: "venue__time" }, v.time) : null,
+      m.embed ? h("div", { class: "venue__map" }, h("iframe", { src: m.embed, loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", title: `Bản đồ ${v.side || v.name}`, allowfullscreen: true })) : null,
+      m.link ? h("a", { class: "btn-soft", href: m.link, target: "_blank", rel: "noopener" }, "Chỉ đường") : null);
+  };
   document.getElementById("tiec-cuoi").replaceChildren(
     ...sectionHead(b.heading),
-    h("p", { class: "banquet__venue reveal" }, b.venueName),
-    h("p", { class: "eyebrow reveal" }, b.time),
-    h("p", { class: "lead reveal" }, b.note),
-    b.dressCode ? h("p", { class: "banquet__dress reveal" }, "Trang phục: ", h("b", {}, b.dressCode)) : null,
+    b.note ? h("p", { class: "lead reveal" }, b.note) : null,
+    venues.length ? h("div", { class: "venues" }, venues.map(venueCard)) : null,
     h("form", { class: "rsvp reveal", id: "rsvpForm", novalidate: true },
       C.decor?.corner ? h("img", { class: "card-flower", src: C.decor.corner, alt: "", "aria-hidden": "true", loading: "lazy", decoding: "async", onerror: (e) => e.target.remove() }) : null,
       h("h3", { class: "script" }, b.rsvp?.heading ?? "Xác Nhận Tham Dự"),
@@ -170,22 +185,6 @@ renderers.push((C) => {
       h("p", { class: "rsvp__thanks", id: "rsvpThanks", hidden: true, role: "status" }, b.rsvp?.thanks ?? "Cảm ơn bạn!"),
     ),
     b.zalo ? h("a", { class: "btn-soft reveal", href: b.zalo, target: "_blank", rel: "noopener" }, "Nhắn Zalo xác nhận") : null,
-  );
-
-  const venues = C.venues.items ?? [], vEl = document.getElementById("dia-chi");
-  vEl.hidden = venues.length === 0;
-  if (venues.length) vEl.replaceChildren(
-    ...sectionHead(C.venues.heading),
-    h("div", { class: "venues" }, venues.map((v, i) => {
-      const m = resolveMap(v); // bản đồ nhúng + nút "Chỉ đường" (tự dựng từ địa chỉ nếu config thiếu hoặc dán nhầm link)
-      return h("article", { class: "venue reveal", style: `--d:${i * .2}s` },
-        v.side ? h("p", { class: "eyebrow" }, v.side) : null,
-        h("h3", { class: "script venue__name" }, v.name),
-        h("p", { class: "venue__addr" }, v.address),
-        v.time ? h("p", { class: "venue__time" }, v.time) : null,
-        m.embed ? h("div", { class: "venue__map" }, h("iframe", { src: m.embed, loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", title: `Bản đồ ${v.side || v.name}`, allowfullscreen: true })) : null,
-        m.link ? h("a", { class: "btn-soft", href: m.link, target: "_blank", rel: "noopener" }, "Chỉ đường") : null);
-    })),
   );
 
   document.getElementById("thanks").replaceChildren(

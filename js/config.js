@@ -59,6 +59,9 @@ export const CONFIG = {
   ceremony: {
     heading: "Thông Tin Lễ Cưới",
     title: "Lễ Thành Hôn",
+    parentsLabel: "Ông Bà",                                   // nhãn trên tên bố mẹ hai bên (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
+    announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
+    venue: "Nhà hàng Hoa Hồng\nHà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
     startIso: "2026-12-20T10:00:00+07:00",
     durationMin: 120,
     timeline: [
@@ -160,7 +163,6 @@ export const CONFIG = {
     { id: "tinh-yeu", label: "Câu chuyện tình yêu" },
     { id: "album", label: "Album ảnh" },
     { id: "tiec-cuoi", label: "Thông tin tiệc cưới" },
-    { id: "dia-chi", label: "Địa chỉ" },
     { id: "so-luu-but", label: "Sổ lưu bút" },
     { id: "qua-mung", label: "Quà mừng" },
   ],

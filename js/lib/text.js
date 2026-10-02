@@ -31,3 +31,17 @@ export function formatGuestTime(value) {
   const p = Object.fromEntries(VN_TIME.formatToParts(new Date(ms)).map((x) => [x.type, x.value]));
   return `${p.hour}:${p.minute}:${p.second} ${p.day}/${p.month}/${p.year}`;
 }
+
+// Bỏ tiền tố "Ông"/"Bà" ở đầu tên (để hiện dưới nhãn "Ông Bà"); chỉ cắt khi đó là một từ riêng.
+export function stripHonorific(name) {
+  return String(name ?? "").trim().replace(/^(ông|bà)\s+/i, "").trim();
+}
+
+// Giờ:phút theo giờ Việt Nam ("10:00") từ chuỗi ISO hoặc timestamp.
+const VN_CLOCK = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+export function formatClock(value) {
+  const ms = typeof value === "number" ? value : new Date(value).getTime();
+  if (!Number.isFinite(ms)) return "";
+  const p = Object.fromEntries(VN_CLOCK.formatToParts(new Date(ms)).map((x) => [x.type, x.value]));
+  return `${p.hour}:${p.minute}`;
+}

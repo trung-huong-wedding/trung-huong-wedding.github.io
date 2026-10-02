@@ -157,3 +157,8 @@ Web tĩnh nên kiểm thử thủ công: chạy server tĩnh cục bộ, kiểm 
 
 ## Ngoài phạm vi
 Backend riêng, CMS, đăng nhập, quản trị lời chúc trong web (quản lý qua Firebase console), lưu RSVP.
+
+## Cập nhật: Thông tin lễ cưới và Thông tin tiệc cưới
+- **Thông tin lễ cưới** (theo mẫu người dùng, một mục menu): tiêu đề chữ hoa đậm (Times New Roman, màu `heroAccent`) → bố mẹ hai bên (lưới 3 cột: nhà trai | gạch dọc | nhà gái; nhãn "Ông Bà", hai tên, địa chỉ) → "TRÂN TRỌNG BÁO TIN / LỄ THÀNH HÔN CỦA CON CHÚNG TÔI" → tên cô dâu chú rể (font viết tay) kèm dòng nhỏ dưới tên (`title`/`role`) và "&" → "LỄ THÀNH HÔN TẠI" + nơi làm lễ → "VÀO LÚC" + giờ → hàng "THỨ | NGÀY | THÁNG" → năm → ngày âm lịch → **đếm ngược**, **lịch tháng**, các mốc trong ngày và nút "Thêm vào lịch" (giữ nguyên như trước, nay nằm chung mục này).
+- **Thông tin tiệc cưới = mục địa chỉ cũ**: một mục duy nhất (tiêu đề `banquet.heading`, câu mời `banquet.note`), gồm các nơi tổ chức (tiệc thân mật + bản đồ + nút "Chỉ đường"), rồi **form xác nhận tham dự ngay dưới bản đồ**, rồi nút Zalo. Đã bỏ: tên nhà hàng, dòng giờ, dòng trang phục, mục "Địa chỉ" riêng và mục "Cô dâu chú rể" dạng chữ (bố mẹ nay nằm ở Thông tin lễ cưới; `bio` không còn hiển thị).
+- Menu còn 7 mục: Thiệp cưới, Thông tin lễ cưới, Câu chuyện tình yêu, Album ảnh, Thông tin tiệc cưới, Sổ lưu bút, Quà mừng.

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { sanitizeGuestName, validateEntry, cooldownRemaining, isFirebaseConfigured, formatGuestTime } from "../js/lib/text.js";
+import { sanitizeGuestName, validateEntry, cooldownRemaining, isFirebaseConfigured, formatGuestTime, stripHonorific, formatClock } from "../js/lib/text.js";
 
 test("sanitizeGuestName giữ chữ thường, cắt độ dài, bỏ ký tự điều khiển", () => {
   assert.equal(sanitizeGuestName("  Anh Nam  "), "Anh Nam");
@@ -51,4 +51,23 @@ test("formatGuestTime trả về rỗng khi không có thời gian hợp lệ", 
 });
 test("formatGuestTime nhận cả Date", () => {
   assert.equal(formatGuestTime(new Date(Date.UTC(2026, 11, 20, 3, 4, 5))), "10:04:05 20/12/2026");
+});
+
+test("stripHonorific bỏ tiền tố Ông/Bà (không phân biệt hoa thường, thừa khoảng trắng)", () => {
+  assert.equal(stripHonorific("Ông Nguyễn Văn A"), "Nguyễn Văn A");
+  assert.equal(stripHonorific("Bà Trần Thị B"), "Trần Thị B");
+  assert.equal(stripHonorific("  ÔNG   Lê Văn C "), "Lê Văn C");
+});
+test("stripHonorific giữ nguyên tên không có tiền tố và không cắt nhầm tên bắt đầu bằng 'Ông...'", () => {
+  assert.equal(stripHonorific("Vũ Đình Khoa"), "Vũ Đình Khoa");
+  assert.equal(stripHonorific("Ôngkhoa"), "Ôngkhoa");
+  assert.equal(stripHonorific(null), ""); assert.equal(stripHonorific(undefined), "");
+});
+test("formatClock trả giờ:phút theo giờ Việt Nam từ chuỗi ISO hoặc timestamp", () => {
+  assert.equal(formatClock("2026-12-20T10:00:00+07:00"), "10:00");
+  assert.equal(formatClock(Date.UTC(2026, 11, 20, 11, 5, 0)), "18:05");
+  assert.equal(formatClock(Date.UTC(2026, 0, 4, 17, 0, 0)), "00:00");
+});
+test("formatClock trả rỗng khi không hợp lệ", () => {
+  assert.equal(formatClock("abc"), ""); assert.equal(formatClock(undefined), ""); assert.equal(formatClock(""), "");
 });

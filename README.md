@@ -21,10 +21,10 @@ Chạy test logic: `npm test` (cần Node 20+).
 | Hoa trang trí hai góc thẻ bìa | `hero.flower` — đường dẫn ảnh hoa (đặt trong `assets/images/`); để trống thì dùng hoa vẽ sẵn |
 | **Nền và hoa lá trang nội dung** | `decor`: `background` (nền lặp lại), `flower`, `leaf` (rải hai bên khi cuộn), `corner` (hoa ở góc khối cô dâu chú rể và thẻ xác nhận), `bottom` (dải hoa lá cuối trang). Để trống một mục thì bỏ phần đó |
 | Lời mời | `invitation` |
-| Giờ lễ, lịch, file thêm-vào-lịch | `ceremony` |
+| **Thông tin lễ cưới** | `ceremony`: `parentsLabel`, `announce` (lời báo tin), `venue` (nơi làm lễ), `startIso` (giờ), `timeline`; tên bố mẹ lấy từ `couple.groom/bride.parents` (tự bỏ "Ông"/"Bà"), địa chỉ từ `couple.*.address`, ngày từ `dateLabel`, dòng nhỏ dưới tên từ `couple.*.title` (không điền thì dùng `role`, ví dụ `"trưởng nam"`, `"con gái út"`) |
 | **Câu chuyện tình yêu** | `story.chapters` — mỗi mốc `{ date, title, text, photo, photoAlt }` |
 | **Album ảnh** | `album.photos` (vòng ảnh 3D chạy `album.sliderCount` ảnh đầu, nút "Xem tất cả" hiện hết; `album.intervalMs` là thời gian tự quay) |
-| Tiệc cưới, Zalo, dress code | `banquet` |
+| Tiệc cưới (= địa chỉ + bản đồ, rồi xác nhận tham dự ngay dưới bản đồ), Zalo | `banquet` (`heading`, `note`, `zalo`, `rsvp`) |
 | **2 địa chỉ + bản đồ** | `venues.items`: `mapLink` (link chia sẻ Google Maps, dùng cho nút "Chỉ đường"), `mapQuery` (toạ độ `"lat,lng"` hoặc tên địa điểm để ghim bản đồ), hoặc `mapEmbed` (link nhúng từ Chia sẻ → Nhúng bản đồ). Google không cho nhúng link chia sẻ `maps.app.goo.gl` |
 | Hộp quà, STK, QR | `gift.people` + ảnh QR trong `assets/qr/` |
 | Menu | `menu` |
