@@ -23,7 +23,7 @@ export const CONFIG = {
 
   // ---- Ngày cưới (dùng cho đếm ngược) ----
   weddingDate: "2026-12-20T10:00:00+07:00",
-  dateLabel: { weekday: "Chủ nhật", day: "20", month: "12", year: "2026", lunar: "(Nhằm ngày 11 tháng 11 năm Bính Ngọ)" },
+  dateLabel: { weekday: "Chủ nhật", day: "20", month: "12", year: "2026", lunar: "(Nhằm ngày 12 tháng 11 năm Bính Ngọ)" },
   guestParam: "to", // link cá nhân hoá: ?to=Anh%20Nam
 
   // ---- Cô dâu & chú rể ----
@@ -61,7 +61,7 @@ export const CONFIG = {
     title: "Lễ Thành Hôn",
     parentsLabel: "Ông Bà",                                   // nhãn trên tên bố mẹ hai bên (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
     announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
-    venue: "Nhà hàng Hoa Hồng\nHà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
+    venue: "Tư gia nhà trai\nThôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
     startIso: "2026-12-20T10:00:00+07:00",
     durationMin: 120,
     timeline: [
@@ -69,7 +69,7 @@ export const CONFIG = {
       { time: "10:00", title: "Lễ thành hôn" },
       { time: "11:30", title: "Chụp ảnh lưu niệm" },
     ],
-    locationForCalendar: "Nhà hàng Hoa Hồng, Hà Nội",
+    locationForCalendar: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội",
   },
 
   // ---- Câu chuyện tình yêu (cây thời gian). Mỗi mốc là một khối; mọi trường đều tuỳ chọn. ----

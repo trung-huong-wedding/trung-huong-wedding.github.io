@@ -37,7 +37,7 @@
 .evt__day { font-size: 30px; line-height: 1.1; }
 .evt__bar { font-size: 20px; line-height: 1; color: var(--hero-ink); opacity: .5; }
 .evt__year { font-size: 18px; color: var(--hero-accent); }
-.evt__lunar { max-width: 22em; font-size: 12px; text-transform: uppercase; letter-spacing: .25em; line-height: 1.6; color: var(--hero-ink); }
+.evt__lunar { font-size: 12px; text-transform: uppercase; letter-spacing: .25em; line-height: 1.6; color: var(--hero-ink); }
 @media (min-width: 768px) { .evt { gap: 1.25rem; } .evt__lbl { font-size: 18px; } .evt__venue { font-size: 20px; } .evt__time { font-size: 30px; } .evt__wd, .evt__mo { font-size: 16px; } .evt__day { font-size: 40px; } .evt__bar { font-size: 28px; } .evt__year { font-size: 24px; } .evt__lunar { font-size: 14px; } }
 
 .cdbox { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: .75rem; }

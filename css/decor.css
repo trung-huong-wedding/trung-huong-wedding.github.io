@@ -8,10 +8,11 @@
 .card-flower { position: absolute; z-index: 20; top: -30px; left: -32px; width: 44%; max-width: 210px; height: auto; object-fit: contain; pointer-events: none; }
 @media (min-width: 768px) { .card-flower { top: -58px; left: -49px; max-width: 244px; } }
 
-/* dải hoa lá ở cuối trang */
-.sec--thanks { position: relative; padding-bottom: clamp(250px, 44vw, 380px); }
-.thanks__bottom { position: absolute; left: 50%; bottom: 0; translate: -50% 0; z-index: 0; width: min(100%, 900px); height: auto; pointer-events: none; }
+/* Chân trang: lời cảm ơn rồi đến dải hoa lá ở dưới cùng. Dải hoa nằm TRONG luồng bố cục (không đặt tuyệt đối),
+   nên luôn nằm dưới chữ, không đè lên dù chữ xuống dòng, và chạm đáy trang. */
+.sec.sec--thanks { position: relative; min-height: 0; padding-bottom: 0; justify-content: flex-start; gap: clamp(28px, 7vw, 56px); }
 .sec--thanks > :not(.thanks__bottom) { position: relative; z-index: 1; }
+.thanks__bottom { order: 99; align-self: center; display: block; width: min(calc(100% + 2 * var(--gutter)), 900px); max-width: none; height: auto; margin-top: 8px; pointer-events: none; }
 
 /* ===== Dễ đọc trên nền hoa lá =====
    1) quầng sáng mờ quanh chữ: chữ vẫn rõ khi một nhánh hoa nằm ngay phía sau
