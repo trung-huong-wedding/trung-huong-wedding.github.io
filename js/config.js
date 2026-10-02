@@ -34,9 +34,9 @@ export const CONFIG = {
 
   // ---- Màn bìa ----
   hero: {
-    photo: "assets/images/hero.jpg", // ảnh cưới: làm nền mờ ở màn mở đầu
+    photo: "assets/images/floral-background.webp", // ảnh cưới: làm nền mờ ở màn mở đầu
     lead: "Thân Mời",
-    flower: "",                      // ảnh hoa trang trí hai góc thẻ, ví dụ "assets/images/flower-decoration.webp"; để trống = dùng hoa vẽ sẵn
+    flower: "assets/images/flower-decoration.webp",                      // ảnh hoa trang trí hai góc thẻ, ví dụ "assets/images/flower-decoration.webp"; để trống = dùng hoa vẽ sẵn
   },
 
   // ---- Lời mời ----

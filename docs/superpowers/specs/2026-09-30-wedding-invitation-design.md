@@ -37,7 +37,8 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 - Chữ trong thẻ (căn giữa, từ trên xuống): tên chú rể / "&" / tên cô dâu (font viết tay hiện tại, 30px, ≥640px 36px, màu `heroAccent`) → đường kẻ gradient 2.5rem hai bên ký hiệu ❦ → "Chủ nhật, 20 tháng 12, 2026" (serif 18px, `heroInk` 80%) → câu mời `hero.lead` ("Thân Mời") và "Thân mời <tên khách>" nếu có `?to=` → nút **"Mở thiệp"** `padding .625rem 2rem`, bo tròn hoàn toàn, nền `heroAccent`, chữ trắng 18px (600; ≥640px 500), bóng `0 4px 14px heroAccent 35%`, có **vệt sáng trắng 40% quét qua mỗi 3s**.
 - Màn thấp (< 700px cao): padding thẻ co theo `svh` để thẻ luôn vừa màn; nếu vẫn cao hơn màn thì tự mở khoá cuộn để luôn chạm được nút.
 - Trái tim rơi: ít (khoảng 12–18 cái mobile), nhỏ, mờ, xoay rất chậm, nằm giữa nền mờ và thẻ.
-- Bấm "Mở thiệp": một lớp "màn" hồng phấn quét từ giữa ra hai bên rồi tan; màn mở đầu mờ dần và ẩn, trang nội dung hiện ra, mở khoá cuộn và bắt đầu tự cuộn.
+- **Dấu niêm trái tim** phía trên tên (theo mẫu): vòng tròn 56px, nền gradient `heroAccent`, bóng đổ và viền sáng bên trong, trái tim trắng 28px, nhịp đập nhẹ (`seal-pulse` 2s). Đặt `top: 50px` so với thẻ.
+- **Chuỗi hiệu ứng khi bấm "Mở thiệp"** (bỏ lớp màn hồng quét cũ): (1) 0s — trái tim và hoa hai góc **phóng to và mờ dần** (blur), đồng thời 14–18 trái tim nhỏ **bung ra** từ dấu niêm theo mọi hướng; (2) ~0.7s — **thiệp trượt lên trên đỉnh màn hình rồi biến mất**; (3) ~2.1s — màn mở đầu mờ dần để lộ trang nội dung, mở khoá cuộn, hiện menu, bắt đầu tự cuộn. Giảm chuyển động (`prefers-reduced-motion`): mở ngay, không hiệu ứng.
 
 **Bố cục & nhịp điệu**
 - Mobile dọc là thiết kế gốc: mỗi section cao tối thiểu ~90svh, một ý chính mỗi màn, ảnh lớn xen kẽ với các trang chữ. Ảnh được đặt trong khung bo góc mềm có đổ bóng, khung co theo tỉ lệ thật của ảnh (không cắt ảnh cho vừa khung); ảnh chân dung cô dâu chú rể có thể bo vòm phía trên nhưng vẫn giữ nguyên tỉ lệ ảnh.

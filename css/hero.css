@@ -12,7 +12,7 @@ body.is-open .cover { opacity: 0; visibility: hidden; pointer-events: none; tran
 @keyframes sway { from { transform: translateX(-14px) rotate(-14deg); } to { transform: translateX(14px) rotate(14deg); } }
 
 /* ---- Thẻ thiệp kính mờ: kích thước, khoảng cách, bóng đổ và hiệu ứng theo đúng mẫu ---- */
-.hero__content { position: relative; z-index: 1; width: min(calc(100% - 32px), 440px); margin: auto; border-radius: 8px;
+.hero__content { position: relative; z-index: 1; width: min(calc(100% - 32px), 600px); margin: auto; border-radius: 8px;
   box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px color-mix(in srgb, var(--hero-accent) 15%, transparent); }
 .hero__glass { position: absolute; inset: 0; overflow: hidden; border-radius: 8px; clip-path: inset(0 round 8px);
   background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(6px) saturate(1.08); -webkit-backdrop-filter: blur(6px) saturate(1.08);
@@ -24,19 +24,19 @@ body.is-open .cover { opacity: 0; visibility: hidden; pointer-events: none; tran
 
 .hero__body { position: relative; z-index: 10; padding: 7rem 1.5rem 3.5rem; display: flex; flex-direction: column; align-items: center; }
 @media (min-width: 768px) { .hero__body { padding-top: 6rem; padding-bottom: 2rem; } }
-.hero__names { display: flex; flex-direction: column; align-items: center; margin-bottom: .5rem; line-height: 1.25; font-weight: 400; font-size: 1.875rem; color: var(--hero-accent); }
-@media (min-width: 640px) { .hero__names { font-size: 2.25rem; } }
+.hero__names { display: flex; flex-direction: column; align-items: center; margin-bottom: .5rem; line-height: 1.25; font-weight: 400; font-size: 5rem; color: var(--hero-accent); }
+@media (min-width: 640px) { .hero__names { font-size: 4rem; } }
 .hero__names > span { display: block; width: 100%; text-align: center; }
 .hero__names .script { color: var(--hero-accent); }
-.hero__amp { font-family: var(--font-serif); font-size: 1.125rem; line-height: 1; }
+.hero__amp { font-family: var(--font-serif); font-size: 2rem; line-height: 1; }
 @media (min-width: 640px) { .hero__amp { font-size: 1.25rem; } }
 .hero__rule { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-bottom: .5rem; }
 .hero__rule i { display: block; width: 2.5rem; height: 1px; background: linear-gradient(to right, transparent, var(--hero-accent)); }
 .hero__rule i:last-child { background: linear-gradient(to left, transparent, var(--hero-accent)); }
 .hero__rule span { color: var(--hero-accent); opacity: .7; font-size: .875rem; }
-.hero__date { font-family: var(--font-serif); font-size: 18px; margin-bottom: 1.25rem; color: color-mix(in srgb, var(--hero-ink) 80%, transparent); }
-.hero__invite { max-width: 300px; margin: 0 auto 1.5rem; }
-@media (min-width: 768px) { .hero__invite { max-width: 380px; } } @media (min-width: 1024px) { .hero__invite { max-width: 440px; } }
+.hero__date { font-family: var(--font-serif); font-size: 24px; margin-bottom: 1.25rem; color: color-mix(in srgb, var(--hero-ink) 80%, transparent); }
+.hero__invite { max-width: 300px; font-size: 24px; margin: 0 auto 1.5rem; }
+@media (min-width: 768px) { .hero__invite { max-width: 380px; } } @media (min-width: 1024px) { .hero__invite { max-width: 600px; } }
 .hero__lead { font-family: var(--font-serif); font-size: 18px; font-weight: 300; margin-bottom: .5rem; color: color-mix(in srgb, var(--hero-ink) 80%, transparent); }
 .hero__guest { font-family: var(--font-serif); font-size: 18px; margin-top: -.25rem; margin-bottom: .5rem; color: color-mix(in srgb, var(--hero-ink) 80%, transparent); overflow-wrap: anywhere; }
 .hero__guest strong { font-weight: 600; color: var(--hero-accent); }
@@ -50,14 +50,33 @@ body.is-open .cover { opacity: 0; visibility: hidden; pointer-events: none; tran
 .hero__shine { position: absolute; top: 0; left: 0; width: 2rem; height: 100%; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); animation: shine 3s ease-in-out infinite; }
 @keyframes shine { 0% { transform: translateX(-150%); } 60%, 100% { transform: translateX(600%); } }
 
-.hero__veil { position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0; clip-path: inset(0 50% 0 50%);
-  background: radial-gradient(circle at 50% 50%, var(--bg), var(--pink-soft) 70%, var(--pink) 140%); }
-body.is-opening .hero__veil { animation: veil 2.4s var(--ease) forwards; }
-@keyframes veil { 0% { opacity: 1; clip-path: inset(0 50% 0 50%); } 40% { opacity: 1; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 0 0); } }
-body.is-open .hero__open { opacity: 0; transform: translateY(8px); max-height: 0; padding-block: 0; pointer-events: none; }
-body.is-open .hero__shine { animation: none; }
+/* ---- Dấu niêm trái tim (theo mẫu): vòng tròn 56px, nhịp đập nhẹ ---- */
+.hero__seal { position: absolute; left: 50%; top: 50px; z-index: 30; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, var(--hero-accent), color-mix(in srgb, var(--hero-accent) 82%, #000));
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--hero-accent) 50%, transparent), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%); animation: seal-pulse 2s ease-in-out infinite; }
+.hero__seal svg { width: 1.75rem; height: 1.75rem; fill: #fff; }
+@keyframes seal-pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.04); } }
+
+/* ---- Chuỗi hiệu ứng khi bấm "Mở thiệp" ----
+   0s: trái tim + hoa hai góc phóng to và mờ đi, các trái tim nhỏ bung ra
+   ~0.7s: thiệp trượt lên trên và biến mất
+   ~2.1s: màn mở đầu mờ dần để lộ trang nội dung */
+body.is-opening .hero__open { pointer-events: none; }
+body.is-opening .hero__shine { animation: none; }
+body.is-opening .hero__seal { animation: seal-zoom 1.1s cubic-bezier(.4, 0, .9, .6) forwards; }
+body.is-opening .hero__flower { animation: flower-zoom 1.2s cubic-bezier(.4, 0, .9, .6) forwards; }
+@keyframes seal-zoom { 0% { transform: translate(-50%, -50%) scale(1); filter: blur(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(5.5); filter: blur(14px); opacity: 0; } }
+@keyframes flower-zoom { 0% { transform: scale(1); filter: blur(0); opacity: .9; } 100% { transform: scale(2.6); filter: blur(12px); opacity: 0; } }
+
+.hero__burst { position: absolute; left: 50%; top: 50px; width: 0; height: 0; z-index: 29; pointer-events: none; }
+.burst { position: absolute; left: 0; top: 0; width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); color: var(--c); opacity: 0; animation: heart-burst 1.5s cubic-bezier(.1, .7, .3, 1) var(--dl) forwards; }
+.burst svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+@keyframes heart-burst { 0% { transform: translate(0, 0) scale(.3) rotate(0); opacity: 0; } 10% { opacity: 1; } 60% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--r)); opacity: 0; } }
+
+body.is-leaving .hero__content { transform: translateY(-125vh); opacity: 0; transition: transform 1.4s cubic-bezier(.55, 0, .8, .4), opacity .9s ease-in .5s; }
 
 /* màn thấp (điện thoại xoay ngang, laptop thu nhỏ): gọn lại để nút "Mở thiệp" luôn nằm trong màn hình */
-@media (max-height: 700px) { .hero__body { padding-top: clamp(40px, 11svh, 96px); padding-bottom: clamp(20px, 5svh, 32px); } .hero__flower { height: 100px; } }
+@media (max-height: 700px) { .hero__body { padding-top: clamp(64px, 14svh, 96px); padding-bottom: clamp(20px, 5svh, 32px); } .hero__flower { height: 100px; } .hero__seal { top: 34px; width: 44px; height: 44px; } .hero__seal svg { width: 1.375rem; height: 1.375rem; } .hero__burst { top: 34px; } }
 @media (max-height: 520px) { .hero__lead { display: none; } .hero__guest { font-size: 1rem; } }
-@media (prefers-reduced-motion: reduce) { .hero__hearts { display: none; } .hero__shine { animation: none; display: none; } }
+@media (prefers-reduced-motion: reduce) { .hero__hearts { display: none; } .hero__shine, .hero__seal { animation: none; } .hero__shine { display: none; } body.is-opening .hero__seal, body.is-opening .hero__flower { animation: none; } body.is-leaving .hero__content, body.is-open .cover { transition: none; } }
