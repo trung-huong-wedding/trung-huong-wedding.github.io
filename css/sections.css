@@ -62,7 +62,11 @@
 .gb-form { width: min(100%, 520px); display: flex; flex-direction: column; gap: 12px; text-align: left; }
 .gb-form .btn-soft { align-self: center; } .gb-count { text-align: right; font-size: .75rem; color: var(--ink-soft); margin-top: -6px; }
 .gb-msg { min-height: 1.4em; text-align: center; color: var(--red); font-size: .9rem; } .gb-msg.is-bad { color: var(--wine); }
-.gb-list { list-style: none; margin: 10px 0 0; padding: 0; width: min(100%, 560px); display: flex; flex-direction: column; gap: 14px; text-align: left; }
+.gb-list { list-style: none; margin: 10px 0 0; padding: 6px 8px 6px 2px; width: min(100%, 560px); display: flex; flex-direction: column; gap: 14px; text-align: left;
+  /* khung cao cố định (config.guestbook.listHeight), nhiều lời chúc thì cuộn trong khung */
+  max-height: var(--gb-h, 500px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--pink) 55%, transparent) transparent; }
+.gb-list::-webkit-scrollbar { width: 6px; } .gb-list::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--pink) 55%, transparent); border-radius: 6px; }
+.gb-list:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; border-radius: 12px; }
 .gb-item { padding: 16px 18px; border-radius: 18px; background: color-mix(in srgb, var(--bg) 70%, #fff); border: 1px solid color-mix(in srgb, var(--pink-soft) 90%, transparent); box-shadow: 0 14px 30px -24px color-mix(in srgb, var(--wine) 55%, transparent); animation: gbIn .9s var(--ease) both; }
 @keyframes gbIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .gb-item b { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--wine); margin-right: 10px; } .gb-item time { font-size: .72rem; color: var(--ink-soft); } .gb-item p { margin-top: 4px; white-space: pre-wrap; overflow-wrap: anywhere; }

@@ -134,6 +134,7 @@ export const CONFIG = {
     maxMessage: 300,
     cooldownSec: 30,
     pageSize: 10,
+    listHeight: 500, // chiều cao khung danh sách lời chúc (px); nhiều lời chúc hơn thì cuộn trong khung
     samples: [ // hiện khi chưa cấu hình Firebase hoặc chưa có lời chúc nào
       { name: "Bạn thân", message: "Chúc hai bạn trăm năm hạnh phúc!", createdAtMs: 0 },
       { name: "Đồng nghiệp", message: "Chúc mừng hạnh phúc! Mãi bên nhau nhé.", createdAtMs: 0 },
@@ -168,5 +169,10 @@ export const CONFIG = {
   autoScroll: { pxPerSecond: 35 },
 
   // Dán cấu hình web app từ Firebase Console. Để apiKey trống thì dùng lời chúc mẫu.
-  firebase: { apiKey: "", authDomain: "", projectId: "", appId: "" },
+  firebase: { 
+    apiKey: "AIzaSyDYf3zZ3K368AagLhvVtdK_46l6FJTlM6k", 
+    authDomain: "wedding-201226.firebaseapp.com", 
+    projectId: "wedding-201226", 
+    appId: "1:84058659143:web:cbb1d0297711d934211462" 
+  },
 };

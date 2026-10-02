@@ -249,7 +249,7 @@ renderers.push((C) => {
       h("p", { class: "gb-count", id: "gbCount" }, `0/${g.maxMessage}`),
       h("p", { class: "gb-msg", id: "gbMsg", role: "status" }),
       h("button", { class: "btn-soft", type: "submit", id: "gbSubmit" }, "Gửi lời chúc")),
-    h("ul", { class: "gb-list", id: "gbList" }),
+    h("ul", { class: "gb-list", id: "gbList", tabindex: "0", "aria-label": "Danh sách lời chúc", style: `--gb-h:${Number(g.listHeight) > 0 ? Number(g.listHeight) : 500}px` }),
     h("button", { class: "btn-soft", type: "button", id: "gbMore", hidden: true }, "Xem thêm"),
   );
 });

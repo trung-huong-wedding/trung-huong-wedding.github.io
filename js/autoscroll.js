@@ -1,7 +1,7 @@
 import { createAutoScrollState } from "./lib/autoscroll-state.js";
 
 // Bấm vào các phần tử này không tính là "bấm vùng trống" (không đổi trạng thái tự cuộn).
-const INTERACTIVE = "a,button,input,textarea,select,label,summary,dialog,iframe,[data-no-toggle],.menu,.menu-toggle,.lightbox,.gallery,.slider,.gift-modal,.rsvp,.gb-form,.venue__map";
+const INTERACTIVE = "a,button,input,textarea,select,label,summary,dialog,iframe,[data-no-toggle],.menu,.menu-toggle,.lightbox,.gallery,.slider,.gift-modal,.rsvp,.gb-form,.venue__map,.gb-list";
 
 export function initAutoScroll(C) {
   const state = createAutoScrollState();
@@ -40,6 +40,10 @@ export function initAutoScroll(C) {
     if (!state.isRunning() && !state.userPaused() && state.holds().length === 0) return; // đã tới cuối trang
     state.toggleUser(); show(state.userPaused() ? "⏸" : "▶"); kick();
   });
+  // Khung cuộn riêng (danh sách lời chúc): cuộn chuột/chạm trong khung thì dừng tự cuộn trang để không trôi mất khung đang đọc
+  const pauseOnScrollArea = (e) => { if (started && e.target.closest?.(".gb-list") && !state.userPaused()) { state.pauseUser(); show("⏸"); } };
+  document.addEventListener("wheel", pauseOnScrollArea, { passive: true });
+  document.addEventListener("touchstart", pauseOnScrollArea, { passive: true });
   document.addEventListener("focusin", (e) => { if (e.target.matches("input,textarea")) state.hold("typing"); });
   document.addEventListener("focusout", (e) => { if (e.target.matches("input,textarea")) { state.release("typing"); kick(); } });
   document.addEventListener("visibilitychange", () => { document.hidden ? state.hold("hidden") : (state.release("hidden"), kick()); });

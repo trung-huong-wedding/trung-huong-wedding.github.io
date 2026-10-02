@@ -45,7 +45,7 @@ Chưa cấu hình thì sổ lưu bút hiện lời chúc mẫu (`guestbook.sampl
 4. **Project settings → Your apps → Web (`</>`)** → đăng ký app → copy `firebaseConfig`.
 5. Dán `apiKey`, `authDomain`, `projectId`, `appId` vào `firebase` trong `js/config.js`.
 
-Khoá cấu hình Firebase là thông tin công khai; việc bảo vệ nằm ở `firestore.rules` (chỉ cho đọc và thêm lời chúc đúng định dạng: tên ≤ 50, lời chúc ≤ 300 ký tự; cấm sửa/xoá). Muốn xoá lời chúc không phù hợp: vào Firebase Console → Firestore → collection `guestbook`. Mỗi trình duyệt chỉ được gửi 1 lời chúc/30 giây (`guestbook.cooldownSec`).
+Khoá cấu hình Firebase là thông tin công khai; việc bảo vệ nằm ở `firestore.rules` (chỉ cho đọc và thêm lời chúc đúng định dạng: tên ≤ 50, lời chúc ≤ 300 ký tự; cấm sửa/xoá). Muốn xoá lời chúc không phù hợp: vào Firebase Console → Firestore → collection `guestbook`. Mỗi trình duyệt chỉ được gửi 1 lời chúc/30 giây (`guestbook.cooldownSec`). Khung danh sách lời chúc cao `guestbook.listHeight` px (mặc định 500), nhiều lời chúc hơn thì cuộn trong khung.
 
 ## Đưa lên mạng
 
