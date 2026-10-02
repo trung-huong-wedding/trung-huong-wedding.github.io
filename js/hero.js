@@ -29,7 +29,7 @@ export const OPEN_TIMELINE = { leave: 700, open: 2100, done: 3900 };
 
 // Màn mở đầu là một trang riêng (phủ kín màn hình).
 // Bấm "Mở thiệp": trái tim + hoa phóng to rồi mờ, trái tim nhỏ bung ra → thiệp trượt lên và biến mất → hiện trang nội dung.
-export function initHero({ onOpen }) {
+export function initHero({ onOpen, onStart }) {
   const small = matchMedia("(max-width: 640px)").matches;
   spawnHearts(document.getElementById("hearts"), small ? 14 : 20);
   const btn = document.getElementById("openBtn");
@@ -37,6 +37,7 @@ export function initHero({ onOpen }) {
   let opened = false;
   btn.addEventListener("click", () => {
     if (opened) return; opened = true;
+    onStart?.(); // ngay lúc bấm (còn trong thao tác của người dùng): bắt đầu phát nhạc
     const b = document.body;
     const finish = () => { b.classList.remove("is-locked"); b.classList.add("is-open"); onOpen?.(); };
     if (reduce) { finish(); return; } // giảm chuyển động: mở ngay, không hiệu ứng

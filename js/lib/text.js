@@ -23,11 +23,11 @@ export function cooldownRemaining(lastMs, nowMs, cooldownSec) {
 
 export function isFirebaseConfigured(cfg) { return !!(cfg && cfg.apiKey && cfg.projectId); }
 
-// Thời gian của lời chúc: "dd/mm/yyyy hh:mm:ss" theo giờ Việt Nam (mọi khách thấy cùng một giờ dù ở múi giờ nào).
+// Thời gian của lời chúc: "hh:mm:ss dd/mm/yyyy" theo giờ Việt Nam (mọi khách thấy cùng một giờ dù ở múi giờ nào).
 const VN_TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Ho_Chi_Minh", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" });
 export function formatGuestTime(value) {
   const ms = value instanceof Date ? value.getTime() : Number(value);
   if (!Number.isFinite(ms) || ms <= 0) return "";
   const p = Object.fromEntries(VN_TIME.formatToParts(new Date(ms)).map((x) => [x.type, x.value]));
-  return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}:${p.second}`;
+  return `${p.hour}:${p.minute}:${p.second} ${p.day}/${p.month}/${p.year}`;
 }

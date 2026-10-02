@@ -11,7 +11,7 @@ export async function initGuestbook(C) {
   const more = document.getElementById("gbMore"), count = document.getElementById("gbCount"), submit = document.getElementById("gbSubmit");
   if (!list || !form) return;
 
-  const fmt = formatGuestTime; // "dd/mm/yyyy hh:mm:ss" theo giờ Việt Nam
+  const fmt = formatGuestTime; // "hh:mm:ss dd/mm/yyyy" theo giờ Việt Nam
   const draw = (items) => {
     list.replaceChildren(...items.map((it) => {
       const li = document.createElement("li"); li.className = "gb-item";

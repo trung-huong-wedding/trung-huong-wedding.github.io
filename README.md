@@ -28,7 +28,7 @@ Chạy test logic: `npm test` (cần Node 20+).
 | **2 địa chỉ + bản đồ** | `venues.items`: `mapLink` (link chia sẻ Google Maps, dùng cho nút "Chỉ đường"), `mapQuery` (toạ độ `"lat,lng"` hoặc tên địa điểm để ghim bản đồ), hoặc `mapEmbed` (link nhúng từ Chia sẻ → Nhúng bản đồ). Google không cho nhúng link chia sẻ `maps.app.goo.gl` |
 | Hộp quà, STK, QR | `gift.people` + ảnh QR trong `assets/qr/` |
 | Menu | `menu` |
-| Nhạc nền | bỏ file vào `assets/audio/` rồi điền `music.src` (để trống thì ẩn nút nhạc) |
+| Nhạc nền | bỏ file vào `assets/audio/` rồi điền `music.src` (để trống thì ẩn nút nhạc). Nhạc tự phát khi khách bấm "Mở thiệp"; nút nhạc ở góc phải dưới để tắt/bật |
 | Tốc độ tự cuộn | `autoScroll.pxPerSecond` |
 
 **Thêm/bớt khối:** mỗi danh sách là một mảng — thêm một `{ ... }` là thêm một mốc/ảnh/địa điểm, trang tự dài ra và đẩy các khối bên dưới xuống. Mảng rỗng `[]` thì section và mục menu của nó tự ẩn. Văn bản là chữ thường (không HTML), xuống dòng bằng `\n`.

@@ -165,7 +165,7 @@ export const CONFIG = {
     { id: "qua-mung", label: "Quà mừng" },
   ],
 
-  music: { src: "" }, // ví dụ "assets/audio/music.mp3"; để trống thì ẩn nút nhạc
+  music: { src: "assets/audio/Beautiful-In-White.mp3" }, // ví dụ "assets/audio/music.mp3"; để trống thì ẩn nút nhạc
   autoScroll: { pxPerSecond: 35 },
 
   // Dán cấu hình web app từ Firebase Console. Để apiKey trống thì dùng lời chúc mẫu.

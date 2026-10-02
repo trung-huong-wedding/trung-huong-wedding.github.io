@@ -63,7 +63,11 @@
 
   <nav class="menu" id="menu" aria-label="Điều hướng" hidden></nav>
   <button class="menu-toggle" id="menuToggle" type="button" aria-label="Mở menu" aria-expanded="false" hidden><span></span><span></span></button>
-  <button class="music" id="musicBtn" type="button" aria-label="Bật/tắt nhạc" hidden>♪</button>
+  <!-- Nút nhạc (theo mẫu): vòng tròn 48px, gradient, vòng viền trong, lớp sáng, nốt nhạc trắng -->
+  <button class="music" id="musicBtn" type="button" aria-label="Phát nhạc" aria-pressed="false" hidden>
+    <span class="music__bg" aria-hidden="true"><i class="music__ring"></i><i class="music__shine"></i></span>
+    <span class="music__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><b class="music__slash"></b></span>
+  </button>
 
   <script type="module" src="js/main.js"></script>
 </body>

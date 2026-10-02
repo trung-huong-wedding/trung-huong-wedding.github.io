@@ -39,16 +39,16 @@ test("isFirebaseConfigured cần apiKey và projectId", () => {
   assert.equal(isFirebaseConfigured(undefined), false);
 });
 
-test("formatGuestTime hiện ngày/tháng/năm giờ:phút:giây theo giờ Việt Nam", () => {
-  assert.equal(formatGuestTime(Date.UTC(2026, 11, 20, 3, 4, 5)), "20/12/2026 10:04:05"); // UTC+7
+test("formatGuestTime hiện giờ:phút:giây rồi ngày/tháng/năm theo giờ Việt Nam", () => {
+  assert.equal(formatGuestTime(Date.UTC(2026, 11, 20, 3, 4, 5)), "10:04:05 20/12/2026"); // UTC+7
 });
 test("formatGuestTime không in 24:00:00 lúc nửa đêm và có số 0 đệm", () => {
-  assert.equal(formatGuestTime(Date.UTC(2026, 0, 4, 17, 0, 0)), "05/01/2026 00:00:00");
-  assert.equal(formatGuestTime(Date.UTC(2026, 8, 9, 2, 3, 4)), "09/09/2026 09:03:04");
+  assert.equal(formatGuestTime(Date.UTC(2026, 0, 4, 17, 0, 0)), "00:00:00 05/01/2026");
+  assert.equal(formatGuestTime(Date.UTC(2026, 8, 9, 2, 3, 4)), "09:03:04 09/09/2026");
 });
 test("formatGuestTime trả về rỗng khi không có thời gian hợp lệ", () => {
   assert.equal(formatGuestTime(0), ""); assert.equal(formatGuestTime(undefined), ""); assert.equal(formatGuestTime(NaN), ""); assert.equal(formatGuestTime("abc"), "");
 });
 test("formatGuestTime nhận cả Date", () => {
-  assert.equal(formatGuestTime(new Date(Date.UTC(2026, 11, 20, 3, 4, 5))), "20/12/2026 10:04:05");
+  assert.equal(formatGuestTime(new Date(Date.UTC(2026, 11, 20, 3, 4, 5))), "10:04:05 20/12/2026");
 });

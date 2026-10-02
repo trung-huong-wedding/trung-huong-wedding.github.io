@@ -32,6 +32,7 @@ export function initAutoScroll(C) {
   //  - bấm vùng trống: dừng, bấm lần nữa thì chạy tiếp
   document.addEventListener("click", (e) => {
     if (!started) return;
+    if (e.target.closest(".music")) return; // bật/tắt nhạc không liên quan tới việc đọc: không làm tự cuộn dừng
     if (e.target.closest(INTERACTIVE)) {
       if (!state.userPaused()) { state.pauseUser(); show("⏸"); }
       return;

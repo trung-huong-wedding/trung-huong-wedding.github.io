@@ -15,8 +15,6 @@ body.menu-on .menu, body.menu-on .menu-toggle, body.menu-on .music { opacity: 1;
 .menu-toggle { position: fixed; top: max(14px, env(safe-area-inset-top)); left: 14px; z-index: 70; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold); background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(6px); display: grid; place-content: center; gap: 6px; padding: 0; }
 .menu-toggle span { display: block; width: 18px; height: 1px; background: var(--wine); transition: transform .8s var(--ease); }
 .menu-toggle.is-x span:first-child { transform: translateY(3.5px) rotate(45deg); } .menu-toggle.is-x span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
-.music { position: fixed; top: max(14px, env(safe-area-inset-top)); right: 14px; z-index: 70; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold); background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(6px); color: var(--wine); font-size: 1.1rem; padding: 0; }
-.music.is-on { animation: spin 9s linear infinite; background: var(--pink-soft); } @keyframes spin { to { transform: rotate(360deg); } }
 body.menu-open { overflow: hidden; }
 
 /* desktop: sidebar dọc cố định bên trái, luôn hiện (không ẩn khi cuộn) */
@@ -39,3 +37,24 @@ body.menu-open { overflow: hidden; }
 /* chỉ báo ⏸ / ▶ khi bấm tạm dừng hoặc chạy tiếp tự cuộn */
 .as-indicator { position: fixed; left: 50%; top: 50%; z-index: 80; width: 72px; height: 72px; margin: -36px 0 0 -36px; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--wine) 55%, transparent); color: var(--bg); font-size: 1.6rem; opacity: 0; transform: scale(.85); pointer-events: none; transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .as-indicator.is-on { opacity: 1; transform: none; }
+
+/* ---- Nút nhạc (theo mẫu): cố định góc phải dưới (bottom-14, right-4), 48px ---- */
+.music { position: fixed; right: 1rem; bottom: 3.5rem; z-index: 40; width: 3rem; height: 3rem; padding: 0; border: 0; border-radius: 9999px; cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); transition: all .15s cubic-bezier(.4, 0, .2, 1); }
+.music:hover { transform: scale(1.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+.music:active { transform: scale(.95); }
+.music:focus-visible { outline: 2px solid var(--hero-accent); outline-offset: 3px; }
+.music__bg { position: absolute; inset: 0; border-radius: 9999px; overflow: hidden;
+  background: linear-gradient(to right bottom, color-mix(in srgb, var(--hero-accent) 80%, transparent), var(--hero-accent), color-mix(in srgb, var(--hero-accent) 87%, transparent)); }
+.music__ring { position: absolute; inset: .25rem; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.2); }
+.music__shine { position: absolute; inset: 0; border-radius: 9999px; background: linear-gradient(to top right, rgba(255, 255, 255, 0.3), transparent, transparent); }
+.music__icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.music__icon svg { width: 1.25rem; height: 1.25rem; fill: #fff; }
+/* trạng thái: đang phát = nốt nhạc nhún nhẹ + quầng sáng; đang tắt = gạch chéo qua nốt nhạc */
+.music__slash { position: absolute; width: 1.7rem; height: 2px; border-radius: 2px; background: #fff; box-shadow: 0 0 0 1px color-mix(in srgb, var(--hero-accent) 70%, transparent); rotate: -45deg; transition: opacity .3s; }
+.music.is-on .music__slash { opacity: 0; }
+.music.is-on::after { content: ""; position: absolute; inset: 0; border-radius: 9999px; box-shadow: 0 0 0 0 color-mix(in srgb, var(--hero-accent) 45%, transparent); animation: music-pulse 2.4s ease-out infinite; pointer-events: none; }
+.music.is-on .music__icon svg { animation: music-bob 1.6s ease-in-out infinite; }
+@keyframes music-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--hero-accent) 45%, transparent); } 100% { box-shadow: 0 0 0 14px transparent; } }
+@keyframes music-bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-1.5px) rotate(-6deg); } }
+@media (prefers-reduced-motion: reduce) { .music.is-on::after, .music.is-on .music__icon svg { animation: none; } }
