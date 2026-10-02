@@ -39,7 +39,9 @@ export function renderAll(CONFIG) {
 
 // ---- Hero ----
 renderers.push((C) => {
-  document.getElementById("heroBg").style.backgroundImage = `url("${C.hero.photo}")`;
+  const photo = `url("${C.hero.photo}")`;
+  document.getElementById("heroBg").style.backgroundImage = photo;
+  const pb = document.getElementById("pageBgImg"); if (pb) pb.style.backgroundImage = photo;
   setText(document.getElementById("heroLead"), C.hero.lead);
   setText(document.getElementById("heroGroom"), C.couple.groom.name);
   setText(document.getElementById("heroBride"), C.couple.bride.name);

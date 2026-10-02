@@ -8,6 +8,9 @@ test("themeToCssVars ánh xạ khoá camelCase sang biến CSS và bỏ giá tr�
   const v = themeToCssVars({ bg: "#fff", pinkSoft: "#F7C6CE", red: "red; x:{", wine: "", unknown: "#000", gold: 5 });
   assert.deepEqual(v, { "--bg": "#fff", "--pink-soft": "#F7C6CE" });
 });
+test("themeToCssVars hỗ trợ hai màu của thẻ bìa (heroAccent, heroInk)", () => {
+  assert.deepEqual(themeToCssVars({ heroAccent: "#CB5D6C", heroInk: "#933845" }), { "--hero-accent": "#CB5D6C", "--hero-ink": "#933845" });
+});
 test("themeToCssVars chịu được undefined", () => assert.deepEqual(themeToCssVars(undefined), {}));
 test("nextIndex lặp vòng hai chiều", () => {
   assert.equal(nextIndex(0, 5, 1), 1); assert.equal(nextIndex(4, 5, 1), 0);

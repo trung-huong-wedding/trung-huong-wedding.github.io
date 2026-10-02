@@ -20,7 +20,6 @@ function initParallax() {
     ticking = false;
     const y = window.scrollY;
     if (y > hero.offsetHeight) return;
-    hero.style.setProperty("--bgy", `${Math.min(40, y * 0.2).toFixed(1)}px`);
     content.style.setProperty("--cy", `${(-y * 0.08).toFixed(1)}px`);
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });

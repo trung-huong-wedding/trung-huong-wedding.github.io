@@ -17,6 +17,8 @@ export const CONFIG = {
     gold: "#C9A25B",     // vàng ánh kim (viền, họa tiết)
     ink: "#4a2a31",      // chữ thân bài
     inkSoft: "#7a5a61",  // chữ phụ
+    heroAccent: "#CB5D6C", // màn bìa: tên, đường kẻ, nút "Mở thiệp"
+    heroInk: "#933845",    // màn bìa: ngày tháng và câu mời
   },
 
   // ---- Ngày cưới (dùng cho đếm ngược) ----
@@ -31,7 +33,7 @@ export const CONFIG = {
   },
 
   // ---- Màn bìa ----
-  hero: { photo: "assets/images/hero.jpg", lead: "Trân trọng kính mời" },
+  hero: { photo: "assets/images/hero.jpg", lead: "Thân Mời" },
 
   // ---- Lời mời ----
   invitation: {

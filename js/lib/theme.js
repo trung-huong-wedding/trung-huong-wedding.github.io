@@ -1,4 +1,4 @@
-const MAP = { bg: "--bg", pinkSoft: "--pink-soft", pink: "--pink", red: "--red", wine: "--wine", gold: "--gold", ink: "--ink", inkSoft: "--ink-soft" };
+const MAP = { bg: "--bg", pinkSoft: "--pink-soft", pink: "--pink", red: "--red", wine: "--wine", gold: "--gold", ink: "--ink", inkSoft: "--ink-soft", heroAccent: "--hero-accent", heroInk: "--hero-ink" };
 
 // Chuyển CONFIG.theme thành { "--biến-css": "giá trị" }, bỏ khoá lạ và giá trị có thể phá CSS.
 export function themeToCssVars(theme) {
