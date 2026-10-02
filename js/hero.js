@@ -12,34 +12,17 @@ function spawnHearts(root, count) {
   }
 }
 
-function initParallax() {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const hero = document.getElementById("thiep-cuoi"), content = document.getElementById("heroContent");
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const y = window.scrollY;
-    if (y > hero.offsetHeight) return;
-    content.style.setProperty("--cy", `${(-y * 0.08).toFixed(1)}px`);
-  };
-  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-}
-
+// Màn mở đầu là một trang riêng (phủ kín màn hình). Bấm "Mở thiệp": lớp màn quét qua, khoá cuộn được gỡ, màn mở đầu mờ đi để lộ trang nội dung.
 export function initHero({ onOpen }) {
   const small = matchMedia("(max-width: 640px)").matches;
   spawnHearts(document.getElementById("hearts"), small ? 14 : 20);
-  initParallax();
   const btn = document.getElementById("openBtn");
   let opened = false;
-  // Lưới an toàn: nếu nội dung bìa vẫn cao hơn màn hình (màn rất thấp) thì không khoá cuộn, để khách luôn chạm được nút.
-  const content = document.getElementById("heroContent");
-  const fit = () => { if (!opened) document.body.classList.toggle("is-locked", content.getBoundingClientRect().height <= innerHeight + 2); };
-  fit(); addEventListener("resize", fit); addEventListener("orientationchange", fit);
   btn.addEventListener("click", () => {
     if (opened) return; opened = true;
     const b = document.body;
     b.classList.add("is-opening");
-    setTimeout(() => { b.classList.remove("is-locked"); b.classList.add("is-open"); onOpen?.(); }, 900); // veil phủ kín ở ~40% của 2.4s
+    setTimeout(() => { b.classList.remove("is-locked"); b.classList.add("is-open"); onOpen?.(); }, 900); // lớp màn phủ kín ở ~40% của 2.4s
     setTimeout(() => b.classList.remove("is-opening"), 2500);
   });
 }

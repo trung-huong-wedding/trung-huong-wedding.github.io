@@ -26,13 +26,18 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 - Thân bài: serif nhẹ hoặc Be Vietnam Pro mảnh, dòng ngắn, căn giữa, nhiều khoảng thở. Ngày giờ dùng số kiểu thiệp (chữ số lớn, serif).
 - Mỗi section chỉ 1 cụm "tiêu đề viết tay + đường kẻ mảnh + ❦", không dùng chữ đậm nặng.
 
+**Cấu trúc hai trang tách biệt (nguyên tắc nền tảng)**
+- **Trang 1 — Màn mở đầu:** một trang riêng phủ kín màn hình (`position: fixed`, tự cuộn được nếu màn quá thấp), KHÔNG nằm trong khung 1000px. Nền là ảnh cưới làm mờ phủ toàn màn hình; thiệp (thẻ kính mờ) nằm chính giữa màn hình. Không có khối main 1000px ở trang này.
+- **Trang 2 — Nội dung chính:** nằm gọn trong khung `main` rộng tối đa 1000px, căn giữa; hai bên khung là màu hồng nhạt trơn. Nền ảnh mờ của trang này CHỈ nằm trong khung 1000px (không bao giờ phủ toàn màn hình). Thiệp ở trang 1 không hiển thị lại ở trang này.
+- Bấm "Mở thiệp": lớp màn quét qua, khoá cuộn được gỡ, trang 1 mờ dần rồi ẩn hẳn để lộ trang 2.
+
 **Hero (màn mở đầu, cũng là màn bìa)** — theo mẫu "kính mờ" người dùng cung cấp
-- Không dùng ảnh nền nét: ở **màn mở đầu (trước khi bấm "Mở thiệp")** nền là **chính ảnh cưới (`hero.photo`) làm mờ** (`blur ~22px`) phủ kín toàn màn hình, cộng một lớp kem–hồng nhạt. Sau khi bấm "Mở thiệp", nền toàn màn hình này **biến mất**; thay vào đó cùng ảnh mờ làm nền **bên trong khung nội dung 1000px** (đứng yên theo màn hình khi cuộn, phủ lớp kem 62% để chữ dễ đọc), hai bên khung là màu hồng nhạt trơn.
+- Nền màn mở đầu: **chính ảnh cưới (`hero.photo`) làm mờ** (`blur ~22px`) phủ kín toàn màn hình, cộng một lớp kem–hồng nhạt.
 - Ở giữa là **một thẻ kính mờ làm theo đúng code mẫu của người dùng** (kích thước, khoảng cách, màu và bóng đổ như mẫu; chỉ khác tên, ngày tháng, thông tin riêng và font): bo góc 8px, nền trắng 30% + `backdrop-filter: blur(6px) saturate(1.08)`, viền mảnh màu `heroAccent` 15%, bóng `0 25px 60px -12px rgba(0,0,0,.45), 0 8px 24px rgba(0,0,0,.2), 0 0 40px heroAccent 15%`; hai góc (trên-trái xoay 2°, dưới-phải lật và xoay 85°) có **cụm hoa vẽ bằng SVG** (cao 9rem, ≥768px 10rem). Phần thân thẻ `padding: 7rem 1.5rem 3.5rem` (≥768px: `6rem … 2rem`). Màu `heroAccent` (#CB5D6C) và `heroInk` (#933845) khai báo trong `CONFIG.theme`.
 - Chữ trong thẻ (căn giữa, từ trên xuống): tên chú rể / "&" / tên cô dâu (font viết tay hiện tại, 30px, ≥640px 36px, màu `heroAccent`) → đường kẻ gradient 2.5rem hai bên ký hiệu ❦ → "Chủ nhật, 20 tháng 12, 2026" (serif 18px, `heroInk` 80%) → câu mời `hero.lead` ("Thân Mời") và "Thân mời <tên khách>" nếu có `?to=` → nút **"Mở thiệp"** `padding .625rem 2rem`, bo tròn hoàn toàn, nền `heroAccent`, chữ trắng 18px (600; ≥640px 500), bóng `0 4px 14px heroAccent 35%`, có **vệt sáng trắng 40% quét qua mỗi 3s**.
 - Màn thấp (< 700px cao): padding thẻ co theo `svh` để thẻ luôn vừa màn; nếu vẫn cao hơn màn thì tự mở khoá cuộn để luôn chạm được nút.
 - Trái tim rơi: ít (khoảng 12–18 cái mobile), nhỏ, mờ, xoay rất chậm, nằm giữa nền mờ và thẻ.
-- Bấm "Mở thiệp": một lớp "màn" hồng phấn quét từ giữa ra hai bên rồi tan; nút biến mất, trang mở khoá cuộn và bắt đầu tự cuộn. Hero không bị thay thế mà trở thành màn đầu của trang chính.
+- Bấm "Mở thiệp": một lớp "màn" hồng phấn quét từ giữa ra hai bên rồi tan; màn mở đầu mờ dần và ẩn, trang nội dung hiện ra, mở khoá cuộn và bắt đầu tự cuộn.
 
 **Bố cục & nhịp điệu**
 - Mobile dọc là thiết kế gốc: mỗi section cao tối thiểu ~90svh, một ý chính mỗi màn, ảnh lớn xen kẽ với các trang chữ. Ảnh được đặt trong khung bo góc mềm có đổ bóng, khung co theo tỉ lệ thật của ảnh (không cắt ảnh cho vừa khung); ảnh chân dung cô dâu chú rể có thể bo vòm phía trên nhưng vẫn giữ nguyên tỉ lệ ảnh.
@@ -52,9 +57,9 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 
 ## Section (theo thứ tự)
 1. Màn bìa toàn màn hình: tên cô dâu & chú rể, ngày cưới, dòng "Trân trọng kính mời / Thân mời" (kèm tên khách nếu có `?to=`) và nút "Mở thiệp". Các trái tim nhỏ (kích thước, tốc độ, độ trong suốt ngẫu nhiên) rơi liên tục từ đỉnh xuống đáy màn hình. Bấm "Mở thiệp": hiệu ứng mở (bìa tách/trượt ra), bật nhạc, hiện trang chính và bắt đầu tự cuộn.
-   Bấm "Mở thiệp" xong, hero trở thành màn đầu của mục **Thiệp cưới**, gồm các phần 1–4 dưới đây.
+   Mục menu **Thiệp cưới** bắt đầu từ khối đầu trang nội dung (mục 3 bên dưới).
 2. Lời mời (+ tên khách từ `?to=`)
-3. Cô dâu chú rể (ảnh, tên, bố mẹ, giới thiệu)
+3. **Khối đầu trang nội dung — cô dâu chú rể** (theo code mẫu của người dùng): vùng cao tối thiểu 840px (≥768px: 900px, padding-top 210px / 330px); hai cụm hoa trang trí lớn (SVG vẽ theo màu theme, vị trí và góc xoay như mẫu, trôi nhẹ theo cuộn — parallax) ở phía sau; một dải trang trí ngang (rộng bằng khung 1000px, không rộng bằng màn hình) ở top 170px / 280px; hai ảnh polaroid nghiêng trong khung viền vàng 5px, tỉ lệ 2:3 — ảnh chú rể xoay −17° ở trên-trái, kèm vai trò (`role`) và tên (`name`, font viết tay hiện tại) bên phải; ảnh cô dâu xoay 13° ở dưới-phải, chữ bên trái, căn phải. Kích thước ảnh 155px (≥768px: 235px). Vùng bố cục 320×440px (≥768px: 500×640px). Bố mẹ và giới thiệu (`parents`, `bio`) hiển thị ở khối chữ ngay bên dưới.
 4. Đếm ngược đến ngày cưới
 5. **Thông tin lễ cưới**: ngày giờ lễ (số lớn kiểu thiệp), lịch tháng với ngày cưới khoanh trái tim, các mốc (đón khách, lễ thành hôn…), nút "Thêm vào lịch" (.ics).
 6. **Câu chuyện tình yêu — cây thời gian (timeline)**: một "thân cây" là đường dọc mảnh màu vàng ánh kim chạy từ đầu đến cuối section; mỗi **mốc** là một nút tròn nhỏ (hoặc trái tim nhỏ) nằm trên đường, kèm nhãn thời gian viết tay (ví dụ "Tháng 6, 2021"), một **ảnh** và một **đoạn mô tả** của giai đoạn đó. Mỗi mốc là một khối độc lập.

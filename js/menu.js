@@ -33,10 +33,13 @@ export function initMenu(C, { onNavStart, onNavEnd } = {}) {
     setOpen(false);
     onNavStart?.();
     const y = target.getBoundingClientRect().top + scrollY;
-    let done = false;
-    const finish = () => { if (done) return; done = true; removeEventListener("scrollend", finish); onNavEnd?.(); };
-    addEventListener("scrollend", finish, { once: true });
-    setTimeout(finish, 1600);
+    // Cuộn xong = trang ngừng cuộn một lúc (không dùng "scrollend": các lần cuộn nhỏ của tự cuộn cũng phát sự kiện đó nên báo xong quá sớm)
+    let done = false, quiet = 0, cap = 0;
+    const finish = () => { if (done) return; done = true; clearTimeout(quiet); clearTimeout(cap); removeEventListener("scroll", onScroll); onNavEnd?.(); };
+    const settle = (wait = 180) => { clearTimeout(quiet); quiet = setTimeout(finish, wait); };
+    const onScroll = () => settle(); // không truyền thẳng settle: tham số đầu của listener là Event
+    addEventListener("scroll", onScroll, { passive: true });
+    settle(500); cap = setTimeout(finish, 6000); // lần đầu chờ lâu hơn: cú cuộn mượt có thể bắt đầu hơi trễ
     scrollTo({ top: Math.max(0, y), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 

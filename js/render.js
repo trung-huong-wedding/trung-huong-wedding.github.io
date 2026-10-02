@@ -61,8 +61,8 @@ renderers.push((C) => {
     h("p", { class: "lead reveal", style: "--d:.45s" }, C.invitation.body),
   );
 
+  // Thông tin chi tiết (bố mẹ, giới thiệu) — chỉ chữ; ảnh nằm ở khối đầu trang
   const person = (p, d) => h("article", { class: "person reveal", style: `--d:${d}s` },
-    h("div", { class: "arch" }, h("img", { src: p.photo, alt: p.fullName, loading: "lazy", decoding: "async" })),
     h("p", { class: "eyebrow" }, p.role),
     h("h3", { class: "script person__name" }, p.fullName),
     h("p", { class: "person__parents" }, (p.parents ?? []).map((x, i) => [i ? h("br") : null, x])),
@@ -70,6 +70,17 @@ renderers.push((C) => {
   );
   document.getElementById("couple").replaceChildren(
     h("div", { class: "couple-grid" }, person(C.couple.groom, 0), h("span", { class: "couple-heart reveal", "aria-hidden": "true" }, "♥"), person(C.couple.bride, .25)),
+  );
+
+  // Khối đầu trang nội dung: hai ảnh nghiêng + tên (không lặp lại thẻ thiệp ở màn mở đầu)
+  const cp = (p, cls) => h("div", { class: `cp ${cls}` },
+    h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: p.photo, alt: p.fullName, decoding: "async" }))),
+    h("div", { class: "cp__text" }, h("div", { class: "cp__role" }, p.role), h("div", { class: "cp__name script" }, p.name)));
+  const flower = (cls) => { const d = h("div", { class: `cpl__flower ${cls}`, "aria-hidden": "true" }); d.innerHTML = '<svg viewBox="0 0 600 600"><use href="#spray"/></svg>'; return d; };
+  const bar = h("div", { class: "cpl__bar", "aria-hidden": "true" }); bar.innerHTML = '<svg viewBox="0 0 1000 150" preserveAspectRatio="xMidYMid slice"><use href="#bar"/></svg>';
+  document.getElementById("thiep-cuoi").replaceChildren(
+    flower("cpl__flower--a"), flower("cpl__flower--b"),
+    h("div", { class: "cpl__stage" }, bar, cp(C.couple.groom, "cp--groom"), cp(C.couple.bride, "cp--bride")),
   );
 
   document.getElementById("countdown").replaceChildren(
