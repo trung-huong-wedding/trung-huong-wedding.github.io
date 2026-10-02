@@ -40,9 +40,10 @@ export function renderAll(CONFIG) {
 // ---- Hero ----
 renderers.push((C) => {
   document.getElementById("heroBg").style.backgroundImage = `url("${C.hero.photo}")`;
-  // nền chung của trang nội dung (ảnh lặp lại, phủ trắng 60% — xem css/tokens.css)
+  // nền chung của trang nội dung (ảnh lặp lại, phủ trắng 60% — xem css/tokens.css).
+  // Phải đổi sang đường dẫn tuyệt đối: url() nằm trong biến CSS được tính theo file CSS (thư mục css/) chứ không theo trang, nên đường dẫn tương đối sẽ 404.
   const bg = C.decor?.background;
-  document.getElementById("page")?.style.setProperty("--page-bg-image", bg ? `url("${bg}")` : "none");
+  document.getElementById("page")?.style.setProperty("--page-bg-image", bg ? `url("${new URL(bg, document.baseURI).href}")` : "none");
   setText(document.getElementById("heroLead"), C.hero.lead);
   // Hoa hai góc thẻ bìa: ảnh config.hero.flower (để trống thì không có hoa)
   const flowerEl = (cls) => h("img", { class: `hero__flower ${cls}`, src: C.hero.flower, alt: "", "aria-hidden": "true", decoding: "async", onerror: (e) => e.target.remove() });
