@@ -43,6 +43,14 @@ renderers.push((C) => {
   document.getElementById("heroBg").style.backgroundImage = photo;
   const pb = document.getElementById("pageBgImg"); if (pb) pb.style.backgroundImage = photo;
   setText(document.getElementById("heroLead"), C.hero.lead);
+  // Hoa hai góc thẻ: nếu config.hero.flower có đường dẫn ảnh thì dùng <img> đó, không thì dùng hoa SVG vẽ sẵn (theo màu theme)
+  const flowerEl = (cls) => {
+    if (C.hero.flower) return h("img", { class: `hero__flower ${cls}`, src: C.hero.flower, alt: "", "aria-hidden": "true", decoding: "async" });
+    const t = document.createElement("template");
+    t.innerHTML = `<svg class="hero__flower ${cls}" viewBox="0 0 200 160" aria-hidden="true"><use href="#flower"/></svg>`;
+    return t.content.firstElementChild;
+  };
+  document.getElementById("heroGlass")?.replaceChildren(flowerEl("hero__flower--tl"), flowerEl("hero__flower--br"));
   setText(document.getElementById("heroGroom"), C.couple.groom.name);
   setText(document.getElementById("heroBride"), C.couple.bride.name);
   const d = C.dateLabel;

@@ -18,6 +18,7 @@ Chạy test logic: `npm test` (cần Node 20+).
 |---|---|
 | **Tone màu chủ đạo** | `theme` (8 màu) — đổi ở đây là cả trang đổi theo, không cần sửa CSS |
 | Tên, ngày cưới, đếm ngược | `couple`, `dateLabel`, `weddingDate` |
+| Hoa trang trí hai góc thẻ bìa | `hero.flower` — đường dẫn ảnh hoa (đặt trong `assets/images/`); để trống thì dùng hoa vẽ sẵn |
 | Lời mời | `invitation` |
 | Giờ lễ, lịch, file thêm-vào-lịch | `ceremony` |
 | **Câu chuyện tình yêu** | `story.chapters` — mỗi mốc `{ date, title, text, photo, photoAlt }` |
