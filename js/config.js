@@ -108,8 +108,8 @@ export const CONFIG = {
   venues: {
     heading: "Địa Chỉ",
     items: [
-      { side: "Nhà Trai", name: "Nhà hàng Hoa Hồng", address: "12 Phố Huế, Hai Bà Trưng, Hà Nội", time: "Tiệc thân mật: 11:30, 20/12/2026", mapEmbed: "https://www.google.com/maps?q=12+Ph%E1%BB%91+Hu%E1%BA%BF,+H%C3%A0+N%E1%BB%99i&output=embed", mapLink: "https://www.google.com/maps/search/?api=1&query=12+Ph%E1%BB%91+Hu%E1%BA%BF+H%C3%A0+N%E1%BB%99i" },
-      { side: "Nhà Gái", name: "Trung tâm tiệc cưới Hoa Sen", address: "45 Láng Hạ, Đống Đa, Hà Nội", time: "Tiệc thân mật: 18:00, 19/12/2026", mapEmbed: "https://www.google.com/maps?q=45+L%C3%A1ng+H%E1%BA%A1,+H%C3%A0+N%E1%BB%99i&output=embed", mapLink: "https://www.google.com/maps/search/?api=1&query=45+L%C3%A1ng+H%E1%BA%A1+H%C3%A0+N%E1%BB%99i" },
+      { side: "Nhà Trai", name: "Trung's House", address: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapEmbed: "https://maps.app.goo.gl/vVKXpAgpEDVQo4YW7" },
+      { side: "Nhà Gái", name: "Huong's House", address: "Đường số 4, ngõ 278, nhà số 2, thôn Sáp Mai, xã Thiên Lộc, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapEmbed: "https://maps.app.goo.gl/Q2nBunnRhD4rgqyD6" },
     ],
   },
 
