@@ -19,19 +19,25 @@
   <link rel="stylesheet" href="css/gift.css">
 </head>
 <body class="is-locked">
+  <!-- Nền toàn màn hình: ảnh cưới làm mờ, nằm sau cả trang (hiện rõ ở hai bên khung 1000px trên máy tính) -->
+  <div class="backdrop" id="heroBg" aria-hidden="true"></div>
+  <div class="backdrop__shade" aria-hidden="true"></div>
   <div class="page" id="page">
     <header class="hero" id="thiep-cuoi" data-section>
-      <div class="hero__bg" id="heroBg"></div>
-      <div class="hero__shade"></div>
       <div class="hero__hearts" id="hearts" aria-hidden="true"></div>
-      <svg class="hero__orn hero__orn--l" viewBox="0 0 120 400" aria-hidden="true"><use href="#branch"/></svg>
-      <svg class="hero__orn hero__orn--r" viewBox="0 0 120 400" aria-hidden="true"><use href="#branch"/></svg>
+      <!-- Thẻ thiệp kính mờ: lớp kính + hoa trang trí hai góc, chữ nằm phía trên -->
       <div class="hero__content" id="heroContent">
-        <p class="hero__lead eyebrow" id="heroLead"></p>
-        <h1 class="hero__names"><span class="script" id="heroGroom"></span><span class="hero__amp">&amp;</span><span class="script" id="heroBride"></span></h1>
-        <div class="hero__date" id="heroDate"></div>
-        <p class="hero__guest" id="heroGuest" hidden></p>
-        <button class="hero__open" id="openBtn" type="button">Mở thiệp</button>
+        <div class="hero__glass" aria-hidden="true">
+          <svg class="hero__flower hero__flower--tl" viewBox="0 0 200 160"><use href="#flower"/></svg>
+          <svg class="hero__flower hero__flower--br" viewBox="0 0 200 160"><use href="#flower"/></svg>
+        </div>
+        <div class="hero__body">
+          <h1 class="hero__names"><span class="script" id="heroGroom"></span><span class="hero__amp">&amp;</span><span class="script" id="heroBride"></span></h1>
+          <div class="hero__rule" aria-hidden="true"><i></i><span>❦</span><i></i></div>
+          <div class="hero__date" id="heroDate"></div>
+          <div class="hero__invite"><p class="hero__lead" id="heroLead"></p><p class="hero__guest" id="heroGuest" hidden></p></div>
+          <button class="hero__open" id="openBtn" type="button"><span>Mở thiệp</span><b class="hero__shine" aria-hidden="true"></b></button>
+        </div>
       </div>
       <div class="hero__veil" id="veil" aria-hidden="true"></div>
     </header>
@@ -57,6 +63,25 @@
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
+      <symbol id="flower" viewBox="0 0 200 160">
+        <g style="stroke:var(--red)" stroke-opacity=".35" stroke-width=".8" stroke-linejoin="round">
+          <path d="M18 78 C 60 70, 96 96, 128 138 C 84 140, 40 120, 18 78 Z" style="fill:var(--pink-soft)" fill-opacity=".75"/>
+          <path d="M70 70 C 104 40, 150 38, 190 62 C 160 92, 108 96, 70 70 Z" style="fill:var(--pink-soft)" fill-opacity=".6"/>
+          <g transform="translate(66 70)">
+            <g style="fill:var(--pink)" fill-opacity=".8"><ellipse cy="-30" rx="17" ry="32"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(60)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(120)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(180)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(240)"/><ellipse cy="-30" rx="17" ry="32" transform="rotate(300)"/></g>
+            <g style="fill:var(--pink-soft)" fill-opacity=".9"><ellipse cy="-20" rx="10" ry="21" transform="rotate(30)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(90)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(150)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(210)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(270)"/><ellipse cy="-20" rx="10" ry="21" transform="rotate(330)"/></g>
+            <circle r="7" style="fill:var(--gold)" stroke="none"/>
+          </g>
+          <g transform="translate(146 60)">
+            <g style="fill:var(--red)" fill-opacity=".55"><ellipse cy="-15" rx="9" ry="17"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(72)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(144)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(216)"/><ellipse cy="-15" rx="9" ry="17" transform="rotate(288)"/></g>
+            <circle r="4" style="fill:var(--gold)" stroke="none"/>
+          </g>
+          <g transform="translate(118 118)">
+            <g style="fill:var(--pink)" fill-opacity=".65"><ellipse cy="-9" rx="5" ry="10"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(90)"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(180)"/><ellipse cy="-9" rx="5" ry="10" transform="rotate(270)"/></g>
+            <circle r="2.5" style="fill:var(--gold)" stroke="none"/>
+          </g>
+        </g>
+      </symbol>
       <symbol id="branch" viewBox="0 0 120 400">
         <g fill="none" style="stroke:var(--gold)" stroke-width="1.2" stroke-linecap="round" opacity=".9">
           <path d="M60 0 C 50 90, 75 160, 58 260 S 62 360, 60 400"/>

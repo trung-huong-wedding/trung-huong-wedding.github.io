@@ -26,13 +26,13 @@ Cảm giác mong muốn: mở một tấm thiệp cưới điện tử dọc cao
 - Thân bài: serif nhẹ hoặc Be Vietnam Pro mảnh, dòng ngắn, căn giữa, nhiều khoảng thở. Ngày giờ dùng số kiểu thiệp (chữ số lớn, serif).
 - Mỗi section chỉ 1 cụm "tiêu đề viết tay + đường kẻ mảnh + ❦", không dùng chữ đậm nặng.
 
-**Hero (màn mở đầu, cũng là màn bìa)**
-- Ảnh cưới phủ kín toàn màn hình (`100svh`), phủ một lớp gradient đỏ rượu/hồng rất nhẹ ở trên và dưới để chữ đọc rõ, giữ ảnh vẫn là trung tâm.
-- Toàn bộ chữ nằm trong **một thẻ thiệp** ở giữa màn bìa (nền kem mờ, bo góc, viền vàng mảnh hai lớp, đổ bóng) để khách tập trung vào đó, ảnh cưới nhìn thấy xung quanh thẻ. Trong thẻ xếp dọc căn giữa: "Trân trọng kính mời" (nhỏ, giãn chữ) → tên lớn → ngày cưới (số lớn, serif) → lời mời/tên khách → nút "Mở thiệp". Chữ co theo cả chiều cao màn hình để thẻ luôn vừa trong màn (kể cả điện thoại xoay ngang).
-- Hai bên (desktop) và hai góc (mobile): chi tiết trang trí tối giản, line-art nhánh hoa/hoa hồng mảnh màu vàng ánh kim, mờ, không chiếm diện tích ảnh.
-- Parallax rất nhẹ: ảnh nền dịch chậm hơn nội dung (hệ số ~0.15–0.25, tối đa vài chục px), chữ trôi lên nhẹ. Tắt khi giảm chuyển động.
-- Trái tim rơi: ít (khoảng 12–18 cái mobile), nhỏ, mờ, xoay rất chậm, rơi trong 10–18 giây mỗi lần, gam hồng phấn–đỏ hồng.
-- Nút "Mở thiệp": dạng viên thuốc mảnh viền vàng, chữ hoa giãn cách, có nhịp "thở" rất chậm. Bấm: nội dung hero mờ dần, một lớp "màn" hồng phấn kéo ra hai bên rồi ảnh hero thở nhẹ; trang bắt đầu tự cuộn. Hero không bị thay thế mà trở thành màn đầu của trang chính (tránh lặp hai hero).
+**Hero (màn mở đầu, cũng là màn bìa)** — theo mẫu "kính mờ" người dùng cung cấp
+- Không dùng ảnh nền nét: nền là **chính ảnh cưới (`hero.photo`) làm mờ** (`blur ~22px`) phủ kín toàn màn hình, cố định phía sau cả trang (trên máy tính hiện rõ ở hai bên khung 1000px), phủ thêm một lớp kem–hồng nhạt để chữ dễ đọc.
+- Ở giữa là **một thẻ kính mờ**: bo góc 8px, nền trắng 30% + `backdrop-filter: blur(6px) saturate(1.08)`, viền mảnh màu đỏ hồng 15%, đổ bóng sâu kèm quầng hồng nhẹ; hai góc (trên-trái, dưới-phải, lật và xoay 85°) có **cụm hoa vẽ bằng SVG** theo màu theme.
+- Chữ trong thẻ (căn giữa, từ trên xuống): tên chú rể / "&" nhỏ / tên cô dâu (font viết tay hiện tại, màu đỏ hồng) → đường kẻ gradient hai bên ký hiệu ❦ → "Chủ nhật, 20 tháng 12, 2026" (serif) → câu mời (`hero.lead`) và "Thân mời <tên khách>" nếu có `?to=` → nút **"Mở thiệp"** dạng viên thuốc đặc màu đỏ hồng, chữ sáng, có vệt sáng quét qua định kỳ (3s). Font giữ nguyên như các phần còn lại.
+- Phần trên của thẻ chừa chỗ rộng cho hoa; padding co theo chiều cao màn hình (`svh`) để thẻ luôn vừa màn (kể cả điện thoại xoay ngang).
+- Trái tim rơi: ít (khoảng 12–18 cái mobile), nhỏ, mờ, xoay rất chậm, nằm giữa nền mờ và thẻ.
+- Bấm "Mở thiệp": một lớp "màn" hồng phấn quét từ giữa ra hai bên rồi tan; nút biến mất, trang mở khoá cuộn và bắt đầu tự cuộn. Hero không bị thay thế mà trở thành màn đầu của trang chính.
 
 **Bố cục & nhịp điệu**
 - Mobile dọc là thiết kế gốc: mỗi section cao tối thiểu ~90svh, một ý chính mỗi màn, ảnh lớn xen kẽ với các trang chữ. Ảnh được đặt trong khung bo góc mềm có đổ bóng, khung co theo tỉ lệ thật của ảnh (không cắt ảnh cho vừa khung); ảnh chân dung cô dâu chú rể có thể bo vòm phía trên nhưng vẫn giữ nguyên tỉ lệ ảnh.

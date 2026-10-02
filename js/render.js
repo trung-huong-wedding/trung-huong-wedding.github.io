@@ -44,10 +44,7 @@ renderers.push((C) => {
   setText(document.getElementById("heroGroom"), C.couple.groom.name);
   setText(document.getElementById("heroBride"), C.couple.bride.name);
   const d = C.dateLabel;
-  document.getElementById("heroDate").replaceChildren(
-    h("span", { class: "eyebrow" }, d.weekday),
-    h("span", { class: "hero__num" }, d.day, h("i", {}, "·"), d.month, h("i", {}, "·"), d.year),
-  );
+  setText(document.getElementById("heroDate"), `${d.weekday}, ${d.day} tháng ${d.month}, ${d.year}`);
   const guest = sanitizeGuestName(new URLSearchParams(location.search).get(C.guestParam));
   const g = document.getElementById("heroGuest");
   if (guest) { g.hidden = false; g.replaceChildren(document.createTextNode("Thân mời "), h("strong", {}, guest)); }
