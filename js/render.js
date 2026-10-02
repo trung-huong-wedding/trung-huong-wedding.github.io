@@ -1,5 +1,6 @@
 import { sanitizeGuestName } from "./lib/text.js";
 import { runSafely } from "./lib/safe.js";
+import { resolveMap } from "./lib/maps.js";
 
 export function setText(el, text) { if (el) el.textContent = text ?? ""; }
 
@@ -175,14 +176,16 @@ renderers.push((C) => {
   vEl.hidden = venues.length === 0;
   if (venues.length) vEl.replaceChildren(
     ...sectionHead(C.venues.heading),
-    h("div", { class: "venues" }, venues.map((v, i) =>
-      h("article", { class: "venue reveal", style: `--d:${i * .2}s` },
+    h("div", { class: "venues" }, venues.map((v, i) => {
+      const m = resolveMap(v); // bản đồ nhúng + nút "Chỉ đường" (tự dựng từ địa chỉ nếu config thiếu hoặc dán nhầm link)
+      return h("article", { class: "venue reveal", style: `--d:${i * .2}s` },
         v.side ? h("p", { class: "eyebrow" }, v.side) : null,
         h("h3", { class: "script venue__name" }, v.name),
         h("p", { class: "venue__addr" }, v.address),
         v.time ? h("p", { class: "venue__time" }, v.time) : null,
-        v.mapEmbed ? h("div", { class: "venue__map" }, h("iframe", { src: v.mapEmbed, loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", title: `Bản đồ ${v.side || v.name}`, allowfullscreen: true })) : null,
-        v.mapLink ? h("a", { class: "btn-soft", href: v.mapLink, target: "_blank", rel: "noopener" }, "Chỉ đường") : null))),
+        m.embed ? h("div", { class: "venue__map" }, h("iframe", { src: m.embed, loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", title: `Bản đồ ${v.side || v.name}`, allowfullscreen: true })) : null,
+        m.link ? h("a", { class: "btn-soft", href: m.link, target: "_blank", rel: "noopener" }, "Chỉ đường") : null);
+    })),
   );
 
   document.getElementById("thanks").replaceChildren(

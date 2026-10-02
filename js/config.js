@@ -114,11 +114,16 @@ export const CONFIG = {
   },
 
   // ---- Địa chỉ: tổ chức 2 nơi, mỗi nơi một bản đồ. Thêm/bớt địa điểm bằng cách thêm/bớt object. ----
+  // Bản đồ: Google KHÔNG cho nhúng link chia sẻ (maps.app.goo.gl...). Cách điền (chọn một):
+  //   - mapLink:  link chia sẻ/rút gọn của Google Maps → dùng cho nút "Chỉ đường".
+  //   - mapEmbed: link NHÚNG: Google Maps → Chia sẻ → tab "Nhúng bản đồ" → copy phần src="https://www.google.com/maps/embed?pb=..." → dán vào đây (ghim đúng vị trí nhất).
+  //   - mapQuery: (tuỳ chọn) toạ độ "20.7712,105.7801" hoặc tên địa điểm, dùng dựng bản đồ khi chưa có mapEmbed. Không điền thì dùng `address`.
+  // Dán nhầm link chia sẻ vào mapEmbed cũng không sao: web tự dùng nó cho nút "Chỉ đường" và dựng bản đồ từ mapQuery/address.
   venues: {
     heading: "Địa Chỉ",
     items: [
-      { side: "Nhà Trai", name: "Trung's House", address: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapEmbed: "https://maps.app.goo.gl/vVKXpAgpEDVQo4YW7" },
-      { side: "Nhà Gái", name: "Huong's House", address: "Đường số 4, ngõ 278, nhà số 2, thôn Sáp Mai, xã Thiên Lộc, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapEmbed: "https://maps.app.goo.gl/Q2nBunnRhD4rgqyD6" },
+      { side: "Nhà Trai", name: "Trung's House", address: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "20.724174,105.8318", mapLink: "https://maps.app.goo.gl/vVKXpAgpEDVQo4YW7" },
+      { side: "Nhà Gái", name: "Huong's House", address: "Đường số 4, ngõ 278, nhà số 2, thôn Sáp Mai, xã Thiên Lộc, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "21.109136,105.762992", mapLink: "https://maps.app.goo.gl/Q2nBunnRhD4rgqyD6" },
     ],
   },
 
