@@ -25,5 +25,10 @@
 .cp__text { display: flex; flex-direction: column; align-items: flex-start; }
 .cp--bride .cp__text { align-items: flex-end; }
 .cp__role { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; color: var(--ink-soft); }
-.cp__name { font-size: 40px; line-height: 1.2; white-space: nowrap; color: var(--wine); }
+.cp__name { font-size: 40px; line-height: 1.1; white-space: nowrap; color: var(--wine); }
+/* điện thoại: bên cạnh ảnh chỉ còn một khoảng hẹp nên tên xuống dòng trong khoảng đó (cỡ chữ co theo bề rộng màn hình) thay vì tràn ra ngoài */
+@media (max-width: 767px) { .cp__text { max-width: max(96px, calc(50vw - 44px)); } .cp__name { white-space: normal; overflow-wrap: anywhere; font-size: clamp(26px, 8vw, 40px); } .cp--bride .cp__name { text-align: right; } .cp__role { font-size: clamp(13px, 3.8vw, 20px); } }
 @media (min-width: 768px) { .cp__role { font-size: 20px; } .cp__name { font-size: 40px; } }
+/* màn rất hẹp: thu nhỏ cả cụm ảnh + tên để ảnh nghiêng không tràn ra ngoài mép */
+@media (max-width: 379px) { .cpl__stage { zoom: .92; } }
+@media (max-width: 339px) { .cpl__stage { zoom: .8; } }
