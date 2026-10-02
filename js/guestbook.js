@@ -1,4 +1,4 @@
-import { validateEntry, cooldownRemaining, isFirebaseConfigured } from "./lib/text.js";
+import { validateEntry, cooldownRemaining, isFirebaseConfigured, formatGuestTime } from "./lib/text.js";
 import { withTimeout, TimeoutError } from "./lib/async.js";
 
 const SDK = "https://www.gstatic.com/firebasejs/10.12.2";
@@ -11,7 +11,7 @@ export async function initGuestbook(C) {
   const more = document.getElementById("gbMore"), count = document.getElementById("gbCount"), submit = document.getElementById("gbSubmit");
   if (!list || !form) return;
 
-  const fmt = (ms) => ms ? new Date(ms).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }) : "";
+  const fmt = formatGuestTime; // "dd/mm/yyyy hh:mm:ss" theo giờ Việt Nam
   const draw = (items) => {
     list.replaceChildren(...items.map((it) => {
       const li = document.createElement("li"); li.className = "gb-item";
