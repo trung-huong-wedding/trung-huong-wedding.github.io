@@ -27,8 +27,15 @@ export function initAutoScroll(C) {
   const kick = () => { if (!raf && state.isRunning()) { last = 0; raf = requestAnimationFrame(frame); } };
   const show = (txt) => { indicator.textContent = txt; indicator.classList.add("is-on"); clearTimeout(flash); flash = setTimeout(() => indicator.classList.remove("is-on"), 1100); };
 
+  // Bấm bất cứ đâu đều làm tự cuộn dừng:
+  //  - bấm nút/ảnh/form/link...: chỉ DỪNG (đang dừng rồi thì giữ nguyên), để người dùng xem thoải mái
+  //  - bấm vùng trống: dừng, bấm lần nữa thì chạy tiếp
   document.addEventListener("click", (e) => {
-    if (!started || e.target.closest(INTERACTIVE)) return;
+    if (!started) return;
+    if (e.target.closest(INTERACTIVE)) {
+      if (!state.userPaused()) { state.pauseUser(); show("⏸"); }
+      return;
+    }
     if (window.getSelection()?.toString()) return;
     if (!state.isRunning() && !state.userPaused() && state.holds().length === 0) return; // đã tới cuối trang
     state.toggleUser(); show(state.userPaused() ? "⏸" : "▶"); kick();

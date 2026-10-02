@@ -97,7 +97,7 @@ Mục menu, theo đúng thứ tự trên trang: **Thiệp cưới**, **Thông ti
 ## Tự cuộn trang
 - Sau khi mở thiệp, trang tự cuộn chậm từ trên xuống dưới (tốc độ không đổi, chỉnh được trong `config.js`), dừng ở cuối trang.
 - Bấm vào vùng trống của màn hình: tạm dừng; bấm lần nữa: chạy tiếp. Có biểu tượng nhỏ hiện ngắn ("⏸ / ▶") để báo trạng thái.
-- Bấm vào phần tử tương tác (nút, form, hộp quà, ảnh/lightbox, popup QR, link) thì không đổi trạng thái tự cuộn. Khi popup/lightbox mở hoặc khi người dùng đang nhập form thì tự cuộn tạm dừng, đóng lại thì tự chạy tiếp nếu trước đó đang chạy.
+- **Bấm bất cứ đâu đều dừng tự cuộn**: bấm nút, ảnh, form, link, menu, hộp quà, mũi tên slide… thì tự cuộn dừng (nếu đã dừng thì giữ nguyên, không tự chạy lại). Muốn chạy tiếp thì bấm vào vùng trống của màn hình. Khi popup/lightbox mở hoặc đang nhập form thì tự cuộn cũng tạm dừng; đóng lại thì chỉ chạy tiếp nếu người dùng chưa chủ động dừng.
 - Người dùng vẫn cuộn tay (chuột, chạm) được bình thường: tự cuộn không giành quyền điều khiển, sau khi dừng cuộn tay thì tự cuộn tiếp từ vị trí mới nếu đang ở trạng thái chạy.
 - Tôn trọng `prefers-reduced-motion`: mặc định tắt tự cuộn.
 

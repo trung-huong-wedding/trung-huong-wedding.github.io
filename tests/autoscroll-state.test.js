@@ -39,3 +39,15 @@ test("hai popup chồng nhau cùng lý do 'modal': đóng popup trên cùng vẫ
   s.release("modal");               // đóng thư viện ảnh
   assert.equal(s.isRunning(), true);
 });
+
+test("pauseUser dừng tự cuộn và không bật lại khi gọi lần nữa (khác toggleUser)", () => {
+  const s = createAutoScrollState(); s.setEnabled(true);
+  s.pauseUser(); assert.equal(s.userPaused(), true); assert.equal(s.isRunning(), false);
+  s.pauseUser(); assert.equal(s.userPaused(), true); assert.equal(s.isRunning(), false);
+  s.toggleUser(); assert.equal(s.isRunning(), true); // bấm vùng trống mới chạy lại
+});
+test("pauseUser không bị release() của popup bật lại", () => {
+  const s = createAutoScrollState(); s.setEnabled(true);
+  s.hold("modal"); s.pauseUser(); s.release("modal");
+  assert.equal(s.isRunning(), false);
+});
