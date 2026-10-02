@@ -74,7 +74,7 @@ export const CONFIG = {
   // ---- Album ảnh: slide tự trượt + nút "Xem tất cả". Ảnh giữ nguyên bản gốc, không cắt/resize. ----
   album: {
     heading: "Album Ảnh Cưới",
-    sliderCount: 10,            // số ảnh đầu tiên chạy trong slide
+    sliderCount: 11,            // số ảnh đầu tiên chạy trong slide
     intervalMs: 4500,           // thời gian giữa hai lần tự trượt
     viewAllLabel: "Xem tất cả", // nút mở toàn bộ ảnh
     photos: [
@@ -83,6 +83,13 @@ export const CONFIG = {
       { src: "assets/images/couple-2.jpg", alt: "Vũ điệu hoàng hôn" },
       { src: "assets/images/couple-3.jpg", alt: "Nụ hôn bên biển" },
       { src: "assets/images/couple-4.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-5.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-6.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-7.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-8.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-9.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-10.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/couple-11.jpg", alt: "Ôm nhau lúc hoàng hôn" },
     ],
   },
 
