@@ -23,7 +23,7 @@ export const CONFIG = {
 
   // ---- Ngày cưới (dùng cho đếm ngược) ----
   weddingDate: "2026-12-20T10:00:00+07:00",
-  dateLabel: { weekday: "Chủ nhật", day: "20", month: "12", year: "2026", lunar: "(Nhằm ngày 12 tháng 11 năm Bính Ngọ)" },
+  dateLabel: { weekday: "Chủ nhật", day: "20", month: "12", year: "2026", lunar: "(Tức ngày 12 tháng 11 năm Bính Ngọ)" },
   guestParam: "to", // link cá nhân hoá: ?to=Anh%20Nam
 
   // ---- Cô dâu & chú rể ----
