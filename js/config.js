@@ -29,7 +29,7 @@ export const CONFIG = {
   // ---- Cô dâu & chú rể ----
   couple: {
     groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Ông Nguyễn Duy Thịnh", "Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/couple-1.jpg", bio: "Chàng trai hiền lành, thích thể thao và nấu ăn." },
-    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Ông Bố", "Bà Thỏ Trắng"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
+    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Bố vợ", "Mẹ vợ"], address: "Hà Nội", photo: "assets/images/couple-2.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
   },
 
   // ---- Màn bìa ----
