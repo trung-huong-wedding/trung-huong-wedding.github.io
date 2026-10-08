@@ -33,9 +33,9 @@
 @media (max-width: 379px) { .cpl__stage { zoom: .92; } }
 @media (max-width: 339px) { .cpl__stage { zoom: .8; } }
 
-/* bio ngay dưới tên (config: couple.groom.bio / couple.bride.bio), font mềm --font-soft */
+/* bio ngay dưới tên (config: couple.groom.bio / couple.bride.bio), cùng font với lời cảm ơn cuối trang (.quote: --font-serif, nghiêng) */
 .cp__text { position: relative; z-index: 2; }
-.cp__bio { margin-top: 6px; max-width: 150px; font-family: var(--font-soft); font-weight: 500; font-size: 12px; line-height: 1.55; color: var(--ink-soft); overflow-wrap: anywhere; }
+.cp__bio { margin-top: 6px; max-width: 150px; font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 15px; line-height: 1.45; color: var(--ink-soft); overflow-wrap: anywhere; }
 .cp--bride .cp__bio { text-align: right; }
 @media (max-width: 767px) { .cp { gap: 1.75rem; } .cp__text { max-width: max(96px, calc(50vw - 56px)); } }
-@media (min-width: 768px) { .cp__bio { max-width: 230px; font-size: 14px; } }
+@media (min-width: 768px) { .cp__bio { max-width: 230px; font-size: 18px; } }
