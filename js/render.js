@@ -202,6 +202,7 @@ const GIFT_SVG = (w) => `<svg viewBox="0 0 120 120" width="${w}" aria-hidden="tr
 
 renderers.push((C) => {
   const g = C.gift, people = g.people ?? [], el = document.getElementById("qua-mung");
+  if (!el) return; // mục "Quà mừng" đã được tắt trong index.html: bỏ qua, không báo lỗi
   el.hidden = people.length === 0;
   if (!people.length) return;
   const mini = [{ l: "4%", t: "34%", r: "-22deg", w: 34 }, { l: "78%", t: "26%", r: "20deg", w: 38 }, { l: "8%", t: "62%", r: "-16deg", w: 26 }, { l: "82%", t: "60%", r: "14deg", w: 30 }];
