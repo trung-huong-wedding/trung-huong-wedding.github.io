@@ -70,7 +70,7 @@ renderers.push((C) => {
   // Khối đầu trang nội dung: hai ảnh nghiêng + tên (không lặp lại thẻ thiệp ở màn mở đầu)
   const cp = (p, cls) => h("div", { class: `cp ${cls}` },
     h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: p.photo, alt: p.fullName, decoding: "async" }))),
-    h("div", { class: "cp__text" }, h("div", { class: "cp__role" }, p.role), h("div", { class: "cp__name script" }, p.name)));
+    h("div", { class: "cp__text" }, h("div", { class: "cp__role" }, p.role), h("div", { class: "cp__name script" }, p.name), p.bio ? h("p", { class: "cp__bio" }, p.bio) : null));
   const D = C.decor ?? {};
   const deco = (cls, src) => src ? h("img", { class: `cpl__deco ${cls}`, src, alt: "", "aria-hidden": "true", decoding: "async", onerror: (e) => e.target.remove() }) : null;
   document.getElementById("thiep-cuoi").replaceChildren(

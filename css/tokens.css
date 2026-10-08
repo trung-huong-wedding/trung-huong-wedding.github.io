@@ -4,6 +4,7 @@
   --ink: #4a2a31; --ink-soft: #7a5a61; --hero-accent: #CB5D6C; --hero-ink: #933845;
   --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-script: "Great Vibes", "Pinyon Script", cursive;
+  --font-soft: "Quicksand", "Be Vietnam Pro", system-ui, sans-serif;
   --font-body: "Be Vietnam Pro", system-ui, sans-serif;
   --ease: cubic-bezier(.22,.61,.36,1);
   --col: 1000px;
