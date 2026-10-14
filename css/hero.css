@@ -80,3 +80,6 @@ body.is-leaving .hero__content { transform: translateY(-125vh); opacity: 0; tran
 @media (max-height: 700px) { .hero__body { padding-top: clamp(64px, 14svh, 96px); padding-bottom: clamp(20px, 5svh, 32px); } .hero__flower { height: 100px; } .hero__seal { top: 34px; width: 44px; height: 44px; } .hero__seal svg { width: 1.375rem; height: 1.375rem; } .hero__burst { top: 34px; } }
 @media (max-height: 520px) { .hero__lead { display: none; } .hero__guest { font-size: 1rem; } }
 @media (prefers-reduced-motion: reduce) { .hero__hearts { display: none; } .hero__shine, .hero__seal { animation: none; } .hero__shine { display: none; } body.is-opening .hero__seal, body.is-opening .hero__flower { animation: none; } body.is-leaving .hero__content, body.is-open .cover { transition: none; } }
+
+/* chỉ tên khách dùng Great Vibes; chữ "Thân mời" giữ font thường */
+.hero__guest .hero__guest-name { font-weight: 700; font-size: 1.5em; line-height: 1.2; color: var(--hero-accent); }

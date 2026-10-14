@@ -59,9 +59,10 @@ export const CONFIG = {
   ceremony: {
     heading: "Thông Tin Lễ Cưới",
     title: "Lễ Thành Hôn",
-    inviteLabel: "Trân trọng kính mời",                       // dòng mời cá nhân hoá phía trên tiêu đề (chỉ hiện khi URL có ?to=...)
-    parentsLabel: "Ông Bà",                                   // nhãn trên tên bố mẹ hai bên (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
-    announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
+    inviteLabel: "Trân trọng kính mời",                       // nhãn dòng mời ở mục lời mời khi URL có ?to=...; không có thì hiện invitation.body
+    parentsLabels: ["Nhà trai", "Nhà gái"],                    // nhãn trên tên bố mẹ: [cột trái, cột phải] (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
+    inviteLine2: "Tới tham dự lễ thành hôn của hai chúng tôi", // dòng thứ hai dưới "Trân trọng kính mời: <tên>" (chỉ hiện khi URL có ?to=...)
+    announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA HAI CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
     venue: "Tư gia nhà trai\nThôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
     startIso: "2026-12-20T10:00:00+07:00",
     durationMin: 120,

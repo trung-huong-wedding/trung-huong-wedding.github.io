@@ -58,7 +58,7 @@ renderers.push((C) => {
   setText(document.getElementById("heroDate"), `${d.weekday}, ${d.day} tháng ${d.month}, ${d.year}`);
   const guest = guestFromUrl(C);
   const g = document.getElementById("heroGuest");
-  if (guest) { g.hidden = false; g.replaceChildren(document.createTextNode("Thân mời "), h("strong", {}, guest)); }
+  if (guest) { g.hidden = false; g.replaceChildren(h("strong", { class: "script hero__guest-name" }, guest)); } // chữ "Thân Mời" đã có ở dòng hero.lead phía trên
 });
 
 // ---- Lời mời, cô dâu chú rể, đếm ngược, thông tin lễ cưới ----
@@ -67,7 +67,10 @@ renderers.push((C) => {
     h("p", { class: "orn reveal" }, "❦"),
     h("h2", { class: "sec__title script reveal", style: "--d:.15s" }, C.invitation.heading),
     h("p", { class: "quote reveal", style: "--d:.3s" }, (C.invitation.lines ?? []).map((l, i) => [i ? h("br") : null, l])),
-    h("p", { class: "lead reveal", style: "--d:.45s" }, C.invitation.body),
+    // Có ?to=... thì "Trân trọng kính mời: <tên>" (tên Great Vibes, đậm), không có thì câu mời chung (invitation.body)
+    h("p", { class: "lead reveal", style: "--d:.45s" }, ...(guestFromUrl(C)
+      ? [`${C.ceremony?.inviteLabel ?? "Trân trọng kính mời"}: `, h("span", { class: "le__guest-name script" }, guestFromUrl(C)), h("br"), C.ceremony?.inviteLine2 ?? "Tới tham dự lễ thành hôn của hai chúng tôi"]
+      : [C.invitation.body])),
   );
 
   // Khối đầu trang nội dung: hai ảnh nghiêng + tên (không lặp lại thẻ thiệp ở màn mở đầu)
@@ -85,28 +88,23 @@ renderers.push((C) => {
 
   // ---- Thông tin lễ cưới (theo mẫu): bố mẹ hai bên, lời báo tin, tên cô dâu chú rể, giờ và ngày; sau đó đếm ngược + lịch ----
   const cer = C.ceremony, g = C.couple.groom, br = C.couple.bride, dl = C.dateLabel ?? {};
-  const parentsCol = (p) => h("div", { class: "par" },
-    h("span", { class: "par__label" }, cer.parentsLabel ?? "Ông Bà"),
+  const parentsCol = (p, label) => h("div", { class: "par" },
+    h("span", { class: "par__label" }, label ?? cer.parentsLabel ?? "Ông Bà"),
     ...(p.parents ?? []).map((x) => h("span", { class: "par__name" }, stripHonorific(x))),
     p.address ? h("div", { class: "par__addr" }, p.address) : null);
   const duo = (p) => [h("h3", { class: "duo__name script" }, p.fullName || p.name), h("div", { class: "duo__title" }, p.title ?? p.role)];
   const venueText = cer.venue ?? cer.locationForCalendar ?? "";
   const pad2 = (v) => String(v ?? "").padStart(2, "0");
-  const guestName = guestFromUrl(C);
   document.getElementById("le-cuoi").replaceChildren(
-    guestName ? h("p", { class: "le__guest reveal" }, `${cer.inviteLabel ?? "Trân trọng kính mời"} `, h("strong", {}, guestName)) : null,
     h("h2", { class: "le__title reveal" }, cer.heading),
-    h("div", { class: "par-grid reveal", style: "--d:.1s" }, parentsCol(g), h("div", { class: "par-sep", "aria-hidden": "true" }), parentsCol(br)),
+    h("div", { class: "par-grid reveal", style: "--d:.1s" }, parentsCol(g, cer.parentsLabels?.[0]), h("div", { class: "par-sep", "aria-hidden": "true" }), parentsCol(br, cer.parentsLabels?.[1])),
     h("div", { class: "announce reveal", style: "--d:.15s" }, cer.announce ?? "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI"),
     h("div", { class: "duo reveal", style: "--d:.2s" }, ...duo(g), h("div", { class: "duo__amp script", "aria-hidden": "true" }, "&"), ...duo(br)),
     h("div", { class: "evt reveal", style: "--d:.25s" },
-      h("div", { class: "evt__where" }, h("span", { class: "evt__lbl" }, "LỄ THÀNH HÔN TẠI"), venueText ? h("span", { class: "evt__venue" }, venueText) : null, h("span", { class: "evt__lbl evt__lbl--at" }, "VÀO LÚC")),
-      h("div", { class: "evt__time" }, formatClock(cer.startIso)),
-      h("div", { class: "evt__date" },
-        h("span", { class: "evt__wd" }, String(dl.weekday ?? "").toUpperCase()), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"),
-        h("span", { class: "evt__day" }, pad2(dl.day)), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"),
-        h("span", { class: "evt__mo" }, `THÁNG ${Number(dl.month) || dl.month}`)),
-      h("div", { class: "evt__year" }, dl.year),
+      h("div", { class: "evt__where" }, h("span", { class: "evt__lbl" }, "LỄ THÀNH HÔN TẠI"), venueText ? h("span", { class: "evt__venue" }, venueText) : null),
+      // dòng 1: giờ + thứ; dòng 2: ngày tháng năm
+      h("div", { class: "evt__line1" }, h("span", { class: "evt__lbl" }, "VÀO LÚC"), h("span", { class: "evt__time" }, formatClock(cer.startIso)), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"), h("span", { class: "evt__wd" }, String(dl.weekday ?? "").toUpperCase())),
+      h("div", { class: "evt__line2" }, h("span", { class: "evt__day" }, pad2(dl.day)), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"), h("span", { class: "evt__mo" }, `THÁNG ${Number(dl.month) || dl.month}`), h("span", { class: "evt__bar", "aria-hidden": "true" }, "|"), h("span", { class: "evt__year" }, dl.year)),
       dl.lunar ? h("div", { class: "evt__lunar" }, dl.lunar) : null),
 
     h("div", { class: "cdbox" },
