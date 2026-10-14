@@ -38,6 +38,9 @@ export function renderAll(CONFIG) {
   runSafely(renderers.map((fn) => () => fn(CONFIG)), (e, i) => console.error(`[render] khối #${i} lỗi — kiểm tra js/config.js:`, e));
 }
 
+// Tên khách mời lấy từ URL (?to=...); không có tham số thì trả về "" và các dòng mời tương ứng không hiển thị.
+const guestFromUrl = (C) => sanitizeGuestName(new URLSearchParams(location.search).get(C.guestParam ?? "to"), 80);
+
 // ---- Hero ----
 renderers.push((C) => {
   document.getElementById("heroBg").style.backgroundImage = `url("${C.hero.photo}")`;
@@ -53,7 +56,7 @@ renderers.push((C) => {
   setText(document.getElementById("heroBride"), C.couple.bride.name);
   const d = C.dateLabel;
   setText(document.getElementById("heroDate"), `${d.weekday}, ${d.day} tháng ${d.month}, ${d.year}`);
-  const guest = sanitizeGuestName(new URLSearchParams(location.search).get(C.guestParam));
+  const guest = guestFromUrl(C);
   const g = document.getElementById("heroGuest");
   if (guest) { g.hidden = false; g.replaceChildren(document.createTextNode("Thân mời "), h("strong", {}, guest)); }
 });
@@ -89,7 +92,9 @@ renderers.push((C) => {
   const duo = (p) => [h("h3", { class: "duo__name script" }, p.fullName || p.name), h("div", { class: "duo__title" }, p.title ?? p.role)];
   const venueText = cer.venue ?? cer.locationForCalendar ?? "";
   const pad2 = (v) => String(v ?? "").padStart(2, "0");
+  const guestName = guestFromUrl(C);
   document.getElementById("le-cuoi").replaceChildren(
+    guestName ? h("p", { class: "le__guest reveal" }, `${cer.inviteLabel ?? "Trân trọng kính mời"} `, h("strong", {}, guestName)) : null,
     h("h2", { class: "le__title reveal" }, cer.heading),
     h("div", { class: "par-grid reveal", style: "--d:.1s" }, parentsCol(g), h("div", { class: "par-sep", "aria-hidden": "true" }), parentsCol(br)),
     h("div", { class: "announce reveal", style: "--d:.15s" }, cer.announce ?? "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI"),

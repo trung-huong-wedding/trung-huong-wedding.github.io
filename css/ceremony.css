@@ -41,3 +41,8 @@
 @media (min-width: 768px) { .evt { gap: 1.25rem; } .evt__lbl { font-size: 18px; } .evt__venue { font-size: 20px; } .evt__time { font-size: 30px; } .evt__wd, .evt__mo { font-size: 16px; } .evt__day { font-size: 40px; } .evt__bar { font-size: 28px; } .evt__year { font-size: 24px; } .evt__lunar { font-size: 14px; } }
 
 .cdbox { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: .75rem; }
+
+/* dòng mời cá nhân hoá (chỉ có khi URL có ?to=...) */
+.le__guest { max-width: 24em; text-align: center; font-family: var(--font-serif); font-style: italic; font-size: 20px; line-height: 1.4; color: var(--hero-ink); overflow-wrap: anywhere; }
+.le__guest strong { font-weight: 600; font-style: normal; color: var(--hero-accent); }
+@media (min-width: 768px) { .le__guest { font-size: 24px; } }

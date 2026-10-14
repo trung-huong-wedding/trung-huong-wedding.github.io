@@ -9,7 +9,7 @@ python3 -m http.server 8000     # hoặc: npm start
 ```
 
 Mở http://localhost:8000 (không mở bằng `file://` vì dùng ES modules).
-Link cá nhân hoá cho từng khách: `http://localhost:8000/?to=Anh%20Nam` → màn bìa hiện "Thân mời **Anh Nam**".
+Link cá nhân hoá cho từng khách: `http://localhost:8000/?to=anh long và gia đình` → màn bìa hiện "Thân mời **anh long và gia đình**" và mục Thông tin lễ cưới có dòng "Trân trọng kính mời **anh long và gia đình**". Link không có `?to=` thì cả hai dòng này không hiện.
 Chạy test logic: `npm test` (cần Node 20+).
 
 ## Đổi nội dung (chỉ sửa `js/config.js`)
