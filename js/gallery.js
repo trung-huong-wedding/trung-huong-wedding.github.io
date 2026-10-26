@@ -1,7 +1,11 @@
 // Cửa sổ "Xem tất cả": toàn bộ ảnh trong config.album.photos, giữ tỉ lệ gốc.
 export function initGallery({ lightbox, config }) {
   const g = document.getElementById("gallery"), btn = document.getElementById("viewAll"); if (!g || !btn) return;
-  const open = () => { g.classList.add("is-open"); document.body.classList.add("gallery-open"); document.dispatchEvent(new CustomEvent("modal:open")); g.querySelector(".gallery__x").focus(); };
+  const open = () => {
+    // chỉ tải ảnh khi người dùng thật sự mở "Xem tất cả" (ảnh gốc rất nặng, không nên tải sẵn)
+    g.querySelectorAll("img[data-src]").forEach((im) => { im.addEventListener("error", () => { if (!im.dataset.fb && im.dataset.full) { im.dataset.fb = "1"; im.src = im.dataset.full; } }, { once: true }); im.src = im.dataset.src; im.removeAttribute("data-src"); });
+    g.classList.add("is-open"); document.body.classList.add("gallery-open"); document.dispatchEvent(new CustomEvent("modal:open")); g.querySelector(".gallery__x").focus();
+  };
   const close = () => { if (!g.classList.contains("is-open")) return; g.classList.remove("is-open"); document.body.classList.remove("gallery-open"); document.dispatchEvent(new CustomEvent("modal:close")); btn.focus(); };
   btn.addEventListener("click", open);
   g.addEventListener("click", (e) => {

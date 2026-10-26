@@ -1,6 +1,7 @@
 import { sanitizeGuestName, stripHonorific, formatClock } from "./lib/text.js";
 import { runSafely } from "./lib/safe.js";
 import { resolveMap } from "./lib/maps.js";
+import { thumbSrc, photoThumb } from "./lib/thumb.js";
 
 export function setText(el, text) { if (el) el.textContent = text ?? ""; }
 
@@ -37,6 +38,9 @@ export const renderers = []; // mỗi tính năng đăng ký: renderers.push((CO
 export function renderAll(CONFIG) {
   runSafely(renderers.map((fn) => () => fn(CONFIG)), (e, i) => console.error(`[render] khối #${i} lỗi — kiểm tra js/config.js:`, e));
 }
+
+// Ảnh nhẹ ở ngoài; nếu bản nhẹ chưa được tạo (404) thì tự dùng ảnh gốc. Ảnh gốc chỉ dùng khi phóng to.
+export const withFallback = (orig) => (e) => { const im = e.target; if (im.dataset.fb) return; im.dataset.fb = "1"; im.src = orig; };
 
 // Tên khách mời lấy từ URL (?to=...); không có tham số thì trả về "" và các dòng mời tương ứng không hiển thị.
 const guestFromUrl = (C) => sanitizeGuestName(new URLSearchParams(location.search).get(C.guestParam ?? "to"), 80);
@@ -75,7 +79,7 @@ renderers.push((C) => {
 
   // Khối đầu trang nội dung: hai ảnh nghiêng + tên (không lặp lại thẻ thiệp ở màn mở đầu)
   const cp = (p, cls) => h("div", { class: `cp ${cls}` },
-    h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: p.photo, alt: p.fullName, decoding: "async" }))),
+    h("div", { class: "cp__photo" }, h("div", { class: "cp__frame" }, h("img", { src: thumbSrc(p.photo), alt: p.fullName, decoding: "async", onerror: withFallback(p.photo) }))),
     h("div", { class: "cp__text" }, h("div", { class: "cp__role" }, p.role), h("div", { class: "cp__name script" }, p.name), p.bio ? h("p", { class: "cp__bio" }, p.bio) : null));
   const D = C.decor ?? {};
   const deco = (cls, src) => src ? h("img", { class: `cpl__deco ${cls}`, src, alt: "", "aria-hidden": "true", decoding: "async", onerror: (e) => e.target.remove() }) : null;
@@ -129,7 +133,7 @@ renderers.push((C) => {
         h("span", { class: "tl__dot", "aria-hidden": "true" }, "♥"),
         h("div", { class: "tl__card" },
           c.date ? h("p", { class: "script tl__date" }, c.date) : null,
-          c.photo ? h("figure", { class: "tl__photo" }, h("img", { src: c.photo, alt: c.photoAlt || c.title || "", loading: "lazy", decoding: "async" })) : null,
+          c.photo ? h("figure", { class: "tl__photo" }, h("img", { src: thumbSrc(c.photo), alt: c.photoAlt || c.title || "", loading: "lazy", decoding: "async", onerror: withFallback(c.photo) })) : null,
           c.title ? h("h3", { class: "tl__title" }, c.title) : null,
           c.text ? h("p", { class: "tl__text" }, c.text) : null)))),
   );
@@ -144,7 +148,7 @@ renderers.push((C) => {
         h("div", { class: "ring__stage" },
           slides.length > 1 ? [h("button", { class: "ring__nav ring__nav--prev", type: "button", "aria-label": "Ảnh trước" }, "‹"), h("button", { class: "ring__nav ring__nav--next", type: "button", "aria-label": "Ảnh sau" }, "›")] : null,
           h("div", { class: "ring__scene", id: "ringScene" }, slides.map((p, i) =>
-            h("button", { class: "ring__item", type: "button", dataset: { index: i, src: p.src }, "aria-label": `Ảnh ${i + 1}: ${p.alt || ""}` },
+            h("button", { class: "ring__item", type: "button", dataset: { index: i, src: photoThumb(p), full: p.src }, "aria-label": `Ảnh ${i + 1}: ${p.alt || ""}` },
               h("img", { alt: p.alt || "", decoding: "async", draggable: "false" }))))),
         slides.length > 1 ? h("div", { class: "ring__dots", id: "sliderDots" }, slides.map((_, i) => h("button", { type: "button", "aria-label": `Tới ảnh ${i + 1}`, dataset: { to: i } }))) : null),
       h("button", { class: "btn-soft reveal", id: "viewAll", type: "button", style: "--d:.2s" }, A.viewAllLabel ?? "Xem tất cả"),
@@ -152,7 +156,7 @@ renderers.push((C) => {
     mountOverlay(h("div", { class: "gallery", id: "gallery", role: "dialog", "aria-modal": "true", "aria-label": A.heading },
         h("button", { class: "gallery__x", type: "button", "aria-label": "Đóng" }, "✕"),
         h("div", { class: "gallery__grid" }, photos.map((p, i) =>
-          h("button", { class: "gallery__item", type: "button", dataset: { index: i }, "aria-label": `Xem ảnh ${i + 1}` }, h("img", { src: p.src, alt: p.alt || "", loading: "lazy", decoding: "async" }))))));
+          h("button", { class: "gallery__item", type: "button", dataset: { index: i }, "aria-label": `Xem ảnh ${i + 1}` }, h("img", { dataset: { src: photoThumb(p), full: p.src }, alt: p.alt || "", decoding: "async" }))))));
   }
 });
 

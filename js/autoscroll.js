@@ -12,7 +12,7 @@ export function initAutoScroll(C) {
   let raf = 0, last = 0, pos = 0, lastSet = 0, started = false, flash;
   const maxY = () => document.documentElement.scrollHeight - innerHeight;
   const SPEED = 60; // px/giây, cố định: tính theo thời gian thực nên đều trên mọi màn hình (60/90/120Hz)
-  let t0 = 0, base = 0;
+  let t0 = 0, base = 0, atBottom = false;
 
   const frame = (t) => {
     raf = 0;
@@ -22,9 +22,11 @@ export function initAutoScroll(C) {
     if (Math.abs(scrollY - lastSet) > 2) { base = Math.round(scrollY); t0 = t; pos = base; lastSet = pos; } // người dùng vừa cuộn tay: bám theo vị trí mới
     const target = Math.min(maxY(), base + Math.round((SPEED * (t - t0)) / 1000));
     if (target !== pos) { pos = target; lastSet = pos; scrollTo(0, pos); }
-    if (pos >= maxY() - 1) { state.setEnabled(false); return; } // tới cuối trang thì dừng hẳn
+    if (pos >= maxY() - 1) { atBottom = true; return; } // tới cuối trang: chỉ ngừng vòng lặp (không tắt hẳn), cuộn lên thì tự chạy lại — xem listener "scroll"
     raf = requestAnimationFrame(frame);
   };
+  // Đang ở cuối trang mà người dùng cuộn lên (xa cuối trang hơn 40px) thì tự cuộn chạy lại từ vị trí mới (trừ khi họ đã chủ động dừng).
+  addEventListener("scroll", () => { if (atBottom && started && maxY() - scrollY > 40) { atBottom = false; kick(); } }, { passive: true });
   const kick = () => { if (!raf && state.isRunning()) { last = 0; raf = requestAnimationFrame(frame); } };
   const show = (txt) => { indicator.textContent = txt; indicator.classList.add("is-on"); clearTimeout(flash); flash = setTimeout(() => indicator.classList.remove("is-on"), 1100); };
 
@@ -39,7 +41,7 @@ export function initAutoScroll(C) {
       return;
     }
     if (window.getSelection()?.toString()) return;
-    if (!state.isRunning() && !state.userPaused() && state.holds().length === 0) return; // đã tới cuối trang
+    if (atBottom) return; // đang ở cuối trang: không có gì để dừng/chạy
     state.toggleUser(); show(state.userPaused() ? "⏸" : "▶"); kick();
   });
   // Khung cuộn riêng (danh sách lời chúc): cuộn chuột/chạm trong khung thì dừng tự cuộn trang để không trôi mất khung đang đọc

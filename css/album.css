@@ -34,8 +34,9 @@
 .lightbox button { background: none; border: 0; color: var(--bg); }
 .lb-close { position: absolute; top: 6px; right: 8px; font-size: 1.6rem; padding: 10px 14px; opacity: .85; }
 .lb-count { position: absolute; top: 12px; left: 12px; font-size: .85rem; padding: 4px 12px; border-radius: 999px; color: var(--bg); background: color-mix(in srgb, #000 40%, transparent); }
-.lb-stage { position: relative; flex: 1; min-height: 0; width: 100%; max-width: 1000px; display: grid; place-items: center; padding: 0 44px; }
-.lb-main { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px -10px #000; user-select: none; }
+.lb-stage { position: relative; flex: 1; min-height: 0; width: 100%; max-width: 1000px; }
+/* ảnh luôn nằm gọn trong khung (cả ngang lẫn dọc), giữ nguyên tỉ lệ gốc: lấp đầy khung rồi object-fit: contain */
+.lb-main { position: absolute; inset: 0 44px; width: calc(100% - 88px); height: 100%; object-fit: contain; filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .55)); user-select: none; }
 .lb-prev, .lb-next { position: absolute; top: 50%; translate: 0 -50%; font-size: 2.4rem; line-height: 1; width: 44px; height: 56px; opacity: .85; }
 .lb-prev { left: 0; } .lb-next { right: 0; }
 .lb-thumbs { flex: none; display: flex; gap: 8px; overflow-x: auto; max-width: min(92vw, 820px); margin-top: 10px; padding: 8px; border-radius: 12px; background: color-mix(in srgb, #000 30%, transparent); scrollbar-width: none; }

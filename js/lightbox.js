@@ -1,3 +1,5 @@
+import { photoThumb } from "./lib/thumb.js";
+
 // Xem ảnh lớn có số thứ tự và dải ảnh thu nhỏ. Nhận danh sách ảnh từ config (không đọc DOM)
 // nên dùng chung cho slide và "Xem tất cả".
 export function createLightbox({ onOpen, onClose } = {}) {
@@ -17,7 +19,7 @@ export function createLightbox({ onOpen, onClose } = {}) {
   const buildThumbs = () => {
     thumbs.replaceChildren(...list.map((p, k) => {
       const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `Xem ảnh ${k + 1}`);
-      const t = document.createElement("img"); t.src = p.src; t.alt = ""; t.loading = "lazy"; t.decoding = "async"; t.draggable = false;
+      const t = document.createElement("img"); t.src = photoThumb(p); t.alt = ""; t.loading = "lazy"; t.decoding = "async"; t.draggable = false;
       b.append(t); b.addEventListener("click", () => show(k)); return b;
     }));
     thumbs.hidden = list.length < 2;

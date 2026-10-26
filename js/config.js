@@ -28,8 +28,8 @@ export const CONFIG = {
 
   // ---- Cô dâu & chú rể ----
   couple: {
-    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Ông Nguyễn Duy Thịnh", "Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/trung.jpg", bio: "Chàng trai IT hiền lành, thích thể thao và nấu ăn." },
-    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Bố vợ", "Mẹ vợ"], address: "Hà Nội", photo: "assets/images/huong.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
+    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/trung.jpg", bio: "Chàng trai IT hiền lành, thích thể thao và nấu ăn." },
+    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Bà Nguyễn Thanh Mai"], address: "Hà Nội", photo: "assets/images/huong.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
   },
 
   // ---- Màn bìa ----
@@ -64,7 +64,7 @@ export const CONFIG = {
     parentsLabels: ["Nhà trai", "Nhà gái"],                    // nhãn trên tên bố mẹ: [cột trái, cột phải] (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
     inviteLine2: "Tới tham dự lễ thành hôn của hai chúng tôi", // dòng thứ hai dưới "Trân trọng kính mời: <tên>" (chỉ hiện khi URL có ?to=...)
     announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA HAI CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
-    venue: "Tư gia nhà trai\nThôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
+    venue: "Nhà văn hóa thôn Quảng Tái\ncụm Quảng Tái, Thôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
     startIso: "2026-12-20T10:00:00+07:00",
     durationMin: 120,
     timeline: [
@@ -128,8 +128,8 @@ export const CONFIG = {
   venues: {
     heading: "Địa Chỉ",
     items: [
-      { side: "Nhà Trai", name: "Trung's House", address: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "20.724174,105.8318", mapLink: "https://maps.app.goo.gl/vVKXpAgpEDVQo4YW7" },
-      { side: "Nhà Gái", name: "Huong's House", address: "Đường số 4, ngõ 278, nhà số 2, thôn Sáp Mai, xã Thiên Lộc, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "21.109136,105.762992", mapLink: "https://maps.app.goo.gl/Q2nBunnRhD4rgqyD6" },
+      { side: "Nhà Trai", name: "Nhà văn hóa thôn Quảng Tái", address: "cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "20.723599, 105.834350", mapLink: "https://maps.app.goo.gl/cnyWBQ23dKhC2Jpb6" },
+      { side: "Nhà Gái", name: "Trung Tâm Tiệc Cưới H2T", address: "4QC8+6XH, Thiên Lộc, Hà Nội, Việt Nam", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "21.120748719636122, 105.7683462301768", mapLink: "https://maps.app.goo.gl/AcrC89nYGQ4shy8E7" },
     ],
   },
 

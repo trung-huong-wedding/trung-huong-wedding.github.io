@@ -33,6 +33,8 @@ Chạy test logic: `npm test` (cần Node 20+).
 
 **Thêm/bớt khối:** mỗi danh sách là một mảng — thêm một `{ ... }` là thêm một mốc/ảnh/địa điểm, trang tự dài ra và đẩy các khối bên dưới xuống. Mảng rỗng `[]` thì section và mục menu của nó tự ẩn. Văn bản là chữ thường (không HTML), xuống dòng bằng `\n`.
 
+**Ảnh nhẹ / ảnh gốc:** trang hiển thị bản nhẹ trong `assets/thumbs/` (nhanh, mượt khi cuộn) và chỉ tải ảnh gốc khi khách bấm phóng to. Mỗi lần thêm/đổi ảnh thật, chạy `python3 scripts/make_thumbs.py` (cần `pip install pillow`) để tạo lại bản nhẹ; ảnh gốc không bị sửa. Chưa tạo bản nhẹ thì trang tự dùng ảnh gốc. Muốn một ảnh luôn dùng ảnh gốc: thêm `thumb: false` vào mục ảnh đó trong config.
+
 **Ảnh:** đặt ảnh gốc vào `assets/images/` và ghi đường dẫn trong config. Web **không resize/nén/cắt** ảnh, hiển thị đúng tỉ lệ gốc (riêng ảnh nền màn bìa phủ kín màn hình). Ảnh gốc nặng sẽ làm trang tải chậm hơn trên 4G — nếu cần, tự nén ảnh trước khi bỏ vào repo. Các ảnh có sẵn hiện giờ chỉ là ảnh giữ chỗ.
 
 ## Sổ lưu bút (Firebase Firestore)

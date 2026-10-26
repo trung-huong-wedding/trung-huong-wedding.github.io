@@ -9,12 +9,13 @@ export function initSlider({ lightbox, config }) {
   const scene = document.getElementById("ringScene"), dots = [...root.querySelectorAll(".ring__dots button")];
   const items = [...scene.children], n = items.length;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let i = 0, timer = 0, start = null, onscreen = false; const holds = createHolds();
+  let i = 0, timer = 0, start = null, onscreen = false, near = false; const holds = createHolds();
 
   const loadImg = (el) => {
     const im = el.querySelector("img");
     if (!im.getAttribute("src")) {
       im.addEventListener("load", () => { if (im.naturalWidth) el.style.aspectRatio = `${im.naturalWidth} / ${im.naturalHeight}`; syncWidth(); }, { once: true });
+      im.addEventListener("error", () => { if (!im.dataset.fb && el.dataset.full) { im.dataset.fb = "1"; im.src = el.dataset.full; } }, { once: true });
       im.src = el.dataset.src;
     }
   };
@@ -28,7 +29,7 @@ export function initSlider({ lightbox, config }) {
       el.style.pointerEvents = s.visible ? "auto" : "none";
       el.tabIndex = s.d === 0 ? 0 : -1;
       el.setAttribute("aria-hidden", String(!s.visible));
-      if (Math.abs(s.d) <= 3) loadImg(el);
+      if (near && Math.abs(s.d) <= 2) loadImg(el); // chỉ nạp ảnh khi slider sắp tới màn hình, và chỉ các ảnh gần ảnh đang chọn (ảnh gốc rất nặng)
     });
     dots.forEach((d, j) => d.classList.toggle("is-on", j === i));
     syncWidth();
@@ -57,4 +58,5 @@ export function initSlider({ lightbox, config }) {
   document.addEventListener("visibilitychange", () => (document.hidden ? hold("hidden") : release("hidden")));
   document.addEventListener("modal:open", () => hold("modal")); document.addEventListener("modal:close", () => release("modal"));
   new IntersectionObserver(([e]) => { onscreen = e.isIntersecting; if (onscreen) play(); else stop(); }, { threshold: 0.2 }).observe(root);
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !near) { near = true; render(); } }, { rootMargin: "700px 0px" }).observe(root);
 }
