@@ -1,5 +1,4 @@
 import { createAutoScrollState } from "./lib/autoscroll-state.js";
-import { pickStep, medianFrameMs } from "./lib/scrollstep.js";
 
 // Bấm vào các phần tử này không tính là "bấm vùng trống" (không đổi trạng thái tự cuộn).
 const INTERACTIVE = "a,button,input,textarea,select,label,summary,dialog,iframe,[data-no-toggle],.menu,.menu-toggle,.lightbox,.gallery,.slider,.gift-modal,.rsvp,.gb-form,.venue__map,.gb-list";
@@ -11,25 +10,18 @@ export function initAutoScroll(C) {
   indicator.className = "as-indicator"; indicator.setAttribute("aria-hidden", "true"); document.body.append(indicator);
 
   let raf = 0, last = 0, pos = 0, lastSet = 0, started = false, flash;
-  let step = pickStep(C.autoScroll.pxPerSecond, 60), frameMs = 1000 / 60, owed = 0;
   const maxY = () => document.documentElement.scrollHeight - innerHeight;
-
-  // Đo tốc độ làm tươi màn hình (60/90/120Hz) một lần rồi chọn bước cuộn đều (xem lib/scrollstep.js) — hết nhích 1px/2px xen kẽ gây giật.
-  const calibrate = () => new Promise((res) => {
-    const dts = []; let prev = 0;
-    const f = (t) => { if (prev) dts.push(t - prev); prev = t; if (dts.length < 24) requestAnimationFrame(f); else res(medianFrameMs(dts.slice(4))); };
-    requestAnimationFrame(f);
-  });
+  const SPEED = 60; // px/giây, cố định: tính theo thời gian thực nên đều trên mọi màn hình (60/90/120Hz)
+  let t0 = 0, base = 0;
 
   const frame = (t) => {
     raf = 0;
     if (!state.isRunning()) { last = 0; return; }
-    if (!last) { last = t; pos = Math.round(scrollY); lastSet = pos; owed = 0; }
-    const frames = Math.max(1, Math.min(6, Math.round((t - last) / frameMs))); last = t; // khung bị rớt: bù đúng số khung đã trôi qua
-    if (Math.abs(scrollY - lastSet) > 2) { pos = Math.round(scrollY); owed = 0; } // người dùng vừa cuộn tay: bám theo vị trí mới
-    owed += frames;
-    let moved = 0; while (owed >= step.every) { owed -= step.every; moved += step.px; }
-    if (moved) { pos = Math.min(maxY(), pos + moved); lastSet = pos; scrollTo(0, pos); }
+    if (!last) { last = t; t0 = t; base = Math.round(scrollY); pos = base; lastSet = pos; }
+    last = t;
+    if (Math.abs(scrollY - lastSet) > 2) { base = Math.round(scrollY); t0 = t; pos = base; lastSet = pos; } // người dùng vừa cuộn tay: bám theo vị trí mới
+    const target = Math.min(maxY(), base + Math.round((SPEED * (t - t0)) / 1000));
+    if (target !== pos) { pos = target; lastSet = pos; scrollTo(0, pos); }
     if (pos >= maxY() - 1) { state.setEnabled(false); return; } // tới cuối trang thì dừng hẳn
     raf = requestAnimationFrame(frame);
   };
@@ -63,11 +55,7 @@ export function initAutoScroll(C) {
   document.addEventListener("nav:end", () => { state.release("nav"); kick(); });
 
   return {
-    async start() {
-      if (reduce) return; started = true;
-      frameMs = await calibrate(); step = pickStep(C.autoScroll.pxPerSecond, 1000 / frameMs);
-      state.setEnabled(true); kick();
-    },
+    start() { if (reduce) return; started = true; state.setEnabled(true); kick(); },
     hold: (r) => state.hold(r), release: (r) => { state.release(r); kick(); },
   };
 }

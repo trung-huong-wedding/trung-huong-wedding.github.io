@@ -171,7 +171,7 @@ export const CONFIG = {
   ],
 
   music: { src: "assets/audio/Beautiful-In-White.mp3" }, // ví dụ "assets/audio/music.mp3"; để trống thì ẩn nút nhạc
-  autoScroll: { pxPerSecond: 70 }, // tốc độ tự cuộn (px/giây). Để cuộn mượt, tốc độ được làm tròn về bước đều theo tần số màn hình (60Hz: 20/30/60/120...)
+  autoScroll: { pxPerSecond: 60 }, // đã cố định 60px/giây trong js/autoscroll.js (khoá này không còn tác dụng)
 
   // Dán cấu hình web app từ Firebase Console. Để apiKey trống thì dùng lời chúc mẫu.
   firebase: { 
