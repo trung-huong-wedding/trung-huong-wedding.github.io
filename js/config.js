@@ -36,6 +36,7 @@ export const CONFIG = {
   hero: {
     photo: "assets/images/floral-background.webp", // ảnh cưới: làm nền mờ ở màn mở đầu
     lead: "Thân Mời",
+    autoOpenSec: 5,                  // khách không bấm "Mở thiệp" thì tự mở sau ngần này giây (0 = không tự mở)
     flower: "assets/images/flower-decoration.webp",                      // ảnh hoa trang trí hai góc thẻ, ví dụ "assets/images/flower-decoration.webp"; để trống = dùng hoa vẽ sẵn
   },
 
@@ -170,7 +171,7 @@ export const CONFIG = {
   ],
 
   music: { src: "assets/audio/Beautiful-In-White.mp3" }, // ví dụ "assets/audio/music.mp3"; để trống thì ẩn nút nhạc
-  autoScroll: { pxPerSecond: 70 }, // tốc độ tự cuộn (px/giây): 35 chậm, 70 vừa, 100 nhanh
+  autoScroll: { pxPerSecond: 70 }, // tốc độ tự cuộn (px/giây). Để cuộn mượt, tốc độ được làm tròn về bước đều theo tần số màn hình (60Hz: 20/30/60/120...)
 
   // Dán cấu hình web app từ Firebase Console. Để apiKey trống thì dùng lời chúc mẫu.
   firebase: { 

@@ -49,7 +49,7 @@ const music = guard("music", () => initMusic(CONFIG), { play() {}, show() {} });
 const auto = guard("autoscroll", () => initAutoScroll(CONFIG), { start() {} });
 
 // 3. Mở thiệp: hiện menu, bật nhạc, rồi tự cuộn sau khi hero "thở" xong
-guard("hero", () => initHero({ onStart: () => music.play(), onOpen: () => emit("invitation:open") }));
+guard("hero", () => initHero({ onStart: () => music.play(), onOpen: () => emit("invitation:open"), autoOpenSec: CONFIG.hero?.autoOpenSec ?? 0 }));
 document.addEventListener("invitation:open", () => {
   menu.show(); music.show?.();
   setTimeout(() => auto.start(), 1200);

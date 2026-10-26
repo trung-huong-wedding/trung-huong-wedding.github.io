@@ -29,14 +29,15 @@ export const OPEN_TIMELINE = { leave: 700, open: 2100, done: 3900 };
 
 // Màn mở đầu là một trang riêng (phủ kín màn hình).
 // Bấm "Mở thiệp": trái tim + hoa phóng to rồi mờ, trái tim nhỏ bung ra → thiệp trượt lên và biến mất → hiện trang nội dung.
-export function initHero({ onOpen, onStart }) {
+export function initHero({ onOpen, onStart, autoOpenSec = 0 }) {
   const small = matchMedia("(max-width: 640px)").matches;
   spawnHearts(document.getElementById("hearts"), small ? 14 : 20);
   const btn = document.getElementById("openBtn");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let opened = false;
-  btn.addEventListener("click", () => {
-    if (opened) return; opened = true;
+  let autoTimer = 0;
+  const open = () => {
+    if (opened) return; opened = true; clearTimeout(autoTimer);
     onStart?.(); // ngay lúc bấm (còn trong thao tác của người dùng): bắt đầu phát nhạc
     const b = document.body;
     const finish = () => { b.classList.remove("is-locked"); b.classList.add("is-open"); onOpen?.(); };
@@ -46,5 +47,8 @@ export function initHero({ onOpen, onStart }) {
     setTimeout(() => b.classList.add("is-leaving"), OPEN_TIMELINE.leave);
     setTimeout(finish, OPEN_TIMELINE.open);
     setTimeout(() => b.classList.remove("is-opening", "is-leaving"), OPEN_TIMELINE.done);
-  });
+  };
+  btn.addEventListener("click", open);
+  // Khách không bấm thì tự mở sau autoOpenSec giây (bấm nút thì mở ngay và hủy hẹn giờ). Nhạc có thể bị trình duyệt chặn vì chưa có thao tác bấm.
+  if (autoOpenSec > 0) autoTimer = setTimeout(open, autoOpenSec * 1000);
 }
