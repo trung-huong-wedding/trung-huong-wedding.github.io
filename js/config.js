@@ -64,13 +64,13 @@ export const CONFIG = {
     parentsLabels: ["Nhà trai", "Nhà gái"],                    // nhãn trên tên bố mẹ: [cột trái, cột phải] (tên lấy từ couple.*.parents, tự bỏ "Ông"/"Bà" ở đầu)
     inviteLine2: "Tới tham dự lễ thành hôn của hai chúng tôi", // dòng thứ hai dưới "Trân trọng kính mời: <tên>" (chỉ hiện khi URL có ?to=...)
     announce: "TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA HAI CHÚNG TÔI", // lời báo tin (xuống dòng bằng \n)
-    venue: "Nhà văn hóa thôn Quảng Tái\ncụm Quảng Tái, Thôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
-    startIso: "2026-12-20T10:00:00+07:00",
+    venue: "Nhà văn hóa thôn Quảng Tái\ncụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội",                       // địa điểm làm lễ, hiện dưới "LỄ THÀNH HÔN TẠI" (xuống dòng bằng \n)
+    startIso: "2026-12-20T11:00:00+07:00",
     durationMin: 120,
     timeline: [
-      { time: "08:30", title: "Đón khách" },
-      { time: "10:00", title: "Lễ thành hôn" },
-      { time: "11:30", title: "Chụp ảnh lưu niệm" },
+      { time: "09:00", title: "Đón khách" },
+      { time: "10:00", title: "Chụp ảnh lưu niệm" },
+      { time: "11:00", title: "Lễ thành hôn" },
     ],
     locationForCalendar: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội",
   },
@@ -83,7 +83,7 @@ export const CONFIG = {
       { date: "9 Tháng 12, 2023", title: "Những ngày đầu hẹn hò", photo: "assets/images/couple-2.jpg", photoAlt: "Vũ điệu hoàng hôn", text: "Sau những ngày trò chuyện, cuối cùng chúng mình cũng gặp nhau lần đầu. Từ những dòng tin nhắn, giờ đây là một người thật đang ở ngay trước mắt, và câu chuyện của chúng mình bắt đầu bước sang một chương mới." },
       { date: "1 Tháng 5, 2024", title: "Chính thức trở thành người yêu", photo: "assets/images/couple-3.jpg", photoAlt: "Nụ hôn bên biển", text: "Ngày 1 tháng 5, một lời tỏ tình đã đưa hai trái tim đến gần nhau hơn. Từ khoảnh khắc ấy, chúng mình chính thức trở thành một phần trong cuộc sống của nhau." },
       { date: "Năm 2025", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-4.jpg", photoAlt: "Nụ hôn bên biển", text: "Có những ngày khó khăn, nhưng bàn tay vẫn nắm chặt và chúng mình hiểu nhau hơn." },
-      // { date: "10 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày cùng nhau yêu thương và trưởng thành, anh trao em lời cầu hôn. Một lời hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
+      { date: "17 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày cùng nhau yêu thương và trưởng thành, anh trao em lời cầu hôn. Một lời hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
     ],
   },
 
@@ -128,7 +128,7 @@ export const CONFIG = {
   venues: {
     heading: "Địa Chỉ",
     items: [
-      { side: "Nhà Trai", name: "Nhà văn hóa thôn Quảng Tái", address: "cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "20.723599, 105.834350", mapLink: "https://maps.app.goo.gl/cnyWBQ23dKhC2Jpb6" },
+      { side: "Nhà Trai", name: "Nhà văn hóa thôn Quảng Tái", address: "thôn Đạo Tú, xã Ứng Hòa, Hà Nội", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "20.723599, 105.834350", mapLink: "https://maps.app.goo.gl/cnyWBQ23dKhC2Jpb6" },
       { side: "Nhà Gái", name: "Trung Tâm Tiệc Cưới H2T", address: "4QC8+6XH, Thiên Lộc, Hà Nội, Việt Nam", time: "Tiệc thân mật: 17:30, 19/12/2026", mapQuery: "21.120748719636122, 105.7683462301768", mapLink: "https://maps.app.goo.gl/AcrC89nYGQ4shy8E7" },
     ],
   },
