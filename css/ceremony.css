@@ -43,3 +43,11 @@
 
 /* tên khách trong dòng mời (mục lời mời): Great Vibes, đậm */
 .le__guest-name { font-weight: 700; font-size: 1.9em; line-height: 1.2; color: var(--hero-accent); }
+
+/* điện thoại: bớt cỡ chữ lớn (tên cô dâu chú rể, giờ ngày) để không chiếm hết màn hình */
+@media (max-width: 639px) {
+  .duo__name { font-size: clamp(30px, 9.5vw, 42px); width: 100%; }
+  .par__name { font-size: 16px; }
+  .evt__time { font-size: 24px; } .evt__day { font-size: 28px; } .evt__year { font-size: 19px; }
+  .le__title { font-size: 18px; }
+}

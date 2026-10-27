@@ -70,3 +70,6 @@
 .gb-item { padding: 16px 18px; border-radius: 18px; background: color-mix(in srgb, var(--bg) 70%, #fff); border: 1px solid color-mix(in srgb, var(--pink-soft) 90%, transparent); box-shadow: 0 14px 30px -24px color-mix(in srgb, var(--wine) 55%, transparent); animation: gbIn .9s var(--ease) both; }
 @keyframes gbIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .gb-item b { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--wine); margin-right: 10px; } .gb-item time { font-size: .72rem; color: var(--ink-soft); } .gb-item p { margin-top: 4px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* điện thoại: tiêu đề các mục nhỏ lại */
+@media (max-width: 639px) { .sec__title { font-size: clamp(1.9rem, 7.5vw, 2.4rem); } }
