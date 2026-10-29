@@ -1,8 +1,8 @@
 /* ===== Khối đầu trang nội dung: hai ảnh nghiêng + tên, nằm giữa màn hình (cả ngang lẫn dọc) ===== */
 .cpl { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; text-align: center; overflow: visible;
   min-height: 100vh; min-height: 100svh; padding: 56px 16px; color: var(--hero-ink); }
-.cpl__stage { position: relative; z-index: 10; flex: none; width: 320px; height: 450px; }
-@media (min-width: 768px) { .cpl__stage { width: 500px; height: 690px; } }
+.cpl__stage { position: relative; z-index: 10; flex: none; width: min(358px, calc(100vw - 24px)); height: 500px; }
+@media (min-width: 768px) { .cpl__stage { width: 600px; height: 770px; } }
 
 /* hoa lá ghép từ ảnh (theo mẫu): lá phía sau ở hai góc đối diện, hoa nhỏ đè lên góc ảnh */
 .cpl__deco { position: absolute; max-width: none; height: auto; pointer-events: none; user-select: none; }
@@ -15,11 +15,11 @@
 
 .cp { position: absolute; display: flex; align-items: center; gap: .75rem; }
 .cp--groom { left: 10px; top: 0; z-index: 20; }
-.cp--bride { right: 10px; top: 205px; z-index: 30; flex-direction: row-reverse; }
-@media (min-width: 768px) { .cp { gap: 1rem; } .cp--groom { left: 25px; } .cp--bride { right: 25px; top: 320px; } }
-.cp__photo { flex: none; width: 155px; }
+.cp--bride { right: 10px; top: 218px; z-index: 30; flex-direction: row-reverse; }
+@media (min-width: 768px) { .cp { gap: 1rem; } .cp--groom { left: 25px; } .cp--bride { right: 25px; top: 340px; } }
+.cp__photo { flex: none; width: 176px; }
 .cp--groom .cp__photo { rotate: -17deg; } .cp--bride .cp__photo { rotate: 13deg; }
-@media (min-width: 768px) { .cp__photo { width: 235px; } }
+@media (min-width: 768px) { .cp__photo { width: 275px; } }
 .cp__frame { position: relative; overflow: hidden; aspect-ratio: 2 / 3; border: 5px solid var(--gold); background: var(--pink-soft); box-shadow: 0 14px 32px -12px color-mix(in srgb, var(--wine) 55%, transparent); }
 .cp__frame img { width: 100%; height: 100%; object-fit: cover; }
 .cp__text { display: flex; flex-direction: column; align-items: flex-start; }
@@ -39,3 +39,25 @@
 .cp--bride .cp__bio { text-align: right; }
 @media (max-width: 767px) { .cp { gap: 1.75rem; } .cp__text { max-width: max(96px, calc(50vw - 56px)); } }
 @media (min-width: 768px) { .cp__bio { max-width: 230px; font-size: 18px; } }
+
+/* A: hoa lá lấp hai góc trống (trên phải, dưới trái) để cân với trên trái và dưới phải */
+.cpl__fill { z-index: -1; width: 54%; opacity: .85; }
+.cpl__fill--tr { right: -24%; top: -14%; rotate: 20deg; scale: -1 1; }
+.cpl__fill--bl { left: -26%; bottom: -12%; rotate: 195deg; }
+@media (min-width: 768px) { .cpl__fill { width: 48%; } .cpl__fill--tr { right: -20%; top: -10%; } .cpl__fill--bl { left: -22%; bottom: -8%; } }
+
+/* tinh chỉnh: ảnh không chạm mép màn hình; chữ luôn nằm trên hoa lá; lá lấp góc nhạt hơn và lùi ra xa chữ */
+.cp--groom { left: 18px; } .cp--bride { right: 18px; }
+@media (min-width: 768px) { .cp--groom { left: 25px; } .cp--bride { right: 25px; } }
+.cpl__stage .cp__text { z-index: 5; }
+.cp__name, .cp__role, .cp__bio { text-shadow: 0 0 8px rgba(255, 255, 255, .95), 0 0 3px rgba(255, 255, 255, .9); }
+.cpl__fill { opacity: .7; }
+.cpl__fill--bl { left: -34%; bottom: -16%; }
+@media (min-width: 768px) { .cpl__fill--bl { left: -30%; bottom: -12%; } }
+@media (max-width: 767px) { .cpl__stage { width: min(340px, calc(100vw - 40px)); } .cp__photo { width: 168px; } }
+/* điện thoại: thu ngắn chiều cao khối — bỏ min-height cả màn hình, giảm padding trên/dưới, kéo ảnh cô dâu lên sát ảnh chú rể */
+@media (max-width: 767px) {
+  .cpl { min-height: 0; padding: 64px 16px 12px; }
+  .cpl__stage { height: 452px; }
+  .cp--bride { top: 204px; }
+}

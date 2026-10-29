@@ -86,6 +86,8 @@ renderers.push((C) => {
   document.getElementById("thiep-cuoi").replaceChildren(
     h("div", { class: "cpl__stage" },
       deco("cpl__leaf cpl__leaf--a", D.leaf), deco("cpl__leaf cpl__leaf--b", D.leaf),
+      // lấp hai góc trống (trên phải, dưới trái) bằng cành lá, cân với hoa lá đã có ở trên trái và dưới phải
+      deco("cpl__fill cpl__fill--tr", D.flower ?? D.leaf), deco("cpl__fill cpl__fill--bl", D.flower ?? D.leaf),
       cp(C.couple.groom, "cp--groom"), cp(C.couple.bride, "cp--bride"),
       deco("cpl__corner cpl__corner--tl", D.corner), deco("cpl__corner cpl__corner--br", D.corner)),
   );
