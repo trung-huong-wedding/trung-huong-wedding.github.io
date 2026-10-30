@@ -1,7 +1,7 @@
 /* Màu ở đây CHỈ là giá trị dự phòng. Giá trị thật lấy từ CONFIG.theme (js/config.js) qua js/theme.js. */
 :root {
   --bg: #FFF6F5; --pink-soft: #F7C6CE; --pink: #E0607E; --red: #C8304F; --wine: #8E1F3A; --gold: #C9A25B;
-  --ink: #4a2a31; --ink-soft: #7a5a61; --hero-accent: #CB5D6C; --hero-ink: #933845;
+  --ink: #4a2a31; --ink-soft: #7a5a61; --hero-accent: #CB5D6C; --hero-ink: #933845; --bio: #8b1f37;
   --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-script: "Great Vibes", "Pinyon Script", cursive;
   --font-soft: "Quicksand", "Be Vietnam Pro", system-ui, sans-serif;

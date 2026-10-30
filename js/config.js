@@ -19,6 +19,7 @@ export const CONFIG = {
     inkSoft: "#7a5a61",  // chữ phụ
     heroAccent: "#CB5D6C", // màn bìa: tên, đường kẻ, nút "Mở thiệp"
     heroInk: "#933845",    // màn bìa: ngày tháng và câu mời
+    bio: "#8b1f37",        // dòng mô tả dưới tên cô dâu, chú rể
   },
 
   // ---- Ngày cưới (dùng cho đếm ngược) ----
