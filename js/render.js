@@ -73,7 +73,7 @@ renderers.push((C) => {
     h("p", { class: "quote reveal", style: "--d:.3s" }, (C.invitation.lines ?? []).map((l, i) => [i ? h("br") : null, l])),
     // Có ?to=... thì "Trân trọng kính mời: <tên>" (tên Great Vibes, đậm), không có thì câu mời chung (invitation.body)
     h("p", { class: "lead reveal", style: "--d:.45s" }, ...(guestFromUrl(C)
-      ? [`${C.ceremony?.inviteLabel ?? "Trân trọng kính mời"}: `, h("span", { class: "le__guest-name script" }, guestFromUrl(C)), h("br"), C.ceremony?.inviteLine2 ?? "Tới tham dự lễ thành hôn của hai chúng tôi"]
+      ? [`${C.ceremony?.inviteLabel ?? "Trân trọng kính mời"}: `, h("br", { class: "le__br-m" }), h("span", { class: "le__guest-name script" }, guestFromUrl(C)), h("br"), C.ceremony?.inviteLine2 ?? "Tới tham dự lễ thành hôn của hai chúng tôi"]
       : [C.invitation.body])),
   );
 

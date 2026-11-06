@@ -51,3 +51,6 @@
   .evt__time { font-size: 24px; } .evt__day { font-size: 28px; } .evt__year { font-size: 19px; }
   .le__title { font-size: 18px; }
 }
+
+/* tên khách xuống dòng riêng trên điện thoại; từ 640px trở lên vẫn liền một dòng */
+@media (min-width: 640px) { .le__br-m { display: none; } }
