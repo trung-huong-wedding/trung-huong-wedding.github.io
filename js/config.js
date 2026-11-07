@@ -84,7 +84,7 @@ export const CONFIG = {
       { date: "9 Tháng 12, 2023", title: "Những ngày đầu hẹn hò", photo: "assets/images/couple-2.jpg", photoAlt: "Vũ điệu hoàng hôn", text: "Sau những ngày trò chuyện, cuối cùng chúng mình cũng gặp nhau lần đầu. Từ những dòng tin nhắn, giờ đây là một người thật đang ở ngay trước mắt, và câu chuyện của chúng mình bắt đầu bước sang một chương mới." },
       { date: "1 Tháng 5, 2024", title: "Chính thức trở thành người yêu", photo: "assets/images/couple-3.jpg", photoAlt: "Nụ hôn bên biển", text: "Ngày 1 tháng 5, một lời tỏ tình đã đưa hai trái tim đến gần nhau hơn. Từ khoảnh khắc ấy, chúng mình chính thức trở thành một phần trong cuộc sống của nhau." },
       { date: "Năm 2025", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-4.jpg", photoAlt: "Nụ hôn bên biển", text: "Có những ngày khó khăn, nhưng bàn tay vẫn nắm chặt và chúng mình hiểu nhau hơn." },
-      { date: "17 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày cùng nhau yêu thương và trưởng thành, anh trao em lời cầu hôn. Một lời hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
+      { date: "17 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày yêu thương và cùng nhau trưởng thành, anh trao em lời cầu hôn. Một câu hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
     ],
   },
 
