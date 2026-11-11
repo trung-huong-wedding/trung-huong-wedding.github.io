@@ -183,7 +183,7 @@ export const CONFIG = {
   guestbook: {
     heading: "Sổ Lưu Bút",
     maxName: 50,
-    maxMessage: 300,
+    maxMessage: 1000,
     cooldownSec: 30,
     pageSize: 10,
     listHeight: 500, // chiều cao khung danh sách lời chúc (px); nhiều lời chúc hơn thì cuộn trong khung
