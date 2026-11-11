@@ -29,8 +29,8 @@ export const CONFIG = {
 
   // ---- Cô dâu & chú rể ----
   couple: {
-    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/trung.jpg", bio: "Chàng trai IT hiền lành, thích thể thao và nấu ăn." },
-    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Bà Nguyễn Thanh Mai"], address: "Hà Nội", photo: "assets/images/huong.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
+    groom: { name: "Thành Trung", fullName: "Nguyễn Thành Trung", role: "Chú rể", parents: ["Bà Nguyễn Thị Tuyên"], address: "Hà Nội", photo: "assets/images/DSC09348.jpg", bio: "Chàng trai IT hiền lành, thích thể thao và nấu ăn." },
+    bride: { name: "Thu Hương", fullName: "Nguyễn Thu Hương", role: "Cô dâu", parents: ["Bà Nguyễn Thanh Mai"], address: "Hà Nội", photo: "assets/images/DSC09301.jpg", bio: "Cô gái dịu dàng, yêu hoa và những buổi chiều hoàng hôn." },
   },
 
   // ---- Màn bìa ----
@@ -69,8 +69,8 @@ export const CONFIG = {
     startIso: "2026-12-20T11:00:00+07:00",
     durationMin: 120,
     timeline: [
-      { time: "09:00", title: "Đón khách" },
-      { time: "10:00", title: "Chụp ảnh lưu niệm" },
+      { time: "10:00", title: "Đón khách" },
+      { time: "10:30", title: "Chụp ảnh lưu niệm" },
       { time: "11:00", title: "Lễ thành hôn" },
     ],
     locationForCalendar: "số 20, ngõ 15 cụm Quảng Tái, thôn Đạo Tú, xã Ứng Hòa, Hà Nội",
@@ -78,35 +78,80 @@ export const CONFIG = {
 
   // ---- Câu chuyện tình yêu (cây thời gian). Mỗi mốc là một khối; mọi trường đều tuỳ chọn. ----
   story: {
-    heading: "Câu Chuyện Tình Yêu",
+    heading: "Từ một tin nhắn, đến một đời thương.",
     chapters: [
-      { date: "22 Tháng 8, 2023", title: "Ngày đầu làm quen", photo: "assets/images/couple-1.jpg", photoAlt: "Nắm tay bên biển", text: "Một buổi sáng bình thường, chúng mình bắt đầu làm quen qua những dòng tin nhắn. Một cuộc trò chuyện tưởng chừng bình thường, nhưng lại mở đầu cho một câu chuyện thật đặc biệt." },
-      { date: "9 Tháng 12, 2023", title: "Những ngày đầu hẹn hò", photo: "assets/images/couple-2.jpg", photoAlt: "Vũ điệu hoàng hôn", text: "Sau những ngày trò chuyện, cuối cùng chúng mình cũng gặp nhau lần đầu. Từ những dòng tin nhắn, giờ đây là một người thật đang ở ngay trước mắt, và câu chuyện của chúng mình bắt đầu bước sang một chương mới." },
-      { date: "1 Tháng 5, 2024", title: "Chính thức trở thành người yêu", photo: "assets/images/couple-3.jpg", photoAlt: "Nụ hôn bên biển", text: "Ngày 1 tháng 5, một lời tỏ tình đã đưa hai trái tim đến gần nhau hơn. Từ khoảnh khắc ấy, chúng mình chính thức trở thành một phần trong cuộc sống của nhau." },
-      { date: "Năm 2025", title: "Cùng nhau đi qua thử thách", photo: "assets/images/couple-4.jpg", photoAlt: "Nụ hôn bên biển", text: "Có những ngày khó khăn, nhưng bàn tay vẫn nắm chặt và chúng mình hiểu nhau hơn." },
-      { date: "17 Tháng 10, 2026", title: "Lời cầu hôn", photo: "assets/images/couple-4.jpg", photoAlt: "Ôm nhau lúc hoàng hôn", text: "Sau những ngày yêu thương và cùng nhau trưởng thành, anh trao em lời cầu hôn. Một câu hỏi cho cả một đời, và từ đây, chúng mình cùng viết tiếp câu chuyện mang tên hạnh phúc." },
+      {
+      date: "22 Tháng 8, 2023",
+      title: "Tin nhắn đầu tiên",
+      photo: "assets/images/first-inbox.jpg",
+      photoAlt: "Tin nhắn đầu tiên",
+      text: "Chúng mình bắt đầu từ một tin nhắn, giữa những ngày tháng chẳng có gì đặc biệt. Khi ấy, chẳng ai biết rằng người ở đầu bên kia màn hình sẽ trở thành người cùng mình đi qua những năm tháng sau này. Một lời chào rất khẽ, nhưng lại mở ra cả một hành trình yêu thương."
+    },
+    {
+      date: "9 Tháng 12, 2023",
+      title: "Lần đầu gặp gỡ",
+      photo: "assets/images/first-date.jpg",
+      photoAlt: "Ngày đầu gặp nhau",
+      text: "Sau những ngày chỉ biết nhau qua màn hình, chúng mình cuối cùng cũng gặp nhau. Ánh mắt, nụ cười và những câu chuyện chẳng muốn kết thúc… Từ hôm ấy, người từng chỉ xuất hiện trong những dòng tin nhắn đã trở thành một điều thật gần gũi, thật đặc biệt trong tim."
+    },
+    {
+      date: "1 Tháng 5, 2024",
+      title: "Ngày chúng mình thuộc về nhau",
+      photo: "assets/images/couple-date.jpg",
+      photoAlt: "Chính thức thành đôi",
+      text: "Có những tình cảm chẳng cần quá nhiều lời để diễn tả, chỉ cần một bó hoa, một lời tỏ tình chân thành và một cái gật đầu hạnh phúc. Ngày 1 tháng 5, chúng mình chính thức bước vào cuộc đời nhau, cùng viết nên những trang đầu tiên của một chuyện tình mang tên chúng mình."
+    },
+    {
+      date: "Năm 2025",
+      title: "Tình yêu qua những thử thách",
+      photo: "assets/images/love-date.jpg",
+      photoAlt: "Mãi mãi bên nhau",
+      text: "Tình yêu không phải lúc nào cũng là những ngày bình yên và ngọt ngào. Đã có những lúc khó khăn, những điều chưa thể nói thành lời. Nhưng sau tất cả, chúng mình vẫn chọn ở lại, chọn lắng nghe, thấu hiểu và nắm tay nhau bước tiếp. Bởi càng đi qua thử thách, chúng mình càng hiểu rằng: người mình muốn cùng đi đến cuối hành trình chính là người đang ở bên cạnh."
+    },
+    {
+      date: "17 Tháng 10, 2026",
+      title: "Lời cầu hôn – Hẹn ước trọn đời",
+      photo: "assets/images/17-10-date.jpg",
+      photoAlt: "Cầu hôn",
+      text: "Từ một tin nhắn đầu tiên đến lời hẹn ước trăm năm, hành trình của chúng mình đã đi qua biết bao yêu thương và trưởng thành. Ngày anh ngỏ lời cầu hôn, em không chỉ nhận được một chiếc nhẫn, mà còn nhận được lời hứa về một mái nhà, một người đồng hành và một tình yêu sẽ luôn được gìn giữ. Từ hôm nay, chúng mình không chỉ yêu nhau, mà còn cùng nhau xây dựng một gia đình."
+    },
     ],
   },
 
   // ---- Album ảnh: slide tự trượt + nút "Xem tất cả". Ảnh giữ nguyên bản gốc, không cắt/resize. ----
   album: {
     heading: "Album Ảnh Cưới",
-    sliderCount: 11,            // số ảnh đầu tiên chạy trong slide
+    sliderCount: 27,            // số ảnh đầu tiên chạy trong slide
     intervalMs: 4500,           // thời gian giữa hai lần tự trượt
     viewAllLabel: "Xem tất cả", // nút mở toàn bộ ảnh
     photos: [
-      { src: "assets/images/couple-5.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-6.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-7.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-8.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-9.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-10.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/couple-11.jpg", alt: "Ôm nhau lúc hoàng hôn" },
-      { src: "assets/images/hero.jpg", alt: "Khoảnh khắc hoàng hôn" },
-      { src: "assets/images/couple-1.jpg", alt: "Nắm tay bên biển" },
-      { src: "assets/images/couple-2.jpg", alt: "Vũ điệu hoàng hôn" },
-      { src: "assets/images/couple-3.jpg", alt: "Nụ hôn bên biển" },
-      { src: "assets/images/couple-4.jpg", alt: "Ôm nhau lúc hoàng hôn" },
+      { src: "assets/images/DSC00245.jpg", alt: "wedding" },
+      { src: "assets/images/DSC00265.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09657.jpg", alt: "wedding" },
+      { src: "assets/images/DSC00275.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09558.jpg", alt: "wedding" },
+      { src: "assets/images/DSC08984.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09034.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09086.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09101.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09595.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09164.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09713.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09210.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09281.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09301.jpg", alt: "wedding" },
+      { src: "assets/images/DSC08941.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09348.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09356.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09376.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09446.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09128.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09866.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09872.jpg", alt: "wedding" }, 
+      { src: "assets/images/DSC09616.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09691.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09764.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09769.jpg", alt: "wedding" },
     ],
   },
 
@@ -153,8 +198,8 @@ export const CONFIG = {
     heading: "Hộp Quà Mừng",
     hint: "Nhấn để mở",
     people: [
-      { role: "Chú Rể", name: "NGUYEN THANH TRUNG", bank: "Vietcombank", account: "0000000000", qr: "assets/qr/groom.svg" },
-      { role: "Cô Dâu", name: "NGUYEN THU HUONG", bank: "BIDV", account: "1111111111", qr: "assets/qr/bride.svg" },
+      { role: "Chú Rể", name: "NGUYEN THANH TRUNG", bank: "BIDV", account: "0367742336", qr: "assets/images/bidv-trung.jpg" },
+      // { role: "Cô Dâu", name: "NGUYEN THU HUONG", bank: "BIDV", account: "1111111111", qr: "assets/qr/bride.svg" },
     ],
   },
 

@@ -48,6 +48,22 @@ export function initAutoScroll(C) {
   const pauseOnScrollArea = (e) => { if (started && e.target.closest?.(".gb-list") && !state.userPaused()) { state.pauseUser(); show("⏸"); } };
   document.addEventListener("wheel", pauseOnScrollArea, { passive: true });
   document.addEventListener("touchstart", pauseOnScrollArea, { passive: true });
+  // Người dùng tự cuộn (lăn chuột, chạm kéo, phím, kéo thanh cuộn): tạm nhường tay người dùng, KHÔNG gọi scrollTo chen vào (scrollTo làm huỷ hiệu ứng cuộn của trình duyệt nên cuộn tay bị "kẹt").
+  // Ngừng thao tác ~1,2s thì tự cuộn chạy tiếp từ vị trí mới (khác với bấm vùng trống: đó là dừng hẳn).
+  let manualTimer = 0, manualOn = false;
+  const manual = (idle = 1200) => {
+    if (!started) return;
+    if (!manualOn) { manualOn = true; state.hold("manual"); }
+    clearTimeout(manualTimer);
+    if (idle) manualTimer = setTimeout(() => { manualOn = false; state.release("manual"); kick(); }, idle);
+  };
+  document.addEventListener("wheel", () => manual(), { passive: true });
+  document.addEventListener("touchstart", () => manual(0), { passive: true });
+  document.addEventListener("touchend", () => manual(), { passive: true });
+  document.addEventListener("touchcancel", () => manual(), { passive: true });
+  document.addEventListener("keydown", (e) => { if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(e.key) && !e.target.matches?.("input,textarea,select,button")) manual(); });
+  document.addEventListener("pointerdown", (e) => { if (e.pointerType === "mouse" && e.clientX >= document.documentElement.clientWidth) manual(0); }); // kéo thanh cuộn
+  document.addEventListener("pointerup", () => { if (manualOn) manual(); });
   document.addEventListener("focusin", (e) => { if (e.target.matches("input,textarea")) state.hold("typing"); });
   document.addEventListener("focusout", (e) => { if (e.target.matches("input,textarea")) { state.release("typing"); kick(); } });
   document.addEventListener("visibilitychange", () => { document.hidden ? state.hold("hidden") : (state.release("hidden"), kick()); });

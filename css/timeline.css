@@ -1,4 +1,4 @@
-.tl { position: relative; list-style: none; margin: 8px 0 0; padding: 0; width: 100%; --p: 0; display: flex; flex-direction: column; gap: clamp(40px, 8vh, 80px); text-align: left; }
+.tl { position: relative; list-style: none; margin: 8px 0 0; padding: 0; width: 100%; --p: 0; display: flex; flex-direction: column; gap: clamp(10px, 2vh, 32px); text-align: left; }
 .tl__line { position: absolute; left: 17px; top: 8px; bottom: 8px; width: 2px; background: color-mix(in srgb, var(--gold) 40%, transparent); border-radius: 2px; }
 .tl__fill { position: absolute; inset: 0 0 auto 0; height: calc(var(--p) * 100%); background: linear-gradient(180deg, var(--pink), var(--red)); border-radius: 2px; }
 .tl__item { position: relative; padding-left: 52px; }
