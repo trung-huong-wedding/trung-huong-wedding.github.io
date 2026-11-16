@@ -135,7 +135,7 @@ renderers.push((C) => {
         h("span", { class: "tl__dot", "aria-hidden": "true" }, "♥"),
         h("div", { class: "tl__card" },
           c.date ? h("p", { class: "script tl__date" }, c.date) : null,
-          c.photo ? h("figure", { class: "tl__photo" }, h("img", { src: thumbSrc(c.photo), alt: c.photoAlt || c.title || "", loading: "lazy", decoding: "async", onerror: withFallback(c.photo) })) : null,
+          c.photo ? h("figure", { class: "tl__photo" }, h("img", { src: thumbSrc(c.photo), alt: c.photoAlt || c.title || "", decoding: "async", onerror: withFallback(c.photo) })) : null,
           c.title ? h("h3", { class: "tl__title" }, c.title) : null,
           c.text ? h("p", { class: "tl__text" }, c.text) : null)))),
   );

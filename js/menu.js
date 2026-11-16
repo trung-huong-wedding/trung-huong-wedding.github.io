@@ -32,15 +32,21 @@ export function initMenu(C, { onNavStart, onNavEnd } = {}) {
     const target = document.getElementById(a.dataset.target); if (!target) return;
     setOpen(false);
     onNavStart?.();
-    const y = target.getBoundingClientRect().top + scrollY;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const yOf = () => Math.min(document.documentElement.scrollHeight - innerHeight, Math.max(0, Math.round(target.getBoundingClientRect().top + scrollY))); // không vượt quá cuối trang
     // Cuộn xong = trang ngừng cuộn một lúc (không dùng "scrollend": các lần cuộn nhỏ của tự cuộn cũng phát sự kiện đó nên báo xong quá sớm)
-    let done = false, quiet = 0, cap = 0;
-    const finish = () => { if (done) return; done = true; clearTimeout(quiet); clearTimeout(cap); removeEventListener("scroll", onScroll); onNavEnd?.(); };
+    let done = false, quiet = 0, cap = 0, tries = 0;
+    const finish = () => {
+      if (done) return;
+      // Ảnh lazy ở các mục phía trên (câu chuyện tình yêu...) tải xong khi đang cuộn qua → trang dài ra, đích bị đẩy xuống: đo lại, lệch thì cuộn tiếp
+      if (tries < 5 && Math.abs(yOf() - scrollY) > 3) { tries++; scrollTo({ top: yOf(), behavior: reduce ? "auto" : "smooth" }); settle(500); return; }
+      done = true; clearTimeout(quiet); clearTimeout(cap); removeEventListener("scroll", onScroll); onNavEnd?.();
+    };
     const settle = (wait = 180) => { clearTimeout(quiet); quiet = setTimeout(finish, wait); };
     const onScroll = () => settle(); // không truyền thẳng settle: tham số đầu của listener là Event
     addEventListener("scroll", onScroll, { passive: true });
-    settle(500); cap = setTimeout(finish, 6000); // lần đầu chờ lâu hơn: cú cuộn mượt có thể bắt đầu hơi trễ
-    scrollTo({ top: Math.max(0, y), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    settle(500); cap = setTimeout(() => { done = false; tries = 99; finish(); }, 8000); // lần đầu chờ lâu hơn: cú cuộn mượt có thể bắt đầu hơi trễ
+    scrollTo({ top: yOf(), behavior: reduce ? "auto" : "smooth" });
   });
 
   // scrollspy: mục đang xem = section gần giữa màn hình nhất; "Thiệp cưới" giữ nguyên cho tới khi section kế tiếp vào vùng giữa
