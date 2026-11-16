@@ -125,15 +125,15 @@ export const CONFIG = {
     intervalMs: 4500,           // thời gian giữa hai lần tự trượt
     viewAllLabel: "Xem tất cả", // nút mở toàn bộ ảnh
     photos: [
+      { src: "assets/images/DSC08984.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09376.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09034.jpg", alt: "wedding" },
       { src: "assets/images/DSC00245.jpg", alt: "wedding" },
       { src: "assets/images/DSC00265.jpg", alt: "wedding" },
       { src: "assets/images/DSC09657.jpg", alt: "wedding" },
       { src: "assets/images/DSC00275.jpg", alt: "wedding" },
       { src: "assets/images/DSC09558.jpg", alt: "wedding" },
-      { src: "assets/images/DSC08984.jpg", alt: "wedding" },
-      { src: "assets/images/DSC09034.jpg", alt: "wedding" },
       { src: "assets/images/DSC09086.jpg", alt: "wedding" },
-      { src: "assets/images/DSC09101.jpg", alt: "wedding" },
       { src: "assets/images/DSC09595.jpg", alt: "wedding" },
       { src: "assets/images/DSC09164.jpg", alt: "wedding" },
       { src: "assets/images/DSC09713.jpg", alt: "wedding" },
@@ -142,8 +142,7 @@ export const CONFIG = {
       { src: "assets/images/DSC09301.jpg", alt: "wedding" },
       { src: "assets/images/DSC08941.jpg", alt: "wedding" },
       { src: "assets/images/DSC09348.jpg", alt: "wedding" },
-      { src: "assets/images/DSC09356.jpg", alt: "wedding" },
-      { src: "assets/images/DSC09376.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09356.jpg", alt: "wedding" },    
       { src: "assets/images/DSC09446.jpg", alt: "wedding" },
       { src: "assets/images/DSC09128.jpg", alt: "wedding" },
       { src: "assets/images/DSC09866.jpg", alt: "wedding" },
@@ -152,6 +151,7 @@ export const CONFIG = {
       { src: "assets/images/DSC09691.jpg", alt: "wedding" },
       { src: "assets/images/DSC09764.jpg", alt: "wedding" },
       { src: "assets/images/DSC09769.jpg", alt: "wedding" },
+      { src: "assets/images/DSC09101.jpg", alt: "wedding" },
     ],
   },
 
