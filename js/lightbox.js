@@ -1,4 +1,4 @@
-import { photoThumb } from "./lib/thumb.js";
+import { photoThumb, photoFull } from "./lib/thumb.js";
 
 // Xem ảnh lớn có số thứ tự và dải ảnh thu nhỏ. Nhận danh sách ảnh từ config (không đọc DOM)
 // nên dùng chung cho slide và "Xem tất cả".
@@ -9,10 +9,11 @@ export function createLightbox({ onOpen, onClose } = {}) {
   document.body.append(box);
   const img = box.querySelector(".lb-main"), count = box.querySelector(".lb-count"), thumbs = box.querySelector(".lb-thumbs");
   let list = [], i = 0, startX = 0;
+  img.addEventListener("error", () => { const o = list[i]?.src; if (o && !img.dataset.fb) { img.dataset.fb = "1"; img.src = o; } });
   const show = (n) => {
     if (!list.length) return;
     i = (n + list.length) % list.length;
-    img.src = list[i].src; img.alt = list[i].alt || "";
+    img.dataset.fb = ""; img.src = photoFull(list[i]); img.alt = list[i].alt || "";
     count.textContent = `${i + 1} / ${list.length}`;
     [...thumbs.children].forEach((t, k) => { t.classList.toggle("is-on", k === i); if (k === i) t.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); });
   };

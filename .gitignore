@@ -2,3 +2,9 @@
 node_modules/
 *.log
 .superpowers/
+
+# Ảnh gốc độ phân giải cao: chỉ giữ ở máy, không đẩy lên git (trang dùng assets/thumbs và assets/full, tạo bằng scripts/make_thumbs.py)
+assets/images/*.jpg
+assets/images/*.jpeg
+# QR chuyển khoản được trang dùng trực tiếp nên vẫn đẩy lên
+!assets/images/bidv-trung.jpg

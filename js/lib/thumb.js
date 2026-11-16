@@ -8,3 +8,13 @@ export function photoThumb(p) {
   if (p?.thumb === false) return p.src;
   return p?.thumb || thumbSrc(p?.src);
 }
+
+// Bản xem lớn (lightbox): assets/images/x.jpg → assets/full/x.jpg (Full HD, tạo bằng scripts/make_thumbs.py). Không áp dụng được thì giữ nguyên đường dẫn gốc.
+export function fullSrc(src) {
+  const s = String(src ?? "");
+  return /(^|\/)assets\/images\/[^/]+\.jpe?g$/i.test(s) && !/^[a-z]+:/i.test(s) ? s.replace(/assets\/images\//, "assets/full/") : s;
+}
+export function photoFull(p) {
+  if (p?.thumb === false) return p.src;
+  return fullSrc(p?.src);
+}
