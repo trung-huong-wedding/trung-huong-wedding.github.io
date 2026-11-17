@@ -121,7 +121,7 @@ export const CONFIG = {
   // ---- Album ảnh: slide tự trượt + nút "Xem tất cả". Ảnh giữ nguyên bản gốc, không cắt/resize. ----
   album: {
     heading: "Album Ảnh Cưới",
-    sliderCount: 27,            // số ảnh đầu tiên chạy trong slide
+    sliderCount: 24,            // số ảnh đầu tiên chạy trong slide
     intervalMs: 4500,           // thời gian giữa hai lần tự trượt
     viewAllLabel: "Xem tất cả", // nút mở toàn bộ ảnh
     photos: [
@@ -131,7 +131,7 @@ export const CONFIG = {
       { src: "assets/images/DSC00245.jpg", alt: "wedding" },
       { src: "assets/images/DSC00265.jpg", alt: "wedding" },
       { src: "assets/images/DSC09657.jpg", alt: "wedding" },
-      { src: "assets/images/DSC00275.jpg", alt: "wedding" },
+      // { src: "assets/images/DSC00275.jpg", alt: "wedding" },
       { src: "assets/images/DSC09558.jpg", alt: "wedding" },
       { src: "assets/images/DSC09086.jpg", alt: "wedding" },
       { src: "assets/images/DSC09595.jpg", alt: "wedding" },
